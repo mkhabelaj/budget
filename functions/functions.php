@@ -19,7 +19,7 @@ function returnKey(){
 //function for SQL
 
 /**
- * Takes any object and converts the variable values into a string the is single quoted and comma separated
+ * Takes any object and converts the variable values into a string and is single quoted and comma separated
  * @param $obj
  * @return string
  */
@@ -44,7 +44,7 @@ function createQueryStringValues($obj){
 }
 
 /**
- * Takes any object and converts the variable names into a string the is single quoted and comma separated
+ * Takes any object and converts the variable names into a string and is single quoted and comma separated
  * @param $obj
  * @return string
  */
