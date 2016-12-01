@@ -10,8 +10,10 @@
 //     echo Security::encrypt($value, $key);
 //     echo Security::decrypt(Security::encrypt($value, $key), $key);
      echo 'Aloha <br>';
-    if(isset($_SESSION['name'])){
-        echo $_SESSION['name'];
+    if(isset($_SESSION['email'])&&isset($_SESSION["user_id"])){
+        if(isset($_SESSION["error"])){
+            unset($_SESSION["error"]);
+        }
     }
     var_dump($_SESSION);
 
