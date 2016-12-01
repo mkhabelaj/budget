@@ -1,6 +1,10 @@
 <?php
 //$con = mysqli_connect("localhost","root","","budget");
 
+/**
+ * returns connection
+ * @return mysqli
+ */
 function con(){
     return mysqli_connect("localhost","root","","budget");
 }
