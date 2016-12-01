@@ -24,7 +24,7 @@ if(mysqli_num_rows($result) > 0){
     while ($row = mysqli_fetch_assoc($result)){
         ?>
         <tr>
-            <td><a href="#"><?php echo $row["name"]; ?></a></td>
+            <td><a href="#?budget_instance_id=<?php echo $row["budget_instance_id"]?>"><?php echo $row["name"]; ?></a></td>
         </tr>
         <?php
         //echo $row["name"];

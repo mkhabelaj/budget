@@ -15,10 +15,10 @@ factory()->getInclusion('functions')->Inclusion();
     <nav>
         <a href="../views/index.php">Home</a> |
         <?php if(is_logged_in()):?>
-            <a href="../views/budget.php">budget</a>
+            <a href="../views/budget.php">budget</a>|
             <a href="../controller/logOut.php">Sign out</a>|
                 <?php if(is_admin()):?>
-                <a href="../views/adminView.php">Administration</a>
+                <a href="../views/adminView.php">Administration</a>|
                 <?php endif;?>
             <?php else: ?>
             <a href="../views/registrationView.php">Register</a>|

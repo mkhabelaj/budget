@@ -51,6 +51,7 @@ if(isset($_POST)){
         }else{
             echo "time line failure ".mysqli_error($conn);
         }
+        header("Location: ../views/budget.php");
 
     }else{
         echo "failed";
