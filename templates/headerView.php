@@ -15,6 +15,7 @@ factory()->getInclusion('functions')->Inclusion();
     <nav>
         <a href="../views/index.php">Home</a> |
         <?php if(is_logged_in()):?>
+            <a href="../views/profileView.php"><?php echo $_SESSION["name"];?></a>
             <a href="../views/budget.php">budget</a>|
             <a href="../controller/logOut.php">Sign out</a>|
                 <?php if(is_admin()):?>

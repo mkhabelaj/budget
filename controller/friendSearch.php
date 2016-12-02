@@ -12,9 +12,9 @@ factory()->getInclusion("dataB")->Inclusion();
 require_once ("../classes/User.php");
 
 
-if(isset($_GET)){
+if(isset($_POST["query"])){
 
-    $query = $_GET["query"];
+    $query = $_POST["query"];
     $conn = con();
     $sql = "SELECT user_id, firstname,last_name FROM user WHERE firstname LIKE "."'%".$query."%'";
     
