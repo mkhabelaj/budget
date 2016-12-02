@@ -18,6 +18,10 @@ require_once ("Functions.php");
 class IncludeFactory
 {
 
+    /**
+     * @param String $type
+     * @return Database|Footer|Functions|HeaderView|null|SecurityInclude
+     */
     public function getInclusion($type)
     {
        switch ($type)
