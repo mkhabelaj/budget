@@ -29,8 +29,21 @@ $(Document).ready(function () {
             },
             function (data, status) {
                 console.log(data);
+                $("#search").keyup();
             }
 
+        );
+    });
+    $('body').on('click','.acceptFriendRequet',function () {
+        $.post(
+            "http://budget.dev/controller/acceptFriendRequest.php",
+            {
+                requester: $(this).val()
+            },
+        function (data) {
+            console.log(data);
+            $("#search").keyup();
+        }
         );
     });
 

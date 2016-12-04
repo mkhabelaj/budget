@@ -53,11 +53,11 @@ if(isset($_POST["query"])){
                         <?php
                             echo $row["firstname"]." ".$row["last_name"]." ";
                             if($row["state"] == "waiting" && $row["state"] !== null){
-                                if($row["user_id"] == $row["requester"]) {
+                                if($_SESSION["user_id"] == $row["requester"]) {
                                     echo "waiting for respone";
                                 }else{
                                     ?>
-                                    <button id="acceptFriendRequet" value="<?php echo $row["user_id"]?>">Accept</button>
+                                    <button class="acceptFriendRequet" value="<?php echo $row["user_id"]?>">Accept</button>
                                     <?php
                                 }
                             }else{
