@@ -15,4 +15,23 @@ $(Document).ready(function () {
         );
     });
 
+    // $("#friendRequest").click(function () {
+    //     console.log($(this).val());
+    //     console.log("hi");
+    // });
+    $('body').on('click', '.friendRequest', function (){
+       //console.log($(this).val());
+        $.post(
+            "http://budget.dev/controller/friendRequest.php",
+            {
+                requestee: $(this).val()
+
+            },
+            function (data, status) {
+                console.log(data);
+            }
+
+        );
+    });
+
 });

@@ -8,6 +8,6 @@ factory()->getInclusion("header")->Inclusion();
     <input type="text" id="search" placeholder="search">
 </form>
 <div id="filterSearch"></div>
-
+<!--    <button id="friendRequest" value="lkdfdf">sdfdf</button>-->
     <script type="application/javascript" src="../js/friendSearch.js"></script>
 <?php factory()->getInclusion("footer")->Inclusion();
