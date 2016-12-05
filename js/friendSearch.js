@@ -1,10 +1,17 @@
 /**
  * Created by jmkha on 12/2/2016.
  */
+
+var home ="http://localhost:8080/";
+//var home = "http://budget.dev/";
+
+/**
+ * this is the ajax filter search
+ */
 $(Document).ready(function () {
     $("#search").keyup(function () {
         //console.log($(this).val());
-        $.post("http://budget.dev/controller/friendSearch.php",
+        $.post(home+"controller/friendSearch.php",
             {
                 query: $(this).val()
             },
@@ -14,15 +21,14 @@ $(Document).ready(function () {
 
         );
     });
+    /**
+     * this make the friend request button clickable
+     */
 
-    // $("#friendRequest").click(function () {
-    //     console.log($(this).val());
-    //     console.log("hi");
-    // });
     $('body').on('click', '.friendRequest', function (){
        //console.log($(this).val());
         $.post(
-            "http://budget.dev/controller/friendRequest.php",
+            home+"controller/friendRequest.php",
             {
                 requestee: $(this).val()
 
@@ -34,17 +40,40 @@ $(Document).ready(function () {
 
         );
     });
+    /**
+     * this make the friend accept button clickable
+     */
     $('body').on('click','.acceptFriendRequet',function () {
         $.post(
-            "http://budget.dev/controller/acceptFriendRequest.php",
+            home+"controller/acceptFriendRequest.php",
             {
                 requester: $(this).val()
             },
         function (data) {
             console.log(data);
             $("#search").keyup();
+            friendList();
         }
         );
     });
 
+    /**
+     * this part of the code makes the the friend list
+     */
+    friendList();
+
+
+
 });
+/**
+ * this gets the friendlist
+ */
+function friendList() {
+    $.post(
+        home+"controller/createFriendList.php",
+        function (data) {
+            $("#friendList").html(data);
+        }
+    );
+}
+

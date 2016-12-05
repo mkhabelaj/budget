@@ -21,6 +21,12 @@ factory()->getInclusion('functions')->Inclusion();
                 <?php if(is_admin()):?>
                 <a href="../views/adminView.php">Administration</a>|
                 <?php endif;?>
+            <a href="../views/notificationView.php">
+                <div style="display: inline"> <!--CSS-->
+                    Notifications
+                    (<div class="notification" style="display: inline"></div>)<!--CSS-->
+                </div>
+            </a>|
             <?php else: ?>
             <a href="../views/registrationView.php">Register</a>|
             <a href="../views/loginView.php">Sign in</a>|
