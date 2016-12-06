@@ -19,12 +19,19 @@ if(mysqli_num_rows($result) > 0){
     <table>
         <tr>
             <th>Budget</th>
+            <th>Add Friends</th>
         </tr>
     <?php
     while ($row = mysqli_fetch_assoc($result)){
         ?>
         <tr>
-            <td><a href="#?budget_instance_id=<?php echo $row["budget_instance_id"]?>"><?php echo $row["name"]; ?></a></td>
+            <td>
+                <a href="#?budget_instance_id=<?php echo $row["budget_instance_id"]?>"><?php echo $row["name"]; ?></a>
+            </td>
+            <td>
+                <button class="addFriendToBudget" value="<?php echo $row["budget_instance_id"]?>">+</button>
+            </td>
+
         </tr>
         <?php
         //echo $row["name"];
@@ -34,4 +41,7 @@ if(mysqli_num_rows($result) > 0){
 ?>
 
 </table>
+<div id="addFriendList">zdf</div>
+
+<script type="application/javascript" src="../js/addFriendToBudget.js"></script>
 <?php factory()->getInclusion("footer")->Inclusion();?>

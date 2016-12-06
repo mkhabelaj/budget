@@ -53,6 +53,7 @@ $(Document).ready(function () {
             console.log(data);
             $("#search").keyup();
             friendList();
+            getNotification();
         }
         );
     });
