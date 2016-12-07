@@ -2,8 +2,8 @@
  * Created by JacksonM on 2016-12-06.
  */
 var budgetID;
-var home ="http://localhost:8080/";
-//var home = "http://budget.dev/";
+//var home ="http://localhost:8080/";
+var home = "http://budget.dev/";
 
 $(document).ready(function () {
     $("#addFriendList").hide();

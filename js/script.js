@@ -1,23 +1,20 @@
 /**
  * Created by JacksonM on 2016-12-05.
  */
+//var home ="http://localhost:8080/";
+var home = "http://budget.dev/";
 
 $(document).ready(function () {
 
     getNotification();
-    setInterval(function(){ getNotification(); }, 50000);
+    setInterval(function(){ getNotification(); }, 20000);
 
 });
-
+/**
+ * updates the notification for the site
+ */
 function getNotification() {
-    $.post(
-        "http://localhost:8080/controller/notificationCounter.php",
-        function (data) {
-            console.log(data);
-            $(".notification").html(data);
-
-        }
-    );
+    getAnyPost(home+"controller/notificationCounter.php",null,".notification");
 }
 /**
  * function to send of get any post
