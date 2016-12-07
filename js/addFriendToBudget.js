@@ -16,7 +16,9 @@ $(document).ready(function () {
         }
         if($(e.target).hasClass("addFriendToBudget")){
             budgetID = $(e.target).val();
-            getFriendListBudget();
+            //getFriendListBudget();
+
+            getAnyPost(home+"controller/budgetFriendList.php",{budgetId : budgetID},"#addFriendList")
             $("#addFriendList").show();
 
         }
@@ -26,14 +28,3 @@ $(document).ready(function () {
 
 });
 
-function getFriendListBudget() {
-    $.post(home+"controller/budgetFriendList.php",
-        {
-            budgetId : budgetID
-        },
-        function (data) {
-            $("#addFriendList").html(data);
-        }
-
-    );
-}
