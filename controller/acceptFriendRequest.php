@@ -13,6 +13,7 @@ if(isset($_POST)){
     $userID = $_SESSION["user_id"];
     $friendID = $_POST["requester"];
     $friend = new Friend($userID,$friendID);
+    $reverseFriend = new Friend($friendID,$userID);
 
     $sql ="UPDATE friend_request
         SET state='accepted'
@@ -28,7 +29,7 @@ if(isset($_POST)){
     }
 
     $conn = con();
-    $sql = "INSERT INTO friends (".createQueryStringKeys($friend).") VALUES (".createQueryStringValues($friend).")";
+    $sql = "INSERT INTO friends (".createQueryStringKeys($friend).") VALUES (".createQueryStringValues($friend)."),(".createQueryStringValues($reverseFriend).")";
 
     if($result = mysqli_query($conn,$sql)){
         echo "success";

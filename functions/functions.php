@@ -107,3 +107,7 @@ function is_admin(){
         return false;
 
 }
+
+function userID(){
+   return $returnStament = $_SESSION["user_id"];
+}

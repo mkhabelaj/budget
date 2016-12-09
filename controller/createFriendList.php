@@ -13,11 +13,10 @@ $userID = $_SESSION["user_id"];
 $conn = con();
 
 $sql ="SELECT * FROM (SELECT * FROM friends As fr
-               WHERE fr.friend_user_id =".$userID."
-               OR fr.own_user_id = ".$userID." ) AS f
+               WHERE  fr.own_user_id = ".$userID." ) AS f
   	  INNER JOIN user AS u2
- 	  ON u2.user_id = f.friend_user_id OR u2.user_id = f.own_user_id
-      where u2.user_id <> ".$userID;
+ 	  ON u2.user_id = f.friend_user_id";
+
 
 if($result = mysqli_query($conn,$sql)){
     while ($row = mysqli_fetch_assoc($result)){

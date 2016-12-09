@@ -1,14 +1,15 @@
 /**
  * Created by JacksonM on 2016-12-05.
  */
-//var home ="http://localhost:8080/";
-var home = "http://budget.dev/";
+var home ="http://localhost:8080/";
+//var home = "http://budget.dev/";
 function getAllnotifications() {
-    $.post(
-        home+"controller/notification.php",
-        function (data) {
-            $("#allNotifications").html(data);
-        });
+    getAnyPost(home+"controller/notification.php",null,"#allNotifications");
+    // $.post(
+    //     home+"controller/notification.php",
+    //     function (data) {
+    //         $("#allNotifications").html(data);
+    //     });
 }
 
 $(document).ready(function () {

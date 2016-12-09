@@ -1,8 +1,8 @@
 /**
  * Created by JacksonM on 2016-12-05.
  */
-//var home ="http://localhost:8080/";
-var home = "http://budget.dev/";
+var home ="http://localhost:8080/";
+//var home = "http://budget.dev/";
 
 $(document).ready(function () {
 
@@ -22,8 +22,8 @@ function getNotification() {
  * @param queryString
  * @param element
  */
-function getAnyPost(url,queryString,element) {
-    $.post(url,queryString,function (data) {
+function getAnyPost(url,queryObject,element) {
+    $.post(url,queryObject,function (data) {
         if(element)
             $(element).html(data);
     });
@@ -35,8 +35,8 @@ function getAnyPost(url,queryString,element) {
  * @param element
  * @param execution
  */
-function getAnyPostE(url,queryString,element,execution) {
-    $.post(url,queryString,function (data) {
+function getAnyPostE(url,queryObject,element,execution) {
+    $.post(url,queryObject,function (data) {
         if(element) {
             $(element).html(data);
             //execution();

@@ -5,8 +5,8 @@ friendSearchRefreshItemList = function () {$("#search").keyup()};
 notification = function(){getNotification()};
 createFriendList =  function () {getAnyPost(home+"controller/createFriendList.php",null,"#friendList");}
 
-//var home ="http://localhost:8080/";
-var home = "http://budget.dev/";
+var home ="http://localhost:8080/";
+//var home = "http://budget.dev/";
 
 /**
  * this is the ajax filter search
@@ -16,7 +16,7 @@ $(Document).ready(function () {
         getAnyPost(home+"controller/friendSearch.php",  {query: $(this).val()},"#filterSearch");
     });
     /**
-     * this make the friend request button clickable
+     * this makes the friend request button clickable
      */
 
     $('body').on('click', '.friendRequest', function (){
@@ -25,7 +25,7 @@ $(Document).ready(function () {
 
     });
     /**
-     * this make the friend accept button clickable
+     * this makes the friend accept button clickable
      */
     $('body').on('click','.acceptFriendRequet',function () {
         getAnyPostE(home+"controller/acceptFriendRequest.php",{requester: $(this).val()},null,{friendRefresh:friendSearchRefreshItemList,notify:notification,recreateFriendList:createFriendList});
