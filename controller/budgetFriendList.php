@@ -15,31 +15,19 @@ $conn = con();
 $userID = $_SESSION["user_id"];
 $budgetID = $_POST["budgetId"];
 
-$sql1 ="SELECT * FROM `friends_with_budgets` 
-WHERE (friend_user_id =".$userID."
-    OR own_user_id = ".$userID.")
-AND (budget_Instance_ID IS NULL
-OR budget_Instance_ID <> ".$budgetID.")
-AND user_id <> ".$userID."
-GROUP By user_id";
-
-$sql2 ="SELECT * FROM friends AS f LEFT JOIN user_budget_instance AS ubi ON f.friend_user_id = ubi.user_id WHERE f.own_user_id = ".$userID."
-NOT IN (SELECT user_id FROM user_budget_instance WHERE budget_Instance_Id =  ".$budgetID." ) OR  budget_Instance_Id is NUll";
-
-$sql = "SELECT
-		u.user_id,
-        u.firstname,
-        u.last_name
-FROM user AS u
-INNER JOIN (SELECT * FROM
-            friends AS f 
-            LEFT JOIN user_budget_instance AS ubi 
-            ON f.friend_user_id = ubi.user_id
-WHERE f.own_user_id = ".$userID."
-NOT IN (SELECT user_id FROM user_budget_instance 
-        WHERE budget_Instance_Id = ".$budgetID." ) 
-        OR  budget_Instance_Id is NUll) AS fr
-ON fr.friend_user_id = u.user_id";
+$sql = "SELECT 	user_id,
+		firstname,
+		last_name
+FROM user AS U
+INNER JOIN 
+        (SELECT f.friend_user_id FROM friends AS f 
+        LEFT JOIN user_budget_instance AS ubi 
+        ON f.friend_user_id = ubi.user_id
+        WHERE f.own_user_id = ".$userID."
+        AND f.friend_user_id NOT IN (SELECT user_budget_instance.user_id FROM user_budget_instance 
+                                     WHERE budget_Instance_Id = ".$budgetID."  )) AS user_f_b
+ON user_f_b.friend_user_id = u.user_id 
+GROUP BY u.user_id ";
 
 if($result = mysqli_query($conn,$sql)){
     while ($row = mysqli_fetch_assoc($result)){
