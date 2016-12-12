@@ -87,7 +87,8 @@ function log_out(){
     unset($_SESSION["email"]);
     unset($_SESSION["name"]);
     unset($_SESSION["role"]);
-    unset( $_SESSION['user_id']);
+    unset($_SESSION['user_id']);
+    unset($_SESSION['last_name']);
     header("Location: ../views/index.php");
 
 }
@@ -107,7 +108,38 @@ function is_admin(){
         return false;
 
 }
+//helper functions
 
+/**
+ * returns user id
+ * @return mixed
+ */
 function userID(){
    return $returnStament = $_SESSION["user_id"];
+}
+
+/**
+ * returns user lastname
+ * @return mixed
+ */
+
+function lastname(){
+    return $returnStament = $_SESSION["last_name"];
+}
+
+/**
+ * returns user name
+ * @return mixed
+ */
+
+function name(){
+    return $returnStament = $_SESSION["name"];
+}
+
+/**
+ * returns use email
+ * @return mixed
+ */
+function email(){
+    return $returnStament = $_SESSION["email"];
 }

@@ -21,6 +21,7 @@ if(isset($_POST)){
 		    while($row = mysqli_fetch_assoc($result)){
                 echo $row["firstname"]." <br>".$row["email"];
                 $_SESSION['name']=$row["firstname"];
+                $_SESSION['last_name'] =$row['last_name'];
                 $_SESSION['email']=$row["email"];
                 $_SESSION['role']= $row["role"];
                 $_SESSION['user_id'] = $row['user_id'];
