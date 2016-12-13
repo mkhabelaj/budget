@@ -22,9 +22,10 @@ factory()->getInclusion("header")->Inclusion();
     <input name="startDate" type="date" id="startDate" required>
 
     <label name="endDate" for="endDate";>End Date</label>
-    <input name="endDate" type="date" id="endDate" required>
+    <input name="endDate" type="date"  id="endDate" required>
 
     <input type="submit" type="date" id="submit">
 </form>
+<script type="application/javascript" src="../js/createBudget.js"></script>
 
 <?php factory()->getInclusion("footer")->Inclusion();?>

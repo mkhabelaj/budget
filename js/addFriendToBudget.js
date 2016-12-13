@@ -5,7 +5,14 @@ var budgetID;
 var home ="http://localhost:8080/";
 //var home = "http://budget.dev/";
 
+/**
+ * this is th anonymous function that gets of the users friends that are not part of the budget specified
+ */
+usersNotInBudgetAnon = function () {getAnyPost(home+"controller/budgetFriendList.php",{budgetId : budgetID},"#addFriendList")};
+
 $(document).ready(function () {
+
+
     $("#addFriendList").hide();
 
     $(document).on('click', function(e){
@@ -22,12 +29,10 @@ $(document).ready(function () {
         if($(e.target).hasClass("addFriendToMyB")){
             console.log(true);
             $("#addFriendList").show();
-            //console.log($(e.target).val());
             /**
              * adds a users friend to their budget
              */
-            getAnyPost(home+"controller/addFriendToBudget.php",{budgetId:budgetID,friendID:$(e.target).val()});
-
+            getAnyPostE(home+"controller/addFriendToBudget.php",{budgetId:budgetID,friendID:$(e.target).val()},null,{refresh:usersNotInBudgetAnon});
         }
 
         if($(e.target).hasClass("addFriendToBudget")){
@@ -36,7 +41,7 @@ $(document).ready(function () {
             /**
              * this section gets of the users friends that are not part of the budget specified
              */
-            getAnyPost(home+"controller/budgetFriendList.php",{budgetId : budgetID},"#addFriendList")
+            usersNotInBudgetAnon();
             $("#addFriendList").show();
        }
 

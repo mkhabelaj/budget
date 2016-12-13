@@ -9,16 +9,28 @@
 require_once ("../inclusion/inclusion.php");
 factory()->getInclusion("functions")->Inclusion();
 factory()->getInclusion("dataB")->Inclusion();
+require_once ("../classes/Notification.php");
 
 
-//if(isset($_POST)){
+if(isset($_POST)){
     $messageType =  $_POST["type"];
-    $recieverID =$_POST["user_id"];
+    $requestersID =$_POST["requestersID"];
+    $conn = con();
 
-    echo userID()." ".lastname()." ".name();
+    /**
+     * the section of this code sends a update to the notification database
+     */
 
-    //if($messageType === "accepted"){
+    if($messageType === "accepted"){
+        $notify = new Notification("you request has be accepted from your friend ".name()." ".lastname(),(int) $requestersID);
+        $sql ="INSERT INTO  notification (".createQueryStringKeys($notify).") VALUES (".createQueryStringValues($notify).")";
 
-    //}
+        if($result= mysqli_query($conn,$sql)){
+            echo "success";
+        }else{
+            echo "Faliure ".mysqli_error($conn);
+        }
 
-//}
+    }
+
+}

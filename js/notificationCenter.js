@@ -3,32 +3,32 @@
  */
 var home ="http://localhost:8080/";
 //var home = "http://budget.dev/";
+
+notifications = function () {getAllnotifications()}
+notificationsCounter = function () {getNotification();}
+/**
+ * this function gets friend requests
+ */
 function getAllnotifications() {
     getAnyPost(home+"controller/notification.php",null,"#allNotifications");
-    // $.post(
-    //     home+"controller/notification.php",
-    //     function (data) {
-    //         $("#allNotifications").html(data);
-    //     });
 }
 
 $(document).ready(function () {
-    getAllnotifications();
+   notifications();
 
+    /**
+     * this accepts a friend request on the notification center tab
+     */
     $('body').on('click', '.acceptFriendR', function (){
-        //console.log($(this).val());
-        $.post(
-            home+"controller/acceptFriendRequest.php",
-            {
-                requester: $(this).val()
-
-            },
-            function (data, status) {
-                console.log(data);
-                getAllnotifications();
-                getNotification();
-            }
-
-        );
+        getAnyPostE(home+"controller/acceptFriendRequest.php",{requester: $(this).val()},null,{notifiy:notifications,updateCounter:notificationsCounter})
+        notifyUserOfChanges({requestersID:$(this).val(),type:"accepted"},null,null);
     });
+
+    /**
+     * these section is used to dismiss a notification
+     */
+    $('body').on('click', '.dismiss', function (){
+        getAnyPostE(home+"controller/dismissNotification.php",{notficationID: $(this).val()},null,{notifiy:notifications,updateCounter:notificationsCounter})
+    });
+
 });

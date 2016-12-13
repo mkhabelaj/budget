@@ -38,5 +38,17 @@ if($result){
     }
 }
 
+$sql = "SELECT notification_id, message FROM notification WHERE state='unseen' AND user_id=".userID();
+if($result = mysqli_query($conn,$sql)){
+    while($row = mysqli_fetch_assoc($result)):
+        ?>
+            <div>
+                <?php echo $row["message"]; ?>
+                <button class="dismiss" value="<?php echo $row["notification_id"]; ?>">Dismiss</button>
+            </div>
+        <?php
+    endWhile;
+}
+
 
 

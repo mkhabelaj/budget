@@ -4,18 +4,29 @@
 var home ="http://localhost:8080/";
 //var home = "http://budget.dev/";
 
+/**
+ * An anonymous function that updates notification counter
+ */
+updateNotifactionAnon = function () {getNotification()}
+
 $(document).ready(function () {
 
+    /**
+     * this Section updates the notification counter using a timer
+     */
     getNotification();
     setInterval(function(){ getNotification(); }, 20000);
 
+
 });
+
 /**
- * updates the notification for the site
+ * updates the notification counter for the site
  */
 function getNotification() {
     getAnyPost(home+"controller/notificationCounter.php",null,".notification");
 }
+
 /**
  * function to send of get any post
  * @param url
@@ -28,6 +39,7 @@ function getAnyPost(url,queryObject,element) {
             $(element).html(data);
     });
 }
+
 /**
  * function to send of get any post but also allow for any number of async executions
  * @param url
@@ -39,10 +51,34 @@ function getAnyPostE(url,queryObject,element,execution) {
     $.post(url,queryObject,function (data) {
         if(element) {
             $(element).html(data);
-            //execution();
         }
             $.each(execution,function (key,value) {
                 value();
             });
     });
+}
+
+/**
+ * this section notifies the user of any changes
+ * it updates the notification table
+ */
+function notifyUserOfChanges(queryObect,element,execution) {
+    getAnyPostE(home+"controller/sendNotification.php",queryObect,element,execution);
+}
+/**
+ * finds the difference between days
+ * @param dateOne
+ * @param dateTwo
+ * @returns {number}
+ */
+Date.daysInBetween =  function (dateOne,dateTwo) {
+    var oneDay = 1000*60*60*24;
+
+    var dateOneMilliS = dateOne.getTime();
+    var dateTwoMilliS = dateTwo.getTime();
+
+    var difference = dateTwoMilliS - dateOneMilliS;
+
+    return Math.round(difference/oneDay);
+
 }
