@@ -82,3 +82,25 @@ Date.daysInBetween =  function (dateOne,dateTwo) {
     return Math.round(difference/oneDay);
 
 }
+
+/**
+ * this function adds days to the day
+ * @param date
+ * @param days
+ * @returns {Date}
+ */
+Date.addDaysToDate = function (date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
+/**
+ * this counts the of days in a date
+ * this also increments month for you
+ * @returns {number}
+ */
+Date.prototype.daysInMonth= function(){
+    var d= new Date(this.getFullYear(), this.getMonth()+1, 0);
+    return d.getDate();
+}

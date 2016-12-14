@@ -19,10 +19,10 @@ factory()->getInclusion("header")->Inclusion();
     </select>
 
     <label for="startDate">Start Date</label>
-    <input name="startDate" type="date" id="startDate" required>
+    <input name="startDate" type="date" id="startDate" placeholder="yyyy-mm-dd" required>
 
     <label name="endDate" for="endDate";>End Date</label>
-    <input name="endDate" type="date"  id="endDate" required>
+    <input name="endDate" type="date"  id="endDate" disabled placeholder="yyyy-mm-dd" required>
 
     <input type="submit" type="date" id="submit">
 </form>
