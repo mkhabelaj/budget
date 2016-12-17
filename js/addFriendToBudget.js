@@ -2,8 +2,6 @@
  * Created by JacksonM on 2016-12-06.
  */
 var budgetID;
-var home ="http://localhost:8080/";
-//var home = "http://budget.dev/";
 
 /**
  * this is th anonymous function that gets of the users friends that are not part of the budget specified

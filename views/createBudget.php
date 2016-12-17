@@ -19,13 +19,14 @@ factory()->getInclusion("header")->Inclusion();
     </select>
 
     <label for="startDate">Start Date</label>
-    <input name="startDate" type="date" id="startDate" placeholder="yyyy-mm-dd" required>
+    <input name="startDate" type="text" id="startDate"  required>
 
     <label name="endDate" for="endDate";>End Date</label>
-    <input name="endDate" type="date"  id="endDate" disabled placeholder="yyyy-mm-dd" required>
+    <input name="endDate" type="text"  id="endDate" disabled  required>
 
-    <input type="submit" type="date" id="submit">
+    <input type="submit" id="submit">
 </form>
 <script type="application/javascript" src="../js/createBudget.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <?php factory()->getInclusion("footer")->Inclusion();?>

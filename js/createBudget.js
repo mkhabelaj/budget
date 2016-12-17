@@ -2,11 +2,18 @@
  * Created by JacksonM on 2016-12-13.
  */
 
+//TODO: ensure that when any action is taken the endate will automatically update
+/**
+ * this section use jquery date picker
+ */
+$( function() {
+    $( "#startDate" ).datepicker({ dateFormat: 'yy-mm-dd' });
+} );
 
 $(Document).ready(function () {
 
+
     $("#startDate").change(function () {
-        //console.log($(this).val());
         var startDate = $(this).val();
         startDate = startDate.split('-');
         var endDate;
@@ -15,9 +22,6 @@ $(Document).ready(function () {
         numberOFDaysThisMonth = new Date((parseInt(startDate[0])),(temp1-1),0).daysInMonth();
 
         if(startDate[1] == 12 && $("#frequency").val() === "monthly"){
-            //endDate = new Date(startDate[0],startDate[1]-1,startDate[2]+1);
-            //console.log(endDate);
-            console.log((parseInt(startDate[0])+1)+" "+(startDate[1])+" "+startDate[2]);
             new Array((parseInt(startDate[0])+1),(startDate[1]),startDate[2]).join("-");
             $("#endDate").val(new Array((parseInt(startDate[0])+1),"01",startDate[2]).join("-"));
         }else {
@@ -54,7 +58,6 @@ $(Document).ready(function () {
         }
 
         if($("#frequency").val() === "biweeky"){
-            console.log("hi");
 
             endDate = new Date(startDate[0],(startDate[1]-1),startDate[2]);
             endDate = Date.addDaysToDate(endDate,14);

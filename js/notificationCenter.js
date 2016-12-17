@@ -1,8 +1,6 @@
 /**
  * Created by JacksonM on 2016-12-05.
  */
-var home ="http://localhost:8080/";
-//var home = "http://budget.dev/";
 
 notifications = function () {getAllnotifications()}
 notificationsCounter = function () {getNotification();}

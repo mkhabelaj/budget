@@ -5,8 +5,6 @@ friendSearchRefreshItemList = function () {$("#search").keyup()};
 notification = function(){getNotification()};
 createFriendList =  function () {getAnyPost(home+"controller/createFriendList.php",null,"#friendList");}
 
-var home ="http://localhost:8080/";
-//var home = "http://budget.dev/";
 
 /**
  * this is the ajax filter search
