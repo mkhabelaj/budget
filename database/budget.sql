@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2016 at 03:19 PM
+-- Generation Time: Dec 19, 2016 at 02:30 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -37,12 +37,11 @@ CREATE TABLE `budget_instance` (
 --
 
 INSERT INTO `budget_instance` (`budget_instance_id`, `name`, `description`) VALUES
-(36, 'bfsf', ''),
-(37, 'bu', ''),
-(38, 'dzg', ''),
-(39, 'lkksdfkdf', ''),
-(40, 'sdf', ''),
-(41, 'fgdfg', '');
+(50, 'test1', ''),
+(52, 'test3', ''),
+(53, 'test2', ''),
+(54, 'dyfgkgikfi', ''),
+(55, 'dfg', '');
 
 -- --------------------------------------------------------
 
@@ -118,7 +117,11 @@ INSERT INTO `friends` (`friend_id`, `status`, `own_user_id`, `friend_user_id`) V
 (57, 'friend', 52, 50),
 (58, 'friend', 50, 52),
 (59, 'friend', 33, 50),
-(60, 'friend', 50, 33);
+(60, 'friend', 50, 33),
+(65, 'friend', 52, 33),
+(66, 'friend', 33, 52),
+(67, 'friend', 27, 33),
+(68, 'friend', 33, 27);
 
 -- --------------------------------------------------------
 
@@ -163,7 +166,9 @@ INSERT INTO `friend_request` (`friend_request_id`, `requester`, `requestee`, `st
 (69, 50, 48, 'accepted'),
 (70, 27, 50, 'accepted'),
 (71, 50, 52, 'accepted'),
-(72, 50, 33, 'accepted');
+(72, 50, 33, 'accepted'),
+(75, 33, 52, 'accepted'),
+(76, 33, 27, 'accepted');
 
 -- --------------------------------------------------------
 
@@ -199,12 +204,11 @@ CREATE TABLE `income` (
 --
 
 INSERT INTO `income` (`income_id`, `income`, `budget_Instance_ID`) VALUES
-(20, 4564, 36),
-(21, 500, 37),
-(22, 45, 38),
-(23, 254545, 39),
-(24, 22, 40),
-(25, 22, 41);
+(34, 5000, 50),
+(36, 200000, 52),
+(37, 456, 53),
+(38, 45, 54),
+(39, 456456, 55);
 
 -- --------------------------------------------------------
 
@@ -218,6 +222,14 @@ CREATE TABLE `notification` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `state` enum('seen','unseen') NOT NULL DEFAULT 'unseen'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`notification_id`, `message`, `user_id`, `state`) VALUES
+(1, 'you request has be accepted from your friend adolf adolf', 33, 'seen'),
+(2, 'you request has be accepted from your friend admin admin', 33, 'seen');
 
 -- --------------------------------------------------------
 
@@ -243,6 +255,7 @@ CREATE TABLE `time_line` (
   `duration_start` date NOT NULL,
   `duration_end` date NOT NULL,
   `frequency` enum('weekly','biweekly','monthly') NOT NULL DEFAULT 'monthly',
+  `state` enum('active','deactivated') NOT NULL DEFAULT 'active',
   `budget_Instance_ID` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -250,13 +263,12 @@ CREATE TABLE `time_line` (
 -- Dumping data for table `time_line`
 --
 
-INSERT INTO `time_line` (`time_line_id`, `duration_start`, `duration_end`, `frequency`, `budget_Instance_ID`) VALUES
-(19, '2009-04-20', '2009-04-20', 'monthly', 36),
-(20, '2016-12-22', '2016-12-22', 'monthly', 37),
-(21, '2009-04-20', '2009-04-20', 'monthly', 38),
-(22, '2009-04-20', '2009-04-20', 'monthly', 39),
-(23, '2016-12-14', '2016-12-14', 'monthly', 40),
-(24, '2016-12-06', '2016-12-06', 'monthly', 41);
+INSERT INTO `time_line` (`time_line_id`, `duration_start`, `duration_end`, `frequency`, `state`, `budget_Instance_ID`) VALUES
+(33, '2016-12-22', '2017-01-22', 'monthly', 'active', 50),
+(35, '2016-12-19', '2016-12-26', 'weekly', 'active', 52),
+(36, '2016-12-01', '2016-12-15', 'biweekly', 'active', 53),
+(37, '2016-12-19', '2017-01-19', 'monthly', 'active', 54),
+(38, '2016-11-01', '2016-12-01', 'monthly', 'deactivated', 55);
 
 -- --------------------------------------------------------
 
@@ -316,19 +328,11 @@ CREATE TABLE `user_budget_instance` (
 --
 
 INSERT INTO `user_budget_instance` (`user_budget_Instance_Id`, `budget_Instance_ID`, `user_id`) VALUES
-(35, 36, 49),
-(36, 37, 48),
-(37, 38, 50),
-(38, 38, 27),
-(39, 38, 48),
-(40, 39, 50),
-(42, 39, 27),
-(43, 39, 48),
-(44, 39, 49),
-(45, 39, 52),
-(46, 40, 33),
-(47, 41, 33),
-(48, 40, 49);
+(67, 50, 33),
+(69, 52, 33),
+(70, 53, 33),
+(71, 54, 33),
+(72, 55, 33);
 
 -- --------------------------------------------------------
 
@@ -455,7 +459,7 @@ ALTER TABLE `user_budget_instance`
 -- AUTO_INCREMENT for table `budget_instance`
 --
 ALTER TABLE `budget_instance`
-  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `budget_instance_catagory`
 --
@@ -475,12 +479,12 @@ ALTER TABLE `category_amounts`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `friend_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `friend_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `friend_request`
 --
 ALTER TABLE `friend_request`
-  MODIFY `friend_request_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `friend_request_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `goal`
 --
@@ -490,12 +494,12 @@ ALTER TABLE `goal`
 -- AUTO_INCREMENT for table `income`
 --
 ALTER TABLE `income`
-  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notification_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `notification_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `savings`
 --
@@ -505,7 +509,7 @@ ALTER TABLE `savings`
 -- AUTO_INCREMENT for table `time_line`
 --
 ALTER TABLE `time_line`
-  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -515,7 +519,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_budget_instance`
 --
 ALTER TABLE `user_budget_instance`
-  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- Constraints for dumped tables
 --

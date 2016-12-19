@@ -11,7 +11,8 @@ $( function() {
 } );
 
 $(Document).ready(function () {
-
+    //makes endDate readonly
+    $("#endDate").prop("readonly", true);
 
     $("#startDate").change(function () {
         var startDate = $(this).val();
@@ -57,7 +58,7 @@ $(Document).ready(function () {
 
         }
 
-        if($("#frequency").val() === "biweeky"){
+        if($("#frequency").val() === "biweekly"){
 
             endDate = new Date(startDate[0],(startDate[1]-1),startDate[2]);
             endDate = Date.addDaysToDate(endDate,14);

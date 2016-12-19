@@ -16,7 +16,7 @@ class TimeLine
     public function __construct($duration_start,$duration_end,$frequency,$budget_instance_ID)
     {
         $this->duration_start = $duration_start;
-        $this->duration_end =$duration_start;
+        $this->duration_end = $duration_end;
         $this->frequency = $frequency;
         $this->budget_instance_ID = $budget_instance_ID;
     }

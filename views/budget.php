@@ -26,7 +26,7 @@ if(mysqli_num_rows($result) > 0){
         ?>
         <tr>
             <td>
-                <a href="#?budget_instance_id=<?php echo $row["budget_instance_id"]?>"><?php echo $row["name"]; ?></a>
+                <a href="../views/budgetView.php?budget_instance_id=<?php echo $row["budget_instance_id"]?>"><?php echo $row["name"]; ?></a>
             </td>
             <td>
                 <button class="addFriendToBudget" value="<?php echo $row["budget_instance_id"]?>">+</button>

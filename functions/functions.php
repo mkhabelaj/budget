@@ -143,3 +143,24 @@ function name(){
 function email(){
     return $returnStament = $_SESSION["email"];
 }
+
+/**
+ * prints and item
+ * @param $item
+ */
+function printItem($item){
+    echo $item;
+}
+
+/**
+ * returns the format of the date so that it can be compared
+ * @param $date
+ * @return false|string
+ */
+function returnStandardFormat($date){
+    return date_format($date,"Y/m/d");
+}
+
+/**
+ * @todo  create a date function that will add days to a date
+ */

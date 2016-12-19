@@ -14,7 +14,7 @@ factory()->getInclusion("header")->Inclusion();
     <label for="frequency">frequency</label>
     <select id="frequency" name="frequency" required>
         <option value="weekly">Weekly</option>
-        <option value="biweeky">Bi-weekly</option>
+        <option value="biweekly">Bi-weekly</option>
         <option value="monthly" selected>Monthly</option>
     </select>
 
@@ -22,7 +22,7 @@ factory()->getInclusion("header")->Inclusion();
     <input name="startDate" type="text" id="startDate"  required>
 
     <label name="endDate" for="endDate";>End Date</label>
-    <input name="endDate" type="text"  id="endDate" disabled  required>
+    <input name="endDate" type="text"  id="endDate"   required>
 
     <input type="submit" id="submit">
 </form>

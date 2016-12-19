@@ -1,8 +1,8 @@
 /**
  * Created by JacksonM on 2016-12-05.
  */
-//var home ="http://localhost:8080/";
-var home = "http://budget.dev/";
+var home ="http://localhost:8080/";
+//var home = "http://budget.dev/";
 
 /**
  * An anonymous function that updates notification counter
@@ -65,6 +65,7 @@ function getAnyPostE(url,queryObject,element,execution) {
 function notifyUserOfChanges(queryObect,element,execution) {
     getAnyPostE(home+"controller/sendNotification.php",queryObect,element,execution);
 }
+
 /**
  * finds the difference between days
  * @param dateOne
@@ -103,4 +104,19 @@ Date.addDaysToDate = function (date, days) {
 Date.prototype.daysInMonth= function(){
     var d= new Date(this.getFullYear(), this.getMonth()+1, 0);
     return d.getDate();
+}
+
+/**
+ * this section of code gets url parameters
+ * @param name
+ * @returns {*}
+ */
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+        return null;
+    }
+    else{
+        return results[1] || 0;
+    }
 }
