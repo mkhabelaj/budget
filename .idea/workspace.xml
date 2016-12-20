@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab3ef23b-f689-4090-9f65-d87b2513ba1d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/budgetViewController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/future Ideas/ideas.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/budgetView.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/budgetView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/TimeLine.php" afterPath="$PROJECT_DIR$/classes/TimeLine.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/budgetViewController.php" afterPath="$PROJECT_DIR$/controller/budgetViewController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/createBudgetController.php" afterPath="$PROJECT_DIR$/controller/createBudgetController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/budget.sql" afterPath="$PROJECT_DIR$/database/budget.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions/functions.php" afterPath="$PROJECT_DIR$/functions/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/createBudget.js" afterPath="$PROJECT_DIR$/js/createBudget.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/script.js" afterPath="$PROJECT_DIR$/js/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/budget.php" afterPath="$PROJECT_DIR$/views/budget.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/createBudget.php" afterPath="$PROJECT_DIR$/views/createBudget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/future Ideas/ideas.php" afterPath="$PROJECT_DIR$/future Ideas/ideas.php" />
     </list>
     <ignored path="budget.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,8 +42,8 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="154" column="3" selection-start-line="154" selection-start-column="3" selection-end-line="154" selection-end-column="3" />
+            <state relative-caret-position="576">
+              <caret line="159" column="37" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
               <folding>
                 <element signature="e#1990#2033#0#PHP" expanded="false" />
                 <element signature="e#2105#2154#0#PHP" expanded="false" />
@@ -64,10 +58,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="budget.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="budget.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/budget.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
+            <state relative-caret-position="642">
               <caret line="45" column="7" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="80" />
               <folding>
                 <marker date="1482129626531" expanded="true" signature="289:331" ph="SELECT * FRO... user_budgets" />
@@ -80,27 +74,41 @@
         <entry file="file://$PROJECT_DIR$/controller/createBudgetController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="484">
-              <caret line="46" column="80" selection-start-line="46" selection-start-column="80" selection-end-line="46" selection-end-column="89" />
+              <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
               <folding>
-                <marker date="1480592521748" expanded="true" signature="536:665" ph="INSERT INTO budget_instance... " />
-                <marker date="1480592521748" expanded="true" signature="930:1029" ph="INSERT INTO income... " />
-                <marker date="1480592521748" expanded="true" signature="1332:1456" ph="INSERT INTO user_budget_instance... " />
-                <marker date="1480592521748" expanded="true" signature="1819:1929" ph="INSERT INTO time_line... " />
+                <marker date="1482232408433" expanded="true" signature="536:665" ph="INSERT INTO budget_instance... " />
+                <marker date="1482232408433" expanded="true" signature="930:1029" ph="INSERT INTO income... " />
+                <marker date="1482232408433" expanded="true" signature="1332:1456" ph="INSERT INTO user_budget_instance... " />
+                <marker date="1482232408433" expanded="true" signature="1972:2082" ph="INSERT INTO time_line... " />
+                <marker date="1482232408433" expanded="true" signature="2120:2230" ph="INSERT INTO time_line... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="budgetViewController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="budgetViewController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/budgetViewController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1276">
-              <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+            <state relative-caret-position="-872">
+              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
               <folding>
                 <element signature="e#6#93#0#PHP" expanded="false" />
-                <marker date="1482154034341" expanded="true" signature="948:985" ph="SELECT * FRO... time_line" />
-                <marker date="1482154034341" expanded="true" signature="948:1018" ph="SELECT * FRO... time_line" />
-                <marker date="1482154034341" expanded="true" signature="2432:2499" ph="UPDATE time_... " />
+                <marker date="1482240696028" expanded="true" signature="1017:1054" ph="SELECT * FRO... time_line" />
+                <marker date="1482240696028" expanded="true" signature="1017:1087" ph="SELECT * FRO... time_line" />
+                <marker date="1482240696028" expanded="true" signature="4287:4374" ph="UPDATE time_... " />
+                <marker date="1482240696028" expanded="true" signature="4492:4608" ph="INSERT INTO time_line... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ideas.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/future Ideas/ideas.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+              <folding>
+                <element signature="e#6#413#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,7 +141,7 @@
       <file leaf-file-name="addFriendToBudget.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/addFriendToBudget.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
+            <state relative-caret-position="58">
               <caret line="8" column="127" selection-start-line="8" selection-start-column="127" selection-end-line="8" selection-end-column="127" />
               <folding>
                 <element signature="e#61#174#0" expanded="false" />
@@ -195,7 +203,6 @@
         <option value="$PROJECT_DIR$/classes/UserBudgetInstance.php" />
         <option value="$PROJECT_DIR$/database/databaseConnection.php" />
         <option value="$PROJECT_DIR$/views/index.php" />
-        <option value="$PROJECT_DIR$/controller/createBudgetController.php" />
         <option value="$PROJECT_DIR$/classes/IncludeFactory.php" />
         <option value="$PROJECT_DIR$/classes/FriendRequet.php" />
         <option value="$PROJECT_DIR$/classes/FriendRequest.php" />
@@ -224,15 +231,16 @@
         <option value="$PROJECT_DIR$/templates/headerView.php" />
         <option value="$PROJECT_DIR$/views/budgetvView.php" />
         <option value="$PROJECT_DIR$/views/budget.php" />
-        <option value="$PROJECT_DIR$/future Ideas/ideas.php" />
         <option value="$PROJECT_DIR$/js/script.js" />
         <option value="$PROJECT_DIR$/js/budgetView.js" />
         <option value="$PROJECT_DIR$/views/budgetView.php" />
-        <option value="$PROJECT_DIR$/classes/TimeLine.php" />
         <option value="$PROJECT_DIR$/views/createBudget.php" />
         <option value="$PROJECT_DIR$/js/createBudget.js" />
-        <option value="$PROJECT_DIR$/functions/functions.php" />
+        <option value="$PROJECT_DIR$/future Ideas/ideas.php" />
+        <option value="$PROJECT_DIR$/classes/TimeLine.php" />
+        <option value="$PROJECT_DIR$/controller/createBudgetController.php" />
         <option value="$PROJECT_DIR$/controller/budgetViewController.php" />
+        <option value="$PROJECT_DIR$/functions/functions.php" />
       </list>
     </option>
   </component>
@@ -244,10 +252,32 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="1" />
-    <option name="width" value="1934" />
-    <option name="height" value="1036" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>PHP</id>
+          </State>
+          <State>
+            <id>Type compatibilityPHP</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PhpParamsInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -291,34 +321,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="budget" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="budget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="budget" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="budget" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="budget" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -419,12 +421,12 @@
       <workItem from="1480698279793" duration="28891000" />
       <workItem from="1480919683185" duration="33022000" />
       <workItem from="1481042391379" duration="2472000" />
-      <workItem from="1481182551640" duration="93157000" />
+      <workItem from="1481182551640" duration="118565000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299590000" />
+    <option name="totallyTimeSpent" value="324998000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -436,11 +438,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="1" width="1934" height="1036" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1679225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22962113" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17776585" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22650057" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32814178" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -774,14 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/future Ideas/ideas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/profileView.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -816,26 +810,6 @@
             <element signature="e#2403#2485#0" expanded="false" />
             <element signature="e#2513#2702#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/addFriendToBudget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="8" column="127" selection-start-line="8" selection-start-column="127" selection-end-line="8" selection-end-column="127" />
-          <folding>
-            <element signature="e#61#174#0" expanded="false" />
-            <element signature="e#834#904#0" expanded="false" />
-            <element signature="e#1175#1290#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TimeLine.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -879,10 +853,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/future Ideas/ideas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+          <folding>
+            <element signature="e#6#413#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TimeLine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/createBudgetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
+          <folding>
+            <marker date="1482232408433" expanded="true" signature="536:665" ph="INSERT INTO budget_instance... " />
+            <marker date="1482232408433" expanded="true" signature="930:1029" ph="INSERT INTO income... " />
+            <marker date="1482232408433" expanded="true" signature="1332:1456" ph="INSERT INTO user_budget_instance... " />
+            <marker date="1482232408433" expanded="true" signature="1972:2082" ph="INSERT INTO time_line... " />
+            <marker date="1482232408433" expanded="true" signature="2120:2230" ph="INSERT INTO time_line... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/addFriendToBudget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="8" column="127" selection-start-line="8" selection-start-column="127" selection-end-line="8" selection-end-column="127" />
+          <folding>
+            <element signature="e#61#174#0" expanded="false" />
+            <element signature="e#834#904#0" expanded="false" />
+            <element signature="e#1175#1290#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/budgetViewController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-872">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+          <folding>
+            <element signature="e#6#93#0#PHP" expanded="false" />
+            <marker date="1482240696028" expanded="true" signature="1017:1054" ph="SELECT * FRO... time_line" />
+            <marker date="1482240696028" expanded="true" signature="1017:1087" ph="SELECT * FRO... time_line" />
+            <marker date="1482240696028" expanded="true" signature="4287:4374" ph="UPDATE time_... " />
+            <marker date="1482240696028" expanded="true" signature="4492:4608" ph="INSERT INTO time_line... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/functions/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="154" column="3" selection-start-line="154" selection-start-column="3" selection-end-line="154" selection-end-column="3" />
+        <state relative-caret-position="576">
+          <caret line="159" column="37" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
           <folding>
             <element signature="e#1990#2033#0#PHP" expanded="false" />
             <element signature="e#2105#2154#0#PHP" expanded="false" />
@@ -898,36 +930,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/budget.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
+        <state relative-caret-position="642">
           <caret line="45" column="7" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="80" />
           <folding>
             <marker date="1482129626531" expanded="true" signature="289:331" ph="SELECT * FRO... user_budgets" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/createBudgetController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="46" column="80" selection-start-line="46" selection-start-column="80" selection-end-line="46" selection-end-column="89" />
-          <folding>
-            <marker date="1480592521748" expanded="true" signature="536:665" ph="INSERT INTO budget_instance... " />
-            <marker date="1480592521748" expanded="true" signature="930:1029" ph="INSERT INTO income... " />
-            <marker date="1480592521748" expanded="true" signature="1332:1456" ph="INSERT INTO user_budget_instance... " />
-            <marker date="1480592521748" expanded="true" signature="1819:1929" ph="INSERT INTO time_line... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/budgetViewController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1276">
-          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
-          <folding>
-            <element signature="e#6#93#0#PHP" expanded="false" />
-            <marker date="1482154034341" expanded="true" signature="948:985" ph="SELECT * FRO... time_line" />
-            <marker date="1482154034341" expanded="true" signature="948:1018" ph="SELECT * FRO... time_line" />
-            <marker date="1482154034341" expanded="true" signature="2432:2499" ph="UPDATE time_... " />
           </folding>
         </state>
       </provider>

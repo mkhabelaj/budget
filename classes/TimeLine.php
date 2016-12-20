@@ -12,6 +12,7 @@ class TimeLine
     public $duration_end = "";
     public $frequency = "";
     public $budget_instance_ID = 0;
+    public $reset_day = 0;
 
     public function __construct($duration_start,$duration_end,$frequency,$budget_instance_ID)
     {

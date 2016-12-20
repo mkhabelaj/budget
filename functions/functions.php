@@ -158,7 +158,7 @@ function printItem($item){
  * @return false|string
  */
 function returnStandardFormat($date){
-    return date_format($date,"Y/m/d");
+    return date_format($date,"Y-m-d");
 }
 
 /**

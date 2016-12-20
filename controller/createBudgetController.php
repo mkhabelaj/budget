@@ -45,7 +45,15 @@ if(isset($_POST)){
 
         //insert into timeline
         $time_line = new TimeLine($_POST["startDate"],$_POST["endDate"],$_POST["frequency"],$budget_id);
-        $sql3 ="INSERT INTO time_line (".createQueryStringKeys($time_line).") VALUES (".createQueryStringValues($time_line).")";
+        $sql3;
+        if($_POST["frequency"] == "monthly"){
+            $time_line->reset_day = (int)date_create($_POST["startDate"])->format("d");
+            $sql3 ="INSERT INTO time_line (".createQueryStringKeys($time_line).") VALUES (".createQueryStringValues($time_line).")";
+        }else{
+            $sql3 ="INSERT INTO time_line (".createQueryStringKeys($time_line).") VALUES (".createQueryStringValues($time_line).")";
+
+        }
+
         if($result = mysqli_query($conn,$sql3)){
             echo "time line success";
         }else{

@@ -22,11 +22,13 @@ require_once ("../classes/TimeLine.php");
 
 
 if(isset($_POST)){
-    $today=  date("Y/m/d");
+    $today=  date("Y-m-d");
+    //$today = date("Y/m/d",strtotime("Feb 1 2016"));
     $frequecy;
     $startDate;
     $endDate;
     $timeline_id;
+    $resetDay;
     $budgetid = $_POST["budgetId"];
     $conn = con();
     $sql = "SELECT * FROM time_line WHERE state ='active' AND budget_Instance_ID =".$budgetid;
@@ -39,6 +41,8 @@ if(isset($_POST)){
             $frequecy =$row["frequency"];
             $startDate = date_create($row["duration_start"]);
             $endDate= date_create($row["duration_end"]);
+            //$resetDay =strlen("".$row["reset_day"])<1 ? "0".$row["reset_day"]:$row["reset_day"] ;
+            $resetDay =(int) strlen($row["reset_day"]) > 1 ? $row["reset_day"] : "0".$row["reset_day"];
         }
     }else{
         echo "failure ".mysqli_error($conn);
@@ -64,14 +68,44 @@ if(isset($_POST)){
             }
         }else {
             //todo validate new date and insert into new time line
-            //$new_timeline = new TimeLine();
-            $sql="UPDATE time_line SET state='deactivated' WHERE budget_Instance_ID =".$budgetid;
-            //todo: insert new time line
-            //$sql="INSERT INTO"
-            mysqli_query($conn,$sql);
-            echo "in budget";
-        }
+            $new_time_line;
+            echo strtotime($today);
+            echo "<br>";
+            echo "reset day ".$resetDay;
+            echo "<br>";
+            echo strtotime(returnStandardFormat($endDate));
+            echo "<br>";
+           if(((strtotime($today) - strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 )) > 1){
+               echo "adjustment needed";
+               echo "<br>";
+           }else{
+               $temp = $endDate;
+               $resultDate;
+               $resultDate = date ('Y-m-d',strtotime("+1 months",strtotime($temp->format('Y-m-01'))));
+               $numberOfDaysInFutureMonth =cal_days_in_month(CAL_GREGORIAN,date ("m",strtotime($resultDate)),date ("Y",strtotime($resultDate)));
+              if($numberOfDaysInFutureMonth > $resetDay){
+                  echo "new end day".date_create($resultDate)->format("Y-m-".$resetDay);
+                  echo "<br>";
+                  $new_time_line = new TimeLine($endDate->format("Y-m-d"),date_create($resultDate)->format("Y-m-".$resetDay),$frequecy,$budgetid);
+                  $new_time_line->reset_day = $resetDay;
+                  var_dump($new_time_line);
+              }else{
+                  echo "new end day".date_create($resultDate)->format("Y-m-".$numberOfDaysInFutureMonth);
+                  echo "<br>";
+                  $new_time_line = new TimeLine($endDate->format("Y-m-d"),date_create($resultDate)->format("Y-m-".$numberOfDaysInFutureMonth),$frequecy,$budgetid);
+                  $new_time_line->reset_day = $resetDay;
+                  var_dump($new_time_line);
+              }
 
+           }
+
+//            $sql="UPDATE time_line SET state='deactivated' WHERE state ='active' AND budget_Instance_ID =".$budgetid;
+//            //todo: insert new time line
+//            mysqli_query($conn,$sql);
+//            $sql = "INSERT INTO time_line (".createQueryStringKeys($new_timeline).") VALUES (".createQueryStringValues($new_timeline).")";
+//            mysqli_query($conn,$sql);
+            echo " <br>in budget";
+        }
 
 
     }else{

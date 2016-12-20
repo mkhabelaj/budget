@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2016 at 02:30 PM
+-- Generation Time: Dec 20, 2016 at 02:36 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -41,7 +41,17 @@ INSERT INTO `budget_instance` (`budget_instance_id`, `name`, `description`) VALU
 (52, 'test3', ''),
 (53, 'test2', ''),
 (54, 'dyfgkgikfi', ''),
-(55, 'dfg', '');
+(55, 'dfg', ''),
+(56, 'sdf', ''),
+(57, 'hklhjjl', ''),
+(58, 'fjlgjl', ''),
+(59, 'sdfsdfasfasfsafasfsa', ''),
+(60, 'dgfkhfhkghkdgfhkhf', ''),
+(64, 'dgdfg', ''),
+(65, 'dykdk', ''),
+(66, 'test 3', ''),
+(67, 'test 4', ''),
+(68, 'test 5', '');
 
 -- --------------------------------------------------------
 
@@ -208,7 +218,17 @@ INSERT INTO `income` (`income_id`, `income`, `budget_Instance_ID`) VALUES
 (36, 200000, 52),
 (37, 456, 53),
 (38, 45, 54),
-(39, 456456, 55);
+(39, 456456, 55),
+(40, 456456, 56),
+(41, 456, 57),
+(42, 45654, 58),
+(43, 456456, 59),
+(44, 456, 60),
+(48, 4565, 64),
+(49, 456456, 65),
+(50, 10000, 66),
+(51, 545456, 67),
+(52, 5645454, 68);
 
 -- --------------------------------------------------------
 
@@ -256,6 +276,7 @@ CREATE TABLE `time_line` (
   `duration_end` date NOT NULL,
   `frequency` enum('weekly','biweekly','monthly') NOT NULL DEFAULT 'monthly',
   `state` enum('active','deactivated') NOT NULL DEFAULT 'active',
+  `reset_day` int(2) NOT NULL DEFAULT '0',
   `budget_Instance_ID` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -263,12 +284,22 @@ CREATE TABLE `time_line` (
 -- Dumping data for table `time_line`
 --
 
-INSERT INTO `time_line` (`time_line_id`, `duration_start`, `duration_end`, `frequency`, `state`, `budget_Instance_ID`) VALUES
-(33, '2016-12-22', '2017-01-22', 'monthly', 'active', 50),
-(35, '2016-12-19', '2016-12-26', 'weekly', 'active', 52),
-(36, '2016-12-01', '2016-12-15', 'biweekly', 'active', 53),
-(37, '2016-12-19', '2017-01-19', 'monthly', 'active', 54),
-(38, '2016-11-01', '2016-12-01', 'monthly', 'deactivated', 55);
+INSERT INTO `time_line` (`time_line_id`, `duration_start`, `duration_end`, `frequency`, `state`, `reset_day`, `budget_Instance_ID`) VALUES
+(33, '2016-12-22', '2017-01-22', 'monthly', 'active', 22, 50),
+(35, '2016-12-19', '2016-12-26', 'weekly', 'active', 0, 52),
+(36, '2016-12-01', '2016-12-15', 'biweekly', 'active', 0, 53),
+(37, '2016-12-19', '2017-01-19', 'monthly', 'active', 19, 54),
+(38, '2016-11-01', '2016-12-01', 'monthly', 'active', 1, 55),
+(39, '2016-06-01', '2016-07-01', 'monthly', 'active', 0, 56),
+(40, '2016-12-20', '2017-01-20', 'monthly', 'active', 20, 57),
+(41, '2016-10-19', '2016-11-19', 'monthly', 'active', 19, 58),
+(42, '2016-12-02', '2017-01-02', 'monthly', 'active', 2, 59),
+(43, '2016-11-02', '2016-12-02', 'monthly', 'active', 2, 60),
+(47, '2016-12-17', '2017-01-17', 'monthly', 'active', 17, 64),
+(48, '2016-12-08', '2016-12-15', 'weekly', 'active', 0, 65),
+(49, '2016-01-31', '2016-02-29', 'monthly', 'active', 31, 66),
+(50, '2015-12-30', '2016-01-30', 'monthly', 'active', 30, 67),
+(51, '2016-07-31', '2016-08-31', 'monthly', 'active', 31, 68);
 
 -- --------------------------------------------------------
 
@@ -332,7 +363,14 @@ INSERT INTO `user_budget_instance` (`user_budget_Instance_Id`, `budget_Instance_
 (69, 52, 33),
 (70, 53, 33),
 (71, 54, 33),
-(72, 55, 33);
+(72, 55, 33),
+(73, 56, 33),
+(77, 60, 33),
+(81, 64, 33),
+(82, 65, 33),
+(83, 66, 33),
+(84, 67, 33),
+(85, 68, 33);
 
 -- --------------------------------------------------------
 
@@ -459,7 +497,7 @@ ALTER TABLE `user_budget_instance`
 -- AUTO_INCREMENT for table `budget_instance`
 --
 ALTER TABLE `budget_instance`
-  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `budget_instance_catagory`
 --
@@ -494,7 +532,7 @@ ALTER TABLE `goal`
 -- AUTO_INCREMENT for table `income`
 --
 ALTER TABLE `income`
-  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `notification`
 --
@@ -509,7 +547,7 @@ ALTER TABLE `savings`
 -- AUTO_INCREMENT for table `time_line`
 --
 ALTER TABLE `time_line`
-  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -519,7 +557,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_budget_instance`
 --
 ALTER TABLE `user_budget_instance`
-  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- Constraints for dumped tables
 --
