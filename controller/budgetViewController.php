@@ -22,8 +22,10 @@ require_once ("../classes/TimeLine.php");
 
 
 if(isset($_POST)){
-    $today=  date("Y-m-d");
-    //$today = date("Y/m/d",strtotime("Feb 1 2016"));
+    //$today=  date("Y-m-d");
+    //$today = date("Y-m-d",strtotime("Jan 15 2016"));
+    $today = date("Y-m-d",strtotime("Oct 15 2016"));
+    $today = date("Y-m-d",strtotime("Jan 15 2017"));
     $frequecy;
     $startDate;
     $endDate;
@@ -69,17 +71,73 @@ if(isset($_POST)){
         }else {
             //todo validate new date and insert into new time line
             $new_time_line;
-            echo strtotime($today);
-            echo "<br>";
+            $temp = $endDate;
             echo "reset day ".$resetDay;
             echo "<br>";
-            echo strtotime(returnStandardFormat($endDate));
-            echo "<br>";
-           if(((strtotime($today) - strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 )) > 1){
+           if(((strtotime($today) -  strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 )) > 1){
                echo "adjustment needed";
                echo "<br>";
+               //echo date("Y-m-d",strtotime("+".((strtotime($today) -  strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 )))."months");
+               //echo "+".((strtotime($today) -  strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 ))." months";
+              // echo $testDate = date ('Y-m-d',strtotime("+4.11115 months",strtotime($temp->format('Y-m-01'))));
+               echo "this is the start ".returnStandardFormat($startDate);
+               createBreak();
+               echo  "this is the endDate ".returnStandardFormat($endDate);
+               createBreak();
+               echo  "today ".$today;
+               createBreak();
+               if(date_create($today)->format("d") < $resetDay){
+                   //echo "today is higher ".cal_days_in_month(CAL_GREGORIAN,date_create($today)->format("m"),date_create($today)->format("Y"));
+                   createBreak();
+                   if(calculateDaysMonth(date_create($today),1,"-",true)> $resetDay){
+                       echo "new start date ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"-",false),$resetDay);
+                       createBreak();
+                       //todo: fix this 
+                       if( date_create($today)->format("d")> $resetDay){
+                           echo "sfklks;dlfkl ".date_create($today)->format("d");
+                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
+                           createBreak();
+                       }else{
+
+                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
+                           createBreak();
+                       }
+
+                   }else{
+                       echo "dfsdfd";
+                       echo "test ".calculateDaysMonth(date_create($today),1,"-",true);
+                       createBreak();
+                       echo "new start date ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"-",false),calculateDaysMonth(date_create($today),1,"-",true));
+                       createBreak();
+                       echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
+                       createBreak();
+                   }
+                  // echo "new start date ".date_create($today)->format("Y-m-".$resetDay);
+                   //$new_time_line = new TimeLine(date_create($today)->format("Y-m-".$resetDay),);
+//                   createBreak();
+               }else{
+                   echo "today is higher ".cal_days_in_month(CAL_GREGORIAN,date_create($today)->format("m"),date_create($today)->format("Y"));
+                   createBreak();
+                   if(calculateDaysMonth(date_create($today),1,"+",true)> $resetDay){
+                       echo "new end day ".$new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"+",false),$resetDay);
+                       createBreak();
+                   }else{
+                       echo "new end day ".$new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"+",false),calculateDaysMonth(date_create($today),1,"+",true));
+                       createBreak();
+                   }
+                   echo "new start date ".date_create($today)->format("Y-m-".$resetDay);
+                   //$new_time_line = new TimeLine(date_create($today)->format("Y-m-".$resetDay),);
+//                   createBreak();
+               }
+//               if(date_create($today)->format("d")> $resetDay){
+//                   echo "today is higher";
+//                   createBreak();
+//               }else{
+//                   echo "reset is higher";
+//                   createBreak();
+//               }
            }else{
-               $temp = $endDate;
+
                $resultDate;
                $resultDate = date ('Y-m-d',strtotime("+1 months",strtotime($temp->format('Y-m-01'))));
                $numberOfDaysInFutureMonth =cal_days_in_month(CAL_GREGORIAN,date ("m",strtotime($resultDate)),date ("Y",strtotime($resultDate)));

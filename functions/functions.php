@@ -162,5 +162,37 @@ function returnStandardFormat($date){
 }
 
 /**
- * @todo  create a date function that will add days to a date
+ * for testing this creates a break between statements
  */
+function createBreak(){
+    echo "<br>";
+}
+
+/**
+ * this function returns the number of days in any past, present and future amounts, it also returns the string value of a future date
+ * @param $date
+ * @param $numberOfFutureMonths
+ * @param $incrementDecrement|string|+|-
+ * @param $boolean
+ * @return false|int|string
+ */
+function calculateDaysMonth($date,$numberOfFutureMonths,$incrementDecrement,$boolean){
+
+    $resultDate = date ('Y-m-d',strtotime($incrementDecrement.$numberOfFutureMonths." months",strtotime($date->format('Y-m-01'))));
+    if($boolean){
+        return cal_days_in_month(CAL_GREGORIAN,date_create($resultDate)->format("m"),date_create($resultDate)->format("Y"));
+    }else{
+       return $resultDate;
+    }
+
+}
+
+/**
+ * creates Date Using String With Any Day
+ * @param $date
+ * @param $day
+ * @return string
+ */
+function createDateUsingStringWithAnyDay($date,$day){
+    return date_create($date)->format("Y-m-".$resetDay = is_numeric($day)? $day : "Y");
+}
