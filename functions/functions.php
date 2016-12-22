@@ -171,14 +171,14 @@ function createBreak(){
 /**
  * this function returns the number of days in any past, present and future amounts, it also returns the string value of a future date
  * @param $date
- * @param $numberOfFutureMonths
+ * @param $numberOfFuturePastMonths
  * @param $incrementDecrement|string|+|-
  * @param $boolean
  * @return false|int|string
  */
-function calculateDaysMonth($date,$numberOfFutureMonths,$incrementDecrement,$boolean){
+function calculateDaysMonth($date,$numberOfFuturePastMonths,$incrementDecrement,$boolean){
 
-    $resultDate = date ('Y-m-d',strtotime($incrementDecrement.$numberOfFutureMonths." months",strtotime($date->format('Y-m-01'))));
+    $resultDate = date ('Y-m-d',strtotime($incrementDecrement.$numberOfFuturePastMonths." months",strtotime($date->format('Y-m-01'))));
     if($boolean){
         return cal_days_in_month(CAL_GREGORIAN,date_create($resultDate)->format("m"),date_create($resultDate)->format("Y"));
     }else{
@@ -195,4 +195,18 @@ function calculateDaysMonth($date,$numberOfFutureMonths,$incrementDecrement,$boo
  */
 function createDateUsingStringWithAnyDay($date,$day){
     return date_create($date)->format("Y-m-".$resetDay = is_numeric($day)? $day : "Y");
+}
+
+/**
+ * this function adds or subtracts days from date
+ * @param $date
+ * @param $numberOfFuturePastDays
+ * @param $incrementDecrement
+ * @return false|string
+ */
+function addSubDaysToDate($date,$numberOfFuturePastDays,$incrementDecrement){
+
+    return $Date2 = date('Y-m-d', strtotime(returnStandardFormat($date). " ".$incrementDecrement." ".$numberOfFuturePastDays." days"));
+
+
 }

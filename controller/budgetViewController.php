@@ -24,99 +24,152 @@ require_once ("../classes/TimeLine.php");
 if(isset($_POST)){
     //$today=  date("Y-m-d");
     //$today = date("Y-m-d",strtotime("Jan 15 2016"));
-    $today = date("Y-m-d",strtotime("Oct 15 2016"));
-    $today = date("Y-m-d",strtotime("Jan 15 2017"));
-    $frequecy;
+    //$today = date("Y-m-d",strtotime("Oct 15 2016"));
+    //$today = date("Y-m-d",strtotime("Jan 15 2017"));
+    //$today = date("Y-m-d",strtotime("mar 15 2017"));
+    $today = date("Y-m-d",strtotime("feb 28 2017"));
+    $frequency;
     $startDate;
     $endDate;
-    $timeline_id;
+    $time_line_id;
     $resetDay;
-    $budgetid = $_POST["budgetId"];
+    $new_start_date;
+    $new_end_date;
+    $budget_id = $_POST["budgetId"];
     $conn = con();
-    $sql = "SELECT * FROM time_line WHERE state ='active' AND budget_Instance_ID =".$budgetid;
+    $sql = "SELECT * FROM time_line WHERE state ='active' AND budget_Instance_ID =".$budget_id;
 
 
     if($result = mysqli_query($conn,$sql)){
         echo "success <br>";
 
         while ($row =mysqli_fetch_assoc($result)){
-            $frequecy =$row["frequency"];
+            $frequency =$row["frequency"];
             $startDate = date_create($row["duration_start"]);
             $endDate= date_create($row["duration_end"]);
-            //$resetDay =strlen("".$row["reset_day"])<1 ? "0".$row["reset_day"]:$row["reset_day"] ;
             $resetDay =(int) strlen($row["reset_day"]) > 1 ? $row["reset_day"] : "0".$row["reset_day"];
         }
     }else{
         echo "failure ".mysqli_error($conn);
         echo "<br>".$sql;
     }
-//    if($today == returnStandardFormat($startDate)){
-//        echo "wow these dates are equal <br>";
-//    }else{
-//        echo "wow these dates are not equal <br>";
-//    }
+
     if($today > returnStandardFormat($endDate) && $today > returnStandardFormat($startDate)){
-//        echo "today is less than <br>";
-//        echo "endate".returnStandardFormat($endDate)."<br>";
-//        echo "today".$today."<br>";
-        if($frequecy == "weekly"){
+        if($frequency == "weekly"){
+
+            $compare_date = $endDate;
+           // echo returnStandardFormat($compare_date);
+            createBreak();
+           echo $compare_date = addSubDaysToDate($endDate,7,"+");
+            createBreak();
+            echo "in while loop";
             while (true){
-                //todo: check if new endate is valid, the add 7 days until new timeline is valid
-                //todo: turn this into a function so that it will be flexible with future time lines
+                if($today >= $compare_date){
+                   // echo calculateDaysMonth($compare_date,1,"-",false);
+                    createBreak();
+                    createBreak();
+                    echo $compare_date;
+                    createBreak();
+
+                } else{
+                    echo "what";
+                    createBreak();
+                    $new_start_date = addSubDaysToDate(date_create($compare_date),7,"-");
+                    $new_end_date = $compare_date;
+                    $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
+                    var_dump($new_time_line);
+                    break;
+                                    }
+                $compare_date = addSubDaysToDate(date_create($compare_date),7,"+");
             }
-        }else if($frequecy == "biweekly"){
+            echo "in week";
+            createBreak();
+        }else if($frequency == "biweekly"){
+
+            $compare_date = $endDate;
+            // echo returnStandardFormat($compare_date);
+            createBreak();
+            echo $compare_date = addSubDaysToDate($endDate,14,"+");
+            createBreak();
+            echo "in while loop";
             while (true){
-                //todo: check if new endate is valid, the add 14 days until new timeline is valid
+                if($today >= $compare_date){
+                    // echo calculateDaysMonth($compare_date,1,"-",false);
+                    createBreak();
+                    createBreak();
+                    echo $compare_date;
+                    createBreak();
+
+                } else{
+                    echo "what";
+                    createBreak();
+                    $new_start_date = addSubDaysToDate(date_create($compare_date),7,"-");
+                    $new_end_date = $compare_date;
+                    $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
+                    var_dump($new_time_line);
+                    break;
+                }
+                $compare_date = addSubDaysToDate(date_create($compare_date),7,"+");
             }
+            echo "in BIweek";
+            createBreak();
         }else {
-            //todo validate new date and insert into new time line
             $new_time_line;
             $temp = $endDate;
             echo "reset day ".$resetDay;
             echo "<br>";
            if(((strtotime($today) -  strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 )) > 1){
-               echo "adjustment needed";
-               echo "<br>";
-               //echo date("Y-m-d",strtotime("+".((strtotime($today) -  strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 )))."months");
-               //echo "+".((strtotime($today) -  strtotime(returnStandardFormat($endDate)))/(4 * 7 * 24 * 60 * 60 ))." months";
-              // echo $testDate = date ('Y-m-d',strtotime("+4.11115 months",strtotime($temp->format('Y-m-01'))));
-               echo "this is the start ".returnStandardFormat($startDate);
-               createBreak();
-               echo  "this is the endDate ".returnStandardFormat($endDate);
-               createBreak();
-               echo  "today ".$today;
-               createBreak();
                if(date_create($today)->format("d") < $resetDay){
-                   //echo "today is higher ".cal_days_in_month(CAL_GREGORIAN,date_create($today)->format("m"),date_create($today)->format("Y"));
+                   echo "todays day is less than the reset day";
                    createBreak();
                    if(calculateDaysMonth(date_create($today),1,"-",true)> $resetDay){
-                       echo "new start date ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"-",false),$resetDay);
+                       echo "last months days are greater than the reset day";
                        createBreak();
-                       //todo: fix this 
-                       if( date_create($today)->format("d")> $resetDay){
-                           echo "sfklks;dlfkl ".date_create($today)->format("d");
+                       echo "new start date ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"-",false),$resetDay);
+                       $new_start_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"-",false),$resetDay);
+                       createBreak();
+                       if( calculateDaysMonth(date_create($today),0,"+",true)> $resetDay){
+                           echo "the reset day is less than today's month";
+                           createBreak();
                            echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
+                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
                            createBreak();
                        }else{
-
-                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
+                           echo "the reset day are greater than today's months";
+                           createBreak();
+                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
+                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
                            createBreak();
                        }
 
+                       $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
+                       $new_time_line->reset_day =(int) $resetDay;
+
                    }else{
-                       echo "dfsdfd";
-                       echo "test ".calculateDaysMonth(date_create($today),1,"-",true);
+                       echo "last months days are less than the reset day";
                        createBreak();
                        echo "new start date ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"-",false),calculateDaysMonth(date_create($today),1,"-",true));
+                       $new_start_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"-",false),calculateDaysMonth(date_create($today),1,"-",true));
                        createBreak();
-                       echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
-                       createBreak();
+                       if( calculateDaysMonth(date_create($today),0,"+",true)> $resetDay){
+                           echo "the reset day is less than today's month";
+                           createBreak();
+                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
+                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),$resetDay);
+                           createBreak();
+                       }else{
+                           echo "the reset day are greater than today's months";
+                           createBreak();
+                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
+                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
+                           createBreak();
+                       }
+                       $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
+                       $new_time_line->reset_day =(int) $resetDay;
                    }
-                  // echo "new start date ".date_create($today)->format("Y-m-".$resetDay);
-                   //$new_time_line = new TimeLine(date_create($today)->format("Y-m-".$resetDay),);
-//                   createBreak();
+
                }else{
-                   echo "today is higher ".cal_days_in_month(CAL_GREGORIAN,date_create($today)->format("m"),date_create($today)->format("Y"));
+                   echo "todays day is greater than the reset day";
                    createBreak();
                    if(calculateDaysMonth(date_create($today),1,"+",true)> $resetDay){
                        echo "new end day ".$new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),1,"+",false),$resetDay);
@@ -126,16 +179,11 @@ if(isset($_POST)){
                        createBreak();
                    }
                    echo "new start date ".date_create($today)->format("Y-m-".$resetDay);
-                   //$new_time_line = new TimeLine(date_create($today)->format("Y-m-".$resetDay),);
-//                   createBreak();
+                   $new_start_date = date_create($today)->format("Y-m-".$resetDay);
+                   $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
+                   $new_time_line->reset_day =(int) $resetDay;
                }
-//               if(date_create($today)->format("d")> $resetDay){
-//                   echo "today is higher";
-//                   createBreak();
-//               }else{
-//                   echo "reset is higher";
-//                   createBreak();
-//               }
+
            }else{
 
                $resultDate;
@@ -143,26 +191,31 @@ if(isset($_POST)){
                $numberOfDaysInFutureMonth =cal_days_in_month(CAL_GREGORIAN,date ("m",strtotime($resultDate)),date ("Y",strtotime($resultDate)));
               if($numberOfDaysInFutureMonth > $resetDay){
                   echo "new end day".date_create($resultDate)->format("Y-m-".$resetDay);
+                  $new_end_date = date_create($resultDate)->format("Y-m-".$resetDay);
+                  $new_start_date = $endDate->format("Y-m-d");
                   echo "<br>";
-                  $new_time_line = new TimeLine($endDate->format("Y-m-d"),date_create($resultDate)->format("Y-m-".$resetDay),$frequecy,$budgetid);
-                  $new_time_line->reset_day = $resetDay;
-                  var_dump($new_time_line);
+                  $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
+                  $new_time_line->reset_day =(int) $resetDay;
               }else{
                   echo "new end day".date_create($resultDate)->format("Y-m-".$numberOfDaysInFutureMonth);
+                  $new_end_date = date_create($resultDate)->format("Y-m-".$numberOfDaysInFutureMonth);
+                  $new_start_date = $endDate->format("Y-m-d");
                   echo "<br>";
-                  $new_time_line = new TimeLine($endDate->format("Y-m-d"),date_create($resultDate)->format("Y-m-".$numberOfDaysInFutureMonth),$frequecy,$budgetid);
-                  $new_time_line->reset_day = $resetDay;
-                  var_dump($new_time_line);
+                  $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
+                  $new_time_line->reset_day =(int) $resetDay;
               }
 
            }
 
-//            $sql="UPDATE time_line SET state='deactivated' WHERE state ='active' AND budget_Instance_ID =".$budgetid;
-//            //todo: insert new time line
-//            mysqli_query($conn,$sql);
-//            $sql = "INSERT INTO time_line (".createQueryStringKeys($new_timeline).") VALUES (".createQueryStringValues($new_timeline).")";
-//            mysqli_query($conn,$sql);
+           $sql="UPDATE time_line SET state='deactivated' WHERE state ='active' AND budget_Instance_ID =".$budget_id;
+
+            mysqli_query($conn,$sql);
+            $sql = "INSERT INTO time_line (".createQueryStringKeys($new_time_line).") VALUES (".createQueryStringValues($new_time_line).")";
+            mysqli_query($conn,$sql);
             echo " <br>in budget";
+            createBreak();
+
+            var_dump($new_time_line);
         }
 
 
