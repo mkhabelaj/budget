@@ -5,4 +5,11 @@
 $(document).ready(function () {
     console.log($.urlParam('budget_instance_id'));
     getAnyPostE(home+"controller/budgetViewController.php",{budgetId:$.urlParam('budget_instance_id')},"#test",null);
+
+    $('#addRow').click(function () {
+        getAnyPostE(home+"controller/budgetViewController.php",{budgetId:$.urlParam('budget_instance_id')},"#test",null);
+    });
+    $('#bababababa').click(function () {
+        $('#test').empty();
+    });
 });

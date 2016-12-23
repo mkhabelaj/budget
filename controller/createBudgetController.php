@@ -56,6 +56,7 @@ if(isset($_POST)){
 
         if($result = mysqli_query($conn,$sql3)){
             echo "time line success";
+            createBreak();
         }else{
             echo "time line failure ".mysqli_error($conn);
         }

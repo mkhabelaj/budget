@@ -12,29 +12,30 @@ require_once ("../classes/TimeLine.php");
 
 
 /**
- * @todo get the active endate and startdate from time_line budget, also get the frequency of the time_line
- * @todo find out if the date in the time line is still valid meaning endate is not passed todays date
- * @todo if the endate is not valid deactive the current time_line and create a new time line using the endate of the last time line
- * @todo also create functionality that ensures that the endate is a valid to become the new start date
  * @todo return a budget table
  */
 
+$frequency;
+$startDate;
+$endDate;
+$time_line_id;
+$new_time_line;
+$resetDay;
+$new_start_date;
+$new_end_date;
+$budget_id;
 
+/**
+ *  this function resets the global variables and gets current information from the respective budget
+ */
+function getCurrentBudgetInformation(){
+    global $budget_id;
+    global $frequency;
+    global $startDate;
+    global $endDate;
+    global $time_line_id;
+    global $resetDay;
 
-if(isset($_POST)){
-    //$today=  date("Y-m-d");
-    //$today = date("Y-m-d",strtotime("Jan 15 2016"));
-    //$today = date("Y-m-d",strtotime("Oct 15 2016"));
-    //$today = date("Y-m-d",strtotime("Jan 15 2017"));
-    //$today = date("Y-m-d",strtotime("mar 15 2017"));
-    $today = date("Y-m-d",strtotime("feb 28 2017"));
-    $frequency;
-    $startDate;
-    $endDate;
-    $time_line_id;
-    $resetDay;
-    $new_start_date;
-    $new_end_date;
     $budget_id = $_POST["budgetId"];
     $conn = con();
     $sql = "SELECT * FROM time_line WHERE state ='active' AND budget_Instance_ID =".$budget_id;
@@ -48,11 +49,33 @@ if(isset($_POST)){
             $startDate = date_create($row["duration_start"]);
             $endDate= date_create($row["duration_end"]);
             $resetDay =(int) strlen($row["reset_day"]) > 1 ? $row["reset_day"] : "0".$row["reset_day"];
+            $time_line_id = $row["time_line_id"];
         }
     }else{
         echo "failure ".mysqli_error($conn);
         echo "<br>".$sql;
     }
+}
+
+/**
+ * this function deactivates the old budget and creates a new one
+ */
+function deactivatesOldBudgetActivateNew(){
+    global $new_time_line;
+    global  $budget_id;
+    $conn = con();
+    $sql="UPDATE time_line SET state='deactivated' WHERE state ='active' AND budget_Instance_ID =".$budget_id;
+
+    mysqli_query($conn,$sql);
+    $sql = "INSERT INTO time_line (".createQueryStringKeys($new_time_line).") VALUES (".createQueryStringValues($new_time_line).")";
+    mysqli_query($conn,$sql);
+    createBreak();
+    var_dump($new_time_line);
+}
+
+if(isset($_POST)){
+    $today=  date("Y-m-d");
+    getCurrentBudgetInformation();
 
     if($today > returnStandardFormat($endDate) && $today > returnStandardFormat($startDate)){
         if($frequency == "weekly"){
@@ -62,13 +85,13 @@ if(isset($_POST)){
             createBreak();
            echo $compare_date = addSubDaysToDate($endDate,7,"+");
             createBreak();
-            echo "in while loop";
+          //  echo "in while loop";
             while (true){
                 if($today >= $compare_date){
                    // echo calculateDaysMonth($compare_date,1,"-",false);
                     createBreak();
                     createBreak();
-                    echo $compare_date;
+                   // echo $compare_date;
                     createBreak();
 
                 } else{
@@ -77,13 +100,13 @@ if(isset($_POST)){
                     $new_start_date = addSubDaysToDate(date_create($compare_date),7,"-");
                     $new_end_date = $compare_date;
                     $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
-                    var_dump($new_time_line);
                     break;
                                     }
                 $compare_date = addSubDaysToDate(date_create($compare_date),7,"+");
             }
             echo "in week";
-            createBreak();
+            deactivatesOldBudgetActivateNew();
+            getCurrentBudgetInformation();
         }else if($frequency == "biweekly"){
 
             $compare_date = $endDate;
@@ -106,15 +129,14 @@ if(isset($_POST)){
                     $new_start_date = addSubDaysToDate(date_create($compare_date),7,"-");
                     $new_end_date = $compare_date;
                     $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
-                    var_dump($new_time_line);
                     break;
                 }
                 $compare_date = addSubDaysToDate(date_create($compare_date),7,"+");
             }
             echo "in BIweek";
-            createBreak();
+            deactivatesOldBudgetActivateNew();
+            getCurrentBudgetInformation();
         }else {
-            $new_time_line;
             $temp = $endDate;
             echo "reset day ".$resetDay;
             echo "<br>";
@@ -137,8 +159,8 @@ if(isset($_POST)){
                        }else{
                            echo "the reset day are greater than today's months";
                            createBreak();
-                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
-                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
+                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today),0,"+",true));
+                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today),0,"+",true));
                            createBreak();
                        }
 
@@ -160,8 +182,8 @@ if(isset($_POST)){
                        }else{
                            echo "the reset day are greater than today's months";
                            createBreak();
-                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
-                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today)->format("Y-m-d"),0,"+",true));
+                           echo "new endDate ".createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today),0,"+",true));
+                           $new_end_date = createDateUsingStringWithAnyDay(calculateDaysMonth(date_create($today),0,"+",false),calculateDaysMonth(date_create($today),0,"+",true));
                            createBreak();
                        }
                        $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
@@ -204,18 +226,11 @@ if(isset($_POST)){
                   $new_time_line = new TimeLine($new_start_date,$new_end_date,$frequency,$budget_id);
                   $new_time_line->reset_day =(int) $resetDay;
               }
-
            }
 
-           $sql="UPDATE time_line SET state='deactivated' WHERE state ='active' AND budget_Instance_ID =".$budget_id;
 
-            mysqli_query($conn,$sql);
-            $sql = "INSERT INTO time_line (".createQueryStringKeys($new_time_line).") VALUES (".createQueryStringValues($new_time_line).")";
-            mysqli_query($conn,$sql);
-            echo " <br>in budget";
-            createBreak();
-
-            var_dump($new_time_line);
+            deactivatesOldBudgetActivateNew();
+            getCurrentBudgetInformation();
         }
 
 
@@ -223,9 +238,27 @@ if(isset($_POST)){
         echo "endate is greater <br>";
         echo "endate".returnStandardFormat($endDate)."<br>";
         echo "today".$today."<br>";
+
     }
 }
 
+
 ?>
+
+<div id="budgetContainer">
+    <table id="actualBudget">
+        <tr>
+            <th>Projected Amount</th>
+            <th>Actual Amount</th>
+            <th>Variance</th>
+        </tr>
+        <tr>
+            <td>dummy</td>
+            <td>dummy</td>
+            <td>dummy</td>
+        </tr>
+
+    </table>
+</div>
 
 
