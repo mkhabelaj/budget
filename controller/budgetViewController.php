@@ -261,4 +261,6 @@ if(isset($_POST)){
     </table>
 </div>
 
+<button id="add-catagory" class="open-modal" data-budgetID="<?php printItem($budget_id)?>"  data-timeID="<?php printItem($time_line_id) ?>">Open Modal</button>
+
 
