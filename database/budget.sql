@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2016 at 02:36 PM
+-- Generation Time: Dec 27, 2016 at 10:40 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -51,7 +51,24 @@ INSERT INTO `budget_instance` (`budget_instance_id`, `name`, `description`) VALU
 (65, 'dykdk', ''),
 (66, 'test 3', ''),
 (67, 'test 4', ''),
-(68, 'test 5', '');
+(68, 'test 5', ''),
+(69, 'Test 6', ''),
+(70, 'Test 7', ''),
+(71, 'Test 8', ''),
+(72, 'Test 9', ''),
+(73, 'test 10', ''),
+(74, 'test 12', ''),
+(75, 'test 13', ''),
+(76, 'Test W 1', ''),
+(77, 'Test W 2', ''),
+(80, 'dsfdf', ''),
+(81, 'wee', ''),
+(82, 'wee3', ''),
+(83, 'dykdk', ''),
+(84, 'zdfhfh', ''),
+(85, 'asfafasf', ''),
+(86, 'zfzsdf', ''),
+(87, 'dkkghk', '');
 
 -- --------------------------------------------------------
 
@@ -65,6 +82,16 @@ CREATE TABLE `budget_instance_catagory` (
   `budget_Instance_id` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `budget_instance_catagory`
+--
+
+INSERT INTO `budget_instance_catagory` (`budget_Instance_catagory_id`, `catagory_id`, `budget_Instance_id`) VALUES
+(2, 12, 66),
+(3, 13, 66),
+(4, 14, 66),
+(5, 15, 66);
+
 -- --------------------------------------------------------
 
 --
@@ -74,9 +101,19 @@ CREATE TABLE `budget_instance_catagory` (
 CREATE TABLE `category` (
   `category_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(25) NOT NULL,
-  `status` enum('on','off') NOT NULL DEFAULT 'on',
   `description` mediumtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`, `description`) VALUES
+(8, 'sdf', ''),
+(12, 'testing', ''),
+(13, 'BEE', ''),
+(14, 'success', ''),
+(15, 'car', '');
 
 -- --------------------------------------------------------
 
@@ -91,6 +128,36 @@ CREATE TABLE `category_amounts` (
   `catergory_id` int(11) UNSIGNED NOT NULL,
   `time_line_id` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `category_amounts`
+--
+
+INSERT INTO `category_amounts` (`catergory_amount_id`, `actual_amount`, `projected_amount`, `catergory_id`, `time_line_id`) VALUES
+(1, 564645, 6545561, 14, 93),
+(2, 500, 500, 15, 93);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_state`
+--
+
+CREATE TABLE `category_state` (
+  `state` enum('active','deactivated','removed','') NOT NULL DEFAULT 'active',
+  `time_line_id` int(11) UNSIGNED NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `category_state`
+--
+
+INSERT INTO `category_state` (`state`, `time_line_id`, `category_id`) VALUES
+('active', 93, 12),
+('active', 93, 13),
+('active', 93, 14),
+('active', 93, 15);
 
 -- --------------------------------------------------------
 
@@ -228,7 +295,24 @@ INSERT INTO `income` (`income_id`, `income`, `budget_Instance_ID`) VALUES
 (49, 456456, 65),
 (50, 10000, 66),
 (51, 545456, 67),
-(52, 5645454, 68);
+(52, 5645454, 68),
+(53, 456, 69),
+(54, 453, 70),
+(55, 46456, 71),
+(56, 456, 72),
+(57, 45, 73),
+(58, 456, 74),
+(59, 13, 75),
+(60, 345, 76),
+(61, 456, 77),
+(64, 5665, 80),
+(65, 4545, 81),
+(66, 4545, 82),
+(67, 456456, 83),
+(68, 456, 84),
+(69, 456, 85),
+(70, 45645, 86),
+(71, 4545, 87);
 
 -- --------------------------------------------------------
 
@@ -287,19 +371,56 @@ CREATE TABLE `time_line` (
 INSERT INTO `time_line` (`time_line_id`, `duration_start`, `duration_end`, `frequency`, `state`, `reset_day`, `budget_Instance_ID`) VALUES
 (33, '2016-12-22', '2017-01-22', 'monthly', 'active', 22, 50),
 (35, '2016-12-19', '2016-12-26', 'weekly', 'active', 0, 52),
-(36, '2016-12-01', '2016-12-15', 'biweekly', 'active', 0, 53),
+(36, '2016-12-01', '2016-12-15', 'biweekly', 'deactivated', 0, 53),
 (37, '2016-12-19', '2017-01-19', 'monthly', 'active', 19, 54),
-(38, '2016-11-01', '2016-12-01', 'monthly', 'active', 1, 55),
+(38, '2016-11-01', '2016-12-01', 'monthly', 'deactivated', 1, 55),
 (39, '2016-06-01', '2016-07-01', 'monthly', 'active', 0, 56),
 (40, '2016-12-20', '2017-01-20', 'monthly', 'active', 20, 57),
 (41, '2016-10-19', '2016-11-19', 'monthly', 'active', 19, 58),
 (42, '2016-12-02', '2017-01-02', 'monthly', 'active', 2, 59),
 (43, '2016-11-02', '2016-12-02', 'monthly', 'active', 2, 60),
 (47, '2016-12-17', '2017-01-17', 'monthly', 'active', 17, 64),
-(48, '2016-12-08', '2016-12-15', 'weekly', 'active', 0, 65),
-(49, '2016-01-31', '2016-02-29', 'monthly', 'active', 31, 66),
-(50, '2015-12-30', '2016-01-30', 'monthly', 'active', 30, 67),
-(51, '2016-07-31', '2016-08-31', 'monthly', 'active', 31, 68);
+(48, '2016-12-08', '2016-12-15', 'weekly', 'deactivated', 0, 65),
+(49, '2016-01-31', '2016-02-29', 'monthly', 'deactivated', 31, 66),
+(50, '2015-12-30', '2016-01-30', 'monthly', 'deactivated', 30, 67),
+(51, '2016-07-31', '2016-08-31', 'monthly', 'deactivated', 31, 68),
+(52, '2015-01-31', '2015-02-28', 'monthly', 'active', 31, 69),
+(53, '2015-01-15', '2015-02-15', 'monthly', 'deactivated', 15, 70),
+(54, '2016-01-02', '2016-02-02', 'monthly', 'deactivated', 2, 71),
+(55, '2016-06-28', '2016-07-28', 'monthly', 'active', 28, 72),
+(56, '2016-01-31', '2016-02-29', 'monthly', 'deactivated', 31, 73),
+(57, '2016-10-27', '2016-11-27', 'monthly', 'deactivated', 27, 74),
+(58, '2016-03-30', '2016-04-30', 'monthly', 'deactivated', 30, 75),
+(61, '2016-12-02', '2017-01-02', 'monthly', 'active', 2, 71),
+(62, '2016-12-15', '2017-01-15', 'monthly', 'active', 15, 70),
+(63, '2016-12-01', '2017-01-01', 'monthly', 'active', 1, 55),
+(64, '2016-09-01', '2016-09-08', 'weekly', 'deactivated', 0, 76),
+(65, '2016-06-23', '2016-06-30', 'weekly', 'deactivated', 0, 77),
+(69, '2016-12-01', '2016-12-08', 'weekly', 'active', 0, 80),
+(70, '2016-12-01', '2016-12-08', 'weekly', 'active', 0, 81),
+(71, '2016-12-01', '2016-12-08', 'weekly', 'active', 0, 82),
+(72, '2016-12-01', '2016-12-08', 'weekly', 'active', 0, 82),
+(73, '2016-12-01', '2016-12-08', 'weekly', 'active', 0, 82),
+(74, '2016-12-22', '2016-12-29', 'weekly', 'active', 0, 76),
+(75, '2016-12-22', '2016-12-29', 'weekly', 'active', 0, 77),
+(76, '2016-10-01', '2016-10-15', 'biweekly', 'deactivated', 0, 83),
+(77, '2016-12-17', '2016-12-24', 'biweekly', 'active', 0, 83),
+(78, '2016-07-20', '2016-08-03', 'biweekly', 'deactivated', 0, 84),
+(79, '2016-12-21', '2016-12-28', 'biweekly', 'active', 0, 84),
+(80, '2016-12-22', '2016-12-29', 'biweekly', 'active', 0, 53),
+(81, '2016-11-27', '2016-12-27', 'monthly', 'active', 27, 74),
+(82, '2016-11-30', '2016-12-30', 'monthly', 'active', 30, 67),
+(83, '2016-09-01', '2016-10-01', 'monthly', 'deactivated', 1, 85),
+(84, '2016-12-01', '2017-01-01', 'monthly', 'active', 1, 85),
+(85, '2016-10-03', '2016-10-17', 'biweekly', 'deactivated', 0, 86),
+(86, '2016-11-01', '2016-11-08', 'weekly', 'deactivated', 0, 87),
+(87, '2016-12-19', '2016-12-26', 'biweekly', 'active', 0, 86),
+(88, '2016-12-20', '2016-12-27', 'weekly', 'active', 0, 87),
+(89, '2016-11-30', '2016-12-30', 'monthly', 'active', 30, 75),
+(90, '2016-12-22', '2016-12-29', 'weekly', 'active', 0, 65),
+(91, '2016-11-30', '2016-12-31', 'monthly', 'active', 31, 73),
+(92, '2016-11-30', '2016-12-31', 'monthly', 'active', 31, 68),
+(93, '2016-11-30', '2016-12-31', 'monthly', 'active', 31, 66);
 
 -- --------------------------------------------------------
 
@@ -370,7 +491,21 @@ INSERT INTO `user_budget_instance` (`user_budget_Instance_Id`, `budget_Instance_
 (82, 65, 33),
 (83, 66, 33),
 (84, 67, 33),
-(85, 68, 33);
+(85, 68, 33),
+(86, 69, 33),
+(87, 70, 33),
+(88, 71, 33),
+(89, 72, 33),
+(90, 73, 33),
+(91, 74, 33),
+(92, 75, 33),
+(93, 76, 33),
+(94, 77, 33),
+(100, 83, 33),
+(101, 84, 33),
+(102, 85, 33),
+(103, 86, 33),
+(104, 87, 33);
 
 -- --------------------------------------------------------
 
@@ -412,7 +547,10 @@ ALTER TABLE `budget_instance_catagory`
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`category_id`),
+  ADD UNIQUE KEY `category_id` (`category_id`,`name`),
+  ADD UNIQUE KEY `category_id_2` (`category_id`),
+  ADD UNIQUE KEY `category_id_3` (`category_id`);
 
 --
 -- Indexes for table `category_amounts`
@@ -421,6 +559,13 @@ ALTER TABLE `category_amounts`
   ADD PRIMARY KEY (`catergory_amount_id`),
   ADD KEY `catergory_id` (`catergory_id`),
   ADD KEY `time_line_id` (`time_line_id`);
+
+--
+-- Indexes for table `category_state`
+--
+ALTER TABLE `category_state`
+  ADD KEY `time_line_id` (`time_line_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `friends`
@@ -497,22 +642,22 @@ ALTER TABLE `user_budget_instance`
 -- AUTO_INCREMENT for table `budget_instance`
 --
 ALTER TABLE `budget_instance`
-  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 --
 -- AUTO_INCREMENT for table `budget_instance_catagory`
 --
 ALTER TABLE `budget_instance_catagory`
-  MODIFY `budget_Instance_catagory_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `budget_Instance_catagory_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `category_amounts`
 --
 ALTER TABLE `category_amounts`
-  MODIFY `catergory_amount_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `catergory_amount_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `friends`
 --
@@ -532,7 +677,7 @@ ALTER TABLE `goal`
 -- AUTO_INCREMENT for table `income`
 --
 ALTER TABLE `income`
-  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `notification`
 --
@@ -547,7 +692,7 @@ ALTER TABLE `savings`
 -- AUTO_INCREMENT for table `time_line`
 --
 ALTER TABLE `time_line`
-  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -557,7 +702,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_budget_instance`
 --
 ALTER TABLE `user_budget_instance`
-  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 --
 -- Constraints for dumped tables
 --
@@ -575,6 +720,13 @@ ALTER TABLE `budget_instance_catagory`
 ALTER TABLE `category_amounts`
   ADD CONSTRAINT `category_amounts_ibfk_1` FOREIGN KEY (`time_line_id`) REFERENCES `time_line` (`time_line_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `category_amounts_ibfk_2` FOREIGN KEY (`catergory_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `category_state`
+--
+ALTER TABLE `category_state`
+  ADD CONSTRAINT `category_state_ibfk_1` FOREIGN KEY (`time_line_id`) REFERENCES `time_line` (`time_line_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `category_state_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `friends`
@@ -601,6 +753,12 @@ ALTER TABLE `goal`
 --
 ALTER TABLE `income`
   ADD CONSTRAINT `income_ibfk_1` FOREIGN KEY (`budget_Instance_ID`) REFERENCES `budget_instance` (`budget_instance_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `savings`

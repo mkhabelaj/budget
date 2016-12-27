@@ -21,24 +21,18 @@ if(isset($_POST)){
     $actual_amount = $_POST["actualA"];
     $category = $_POST["category"];
     $category_id;
-//    printItem($budgetID);
-//    createBreak();
-//    printItem($time_line_id);
-//    createBreak();
-//    printItem($category);
-//    createBreak();
-//    printItem($actual_amount);
-//    createBreak();
-//    printItem($projected_amount);
-//    createBreak();
 
     $conn = con();
     $categoryObj = new Category($category);
     dataBaseManipulation(SQLInsert("category",$categoryObj),$conn,null,"insert in catergory",true);
     $category_id = (int) mysqli_insert_id($conn);
-    $category_state = new CategoryState($time_line_id,)
-    dataBaseManipulation(SQLInsert(""))
-    printItemBreak($s);
+    $category_state = new CategoryState($time_line_id,$category_id);
+    dataBaseManipulation(SQLInsert("category_state",$category_state),$conn,null,"inserting into category state",true);
+    $budget_instance_category = new budgetInstanceCategory($category_id,$budgetID);
+    dataBaseManipulation(SQLInsert("budget_instance_catagory",$budget_instance_category),$conn,null,"budget instance catagory",true);
+    $category_amount = new CategoryAmount($actual_amount,$projected_amount,$category_id,$time_line_id);
+    dataBaseManipulation(SQLInsert("category_amounts",$category_amount),$conn,null,"catergory amounts",true);
+
 
 
 }
