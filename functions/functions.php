@@ -167,6 +167,14 @@ function returnStandardFormat($date){
 function createBreak(){
     echo "<br>";
 }
+/**
+ * prints and item and includes a break for testing purposes
+ * @param $item
+ */
+function printItemBreak($item){
+    echo $item;
+    createBreak();
+}
 
 /**
  * this function returns the number of days in any past, present and future amounts, it also returns the string value of a future date
@@ -208,5 +216,52 @@ function addSubDaysToDate($date,$numberOfFuturePastDays,$incrementDecrement){
 
     return $Date2 = date('Y-m-d', strtotime(returnStandardFormat($date). " ".$incrementDecrement." ".$numberOfFuturePastDays." days"));
 
+
+}
+
+/**
+ * returns insert query string
+ * @param $table string
+ * @param $keyValues object
+ * @return string
+ */
+function SQLInsert($table,$keyValues){
+  return  $sql ="INSERT INTO ".$table." (".createQueryStringKeys($keyValues).") VALUES (".createQueryStringValues($keyValues).")";
+}
+
+/**
+ * this function inserts and select from database, and return necessary statements
+ * @param $sql
+ * @param $conn
+ * @param $returnType |conn, rows, result
+ * @param $connectionName | this helps you identify the sql execution performed
+ * @param $printHelperStatements @bool | turn on and of debug print statements
+ * @return array|bool|mysqli_result|null
+ */
+function dataBaseManipulation($sql,$conn,$returnType,$connectionName,$printHelperStatements){
+
+    if($result = mysqli_query($conn,$sql)){
+        If($printHelperStatements){
+            printItemBreak("exicution was a succes for:");
+            printItemBreak($connectionName);
+        }
+        If($returnType === "conn"){
+            return $conn;
+        }else if($returnType === "rows"){
+            return mysqli_fetch_assoc($result);
+        }else if($returnType === "result"){
+            return $result;
+        }else{
+            return null;
+        }
+    }else{
+        If($printHelperStatements){
+            printItemBreak("exicution was a Failure for and the following error was found:");
+            printItemBreak($connectionName);
+            printItemBreak(mysqli_error($conn));
+            printItemBreak($sql);
+        }
+        return $result;
+    }
 
 }
