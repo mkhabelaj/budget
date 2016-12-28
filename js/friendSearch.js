@@ -16,7 +16,8 @@ $(Document).ready(function () {
     $('body').on('click','#open-modal-friend-search',function (event) {
         event.preventDefault();
         console.log('working');
-        getAnyPostE(home+"templates/friendSearch.php",null,".modal-sub-content")
+        getAnyPostE(home+"templates/friendSearch.php",null,".modal-sub-content",{recreate:createFriendList})
+        //createFriendList();
 
     });
 

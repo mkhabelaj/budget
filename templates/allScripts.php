@@ -12,7 +12,7 @@ scriptPageLoader("../js/modal.js",null);
 scriptPageLoader("../js/notificationCenter.js",null);
 scriptPageLoader("../js/friendSearch.js",null);
 scriptPageLoader("../js/addFriendToBudget.js","budget.php");
-scriptPageLoader("../js/createBudget.js","createBudget.php");
 scriptPageLoader("https://code.jquery.com/ui/1.12.1/jquery-ui.js","createBudget.php");
+scriptPageLoader("../js/createBudget.js","createBudget.php");
 scriptPageLoader("../js/budgetView.js","budgetView.php");
 scriptPageLoader("../js/registration.js","registrationView.php");

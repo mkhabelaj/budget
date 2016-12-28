@@ -13,7 +13,6 @@ function getAllnotifications() {
 
 $(document).ready(function () {
 
-
     /**
      * this accepts a friend request on the notification center tab
      */
