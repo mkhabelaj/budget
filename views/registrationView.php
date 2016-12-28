@@ -39,6 +39,4 @@ factory()->getInclusion('functions')->Inclusion();
     <label for="submit">Submit</label>
     <input type="submit" id="submit">
 </form>
-
-<script type="application/javascript" src="../js/registration.js"></script>
 <?php factory()->getInclusion('footer')->Inclusion();?>

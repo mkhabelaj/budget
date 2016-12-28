@@ -14,18 +14,6 @@ echo "hi this is your budget ".$_GET["budget_instance_id"];
 
 <div id="test"></div>
 
-
-
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">
-            X
-        </span>
-        <div class="modal-sub-content"></div>
-    </div>
-</div>
-<script type="application/javascript" src="../js/budgetView.js"></script>
-<script type="application/javascript" src="../js/modal.js"></script>
 <?php
 factory()->getInclusion("footer")->Inclusion();
 ?>

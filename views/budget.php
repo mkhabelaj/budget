@@ -42,6 +42,4 @@ if(mysqli_num_rows($result) > 0){
 
 </table>
 <div id="addFriendList">zdf</div>
-
-<script type="application/javascript" src="../js/addFriendToBudget.js"></script>
 <?php factory()->getInclusion("footer")->Inclusion();?>

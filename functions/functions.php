@@ -265,3 +265,31 @@ function dataBaseManipulation($sql,$conn,$returnType,$connectionName,$printHelpe
     }
 
 }
+
+/**
+ * loads script according to the page
+ * @param $script_url
+ * @param $execution_page | if null the script will be loaded on all pages
+ */
+function scriptPageLoader($script_url, $execution_page){
+    if($execution_page == NULL){
+        printItem('<script src="'.$script_url.'"defer></script>');
+    }else if(basename($_SERVER['PHP_SELF']) == $execution_page){
+        printItem('<script src="'.$script_url.'"defer></script>');
+    }
+
+}
+
+/**
+ * loads style sheets according to the page
+ * @param $style_url
+ * @param $execution_page | if null the style sheet will be loaded on all pages
+ */
+function stylePageLoader($style_url, $execution_page){
+    if($execution_page == NULL){
+        printItem('<link rel="stylesheet" href="'.$style_url.'">');
+    }else if(basename($_SERVER['PHP_SELF']) == $execution_page){
+        printItem('<link rel="stylesheet" href="'.$style_url.'">');
+    }
+
+}

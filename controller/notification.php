@@ -1,3 +1,4 @@
+<h1>Notification Center</h1>
 <?php
 /**
  * Created by PhpStorm.

@@ -8,11 +8,11 @@ notificationsCounter = function () {getNotification();}
  * this function gets friend requests
  */
 function getAllnotifications() {
-    getAnyPost(home+"controller/notification.php",null,"#allNotifications");
+    getAnyPost(home+"controller/notification.php",null,".modal-sub-content");
 }
 
 $(document).ready(function () {
-   notifications();
+
 
     /**
      * this accepts a friend request on the notification center tab
@@ -29,4 +29,12 @@ $(document).ready(function () {
         getAnyPostE(home+"controller/dismissNotification.php",{notficationID: $(this).val()},null,{notifiy:notifications,updateCounter:notificationsCounter})
     });
 
+    /**
+     * this area insert notifications into modal
+     */
+    $('body').on('click','#open-modal-notification',function (event) {
+        event.preventDefault();
+        console.log('working');
+        notifications();
+    });
 });

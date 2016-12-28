@@ -8,9 +8,11 @@ factory()->getInclusion('functions')->Inclusion();
     <title>
         Budget
     </title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <?php
+    require_once ('../templates/allStyles.php');
+    require_once ('../templates/allScripts.php');
+    ?>
 </head>
 <body>
     <nav>
@@ -22,12 +24,13 @@ factory()->getInclusion('functions')->Inclusion();
                 <?php if(is_admin()):?>
                 <a href="../views/adminView.php">Administration</a>|
                 <?php endif;?>
-            <a href="../views/notificationView.php">
+            <a href="../views/notificationView.php" id="open-modal-notification" class="open-modal">
                 <div style="display: inline"> <!--CSS-->
                     Notifications
                     (<div class="notification" style="display: inline"></div>)<!--CSS-->
                 </div>
             </a>|
+            <a href="../views/notificationView.php" id="open-modal-friend-search" class="open-modal">Friends</a>|
             <?php else: ?>
             <a href="../views/registrationView.php">Register</a>|
             <a href="../views/loginView.php">Sign in</a>|

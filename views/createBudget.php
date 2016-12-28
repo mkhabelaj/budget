@@ -26,7 +26,4 @@ factory()->getInclusion("header")->Inclusion();
 
     <input type="submit" id="submit">
 </form>
-<script type="application/javascript" src="../js/createBudget.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <?php factory()->getInclusion("footer")->Inclusion();?>

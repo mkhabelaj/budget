@@ -10,7 +10,17 @@ createFriendList =  function () {getAnyPost(home+"controller/createFriendList.ph
  * this is the ajax filter search
  */
 $(Document).ready(function () {
-    $("#search").keyup(function () {
+    /**
+     * this area insert friend search into modal
+     */
+    $('body').on('click','#open-modal-friend-search',function (event) {
+        event.preventDefault();
+        console.log('working');
+        getAnyPostE(home+"templates/friendSearch.php",null,".modal-sub-content")
+
+    });
+
+    $('body').on('keyup', '#search', function (){
         getAnyPost(home+"controller/friendSearch.php",  {query: $(this).val()},"#filterSearch");
     });
     /**
