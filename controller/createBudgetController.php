@@ -6,8 +6,7 @@
  * Time: 03:46 PM
  */
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("dataB")->Inclusion();
+AllIncludes("functions","dataB");
 require_once ("../classes/BudgetInstance.php");
 require_once ("../classes/Income.php");
 require_once ("../classes/TimeLine.php");

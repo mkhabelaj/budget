@@ -6,8 +6,7 @@
  * Time: 8:04 AM
  */
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("dataB")->Inclusion();
+AllIncludes("functions","dataB");
 require_once ("../classes/FriendRequest.php");
 if(isset($_POST)){
     $friendReq = new FriendRequest((int)$_SESSION["user_id"],(int)$_POST["requestee"]);

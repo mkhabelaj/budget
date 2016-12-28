@@ -1,13 +1,8 @@
 <?php
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("dataB")->Inclusion();
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("security")->Inclusion();
+AllIncludes('security',"functions","dataB");
 include('../classes/User.php');
 
-
-$factory->getInclusion("security")->Inclusion();
-//$factory->getInclusion("functions")->Inclusion();
 
  if(isset($_POST)){
 

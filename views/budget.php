@@ -1,9 +1,7 @@
 <?php
 
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("dataB")->Inclusion();
-factory()->getInclusion("header")->Inclusion();
+AllIncludes('header',"functions","dataB");
 
 $conn = con();
 

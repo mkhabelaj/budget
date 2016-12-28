@@ -9,3 +9,4 @@ $('body').on('click','.modal-close',function () {
     $('.modal').css("display","none");
 });
 
+

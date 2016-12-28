@@ -10,6 +10,7 @@ require_once ("../inclusion/inclusion.php");
 factory()->getInclusion("functions")->Inclusion();
 factory()->getInclusion("dataB")->Inclusion();
 
+
 $userID = $_SESSION["user_id"];
 $conn =con();
 $sql="SELECT
@@ -50,6 +51,8 @@ if($result = mysqli_query($conn,$sql)){
         <?php
     endWhile;
 }
+
+
 
 
 

@@ -6,8 +6,7 @@
  * Time: 8:16 PM
  */
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("dataB")->Inclusion();
+AllIncludes("functions","dataB");
 require_once ("../classes/Friend.php");
 if(isset($_POST)){
     $userID = $_SESSION["user_id"];

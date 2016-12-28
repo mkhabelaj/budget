@@ -7,8 +7,7 @@
  */
 
 require_once ('../inclusion/inclusion.php');
-factory()->getInclusion('functions')->Inclusion();
-factory()->getInclusion('dataB')->Inclusion();
+AllIncludes("functions","dataB");
 require_once ("../classes/Category.php");
 require_once ("../classes/CategoryState.php");
 require_once ("../classes/CategoryAmount.php");

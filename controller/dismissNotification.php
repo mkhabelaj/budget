@@ -7,8 +7,7 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("dataB")->Inclusion();
+AllIncludes("functions","dataB");
 
 if(isset($_POST)):
     $conn = con();

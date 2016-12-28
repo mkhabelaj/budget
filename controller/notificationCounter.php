@@ -1,7 +1,6 @@
 <?php
     require_once ("../inclusion/inclusion.php");
-    factory()->getInclusion("functions")->Inclusion();
-    factory()->getInclusion("dataB")->Inclusion();
+    AllIncludes("functions","dataB");
 
     $numberOfNotifications = 0;
     $userID = $_SESSION["user_id"];

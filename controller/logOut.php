@@ -6,6 +6,6 @@
  * Time: 07:57 AM
  */
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("functions")->Inclusion();
+AllIncludes("functions");
 
 log_out();

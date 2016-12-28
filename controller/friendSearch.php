@@ -7,8 +7,7 @@
  */
 
 include "../inclusion/inclusion.php";
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("dataB")->Inclusion();
+AllIncludes("functions","dataB");
 require_once ("../classes/User.php");
 
 

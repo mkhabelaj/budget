@@ -8,8 +8,7 @@
     //include ("../templates/headerView.php");
    // require_once ("../functions/functions.php");
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("header")->Inclusion();
-factory()->getInclusion('functions')->Inclusion();
+AllIncludes('header',"functions");
 
 ?>
 <h2>Login</h2>

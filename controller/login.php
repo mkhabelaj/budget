@@ -7,9 +7,7 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-$factory->getInclusion('security')->Inclusion();
-$factory->getInclusion("dataB")->Inclusion();
-$factory->getInclusion("functions")->Inclusion();
+AllIncludes('security',"functions","dataB");
 if(isset($_POST)){
     //echo Security::encrypt($_POST["password"],$key);
 

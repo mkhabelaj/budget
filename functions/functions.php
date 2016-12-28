@@ -293,3 +293,4 @@ function stylePageLoader($style_url, $execution_page){
     }
 
 }
+

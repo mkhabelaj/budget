@@ -1,7 +1,6 @@
 <?php
 require_once ("../inclusion/inclusion.php");
-factory()->getInclusion("functions")->Inclusion();
-factory()->getInclusion("header")->Inclusion();
+AllIncludes('header',"functions");
 
 ?>
 
