@@ -242,24 +242,59 @@ if(isset($_POST)){
 }
 
 
-?>
+$sql ="SELECT 
+	c.category_id,
+    c.name,
+    CA.projected_amount,
+    CA.actual_amount,
+	BIC.budget_Instance_id,
+    CS.time_line_id
+FROM `category_state` AS CS
+	INNER JOIN category AS C
+		ON C.category_id = CS.category_id
+	INNER JOIN budget_instance_catagory AS BIC
+		ON C.category_id = BIC.catagory_id
+    INNER JOIN category_amounts AS CA
+    	ON c.category_id = CA.catergory_id
+WHERE BIC.budget_Instance_id =".$budget_id." 
+AND CS.state = 'active'
+AND CS.time_line_id =".$time_line_id." ";
 
+$result = dataBaseManipulation($sql,con(),"result","selecting table categories",true);
+?>
 <div id="budgetContainer">
     <table id="actualBudget">
         <tr>
+            <th>Category</th>
             <th>Projected Amount</th>
             <th>Actual Amount</th>
             <th>Variance</th>
         </tr>
-        <tr>
-            <td>dummy</td>
-            <td>dummy</td>
-            <td>dummy</td>
-        </tr>
 
+<?php
+$total_projected=0;
+$total_actual =0;
+while ($row = mysqli_fetch_assoc($result)):
+    $total_projected+=$row["projected_amount"];
+    $total_actual+=$row["actual_amount"];
+?>
+        <tr class="open-modal">
+            <td><?php printItem($row["name"])?></td>
+            <td> <?php printItem($row["projected_amount"])?></td>
+            <td> <?php printItem($row["actual_amount"])?></td>
+            <td> <?php printItem($row["projected_amount"] - $row["actual_amount"])?></td>
+        </tr>
+<?php
+endwhile;
+?>
+        <tr>
+            <td>TOTAL</td>
+            <td><?php printItem($total_projected )?></td>
+            <td><?php printItem( $total_actual) ?></td>
+            <td><?php printItem($total_projected - $total_actual) ?></td>
+        </tr>
     </table>
 </div>
-
 <button id="add-catagory" class="open-modal" data-budgetID="<?php printItem($budget_id)?>"  data-timeID="<?php printItem($time_line_id) ?>">Open Modal</button>
 
 
