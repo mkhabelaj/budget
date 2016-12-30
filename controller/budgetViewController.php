@@ -279,7 +279,7 @@ while ($row = mysqli_fetch_assoc($result)):
     $total_actual+=$row["actual_amount"];
 ?>
         <tr class="open-modal">
-            <td><?php printItem($row["name"])?></td>
+            <td data-category-id = "<?php printItem($row["category_id"])?>"><?php printItem($row["name"])?></td>
             <td> <?php printItem($row["projected_amount"])?></td>
             <td> <?php printItem($row["actual_amount"])?></td>
             <td> <?php printItem($row["projected_amount"] - $row["actual_amount"])?></td>

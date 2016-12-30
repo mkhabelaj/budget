@@ -36,16 +36,36 @@ $(document).ready(function () {
         getAnyPostE(home+"templates/modalFormAddCatagory.php",null,".modal-sub-content",null);
     });
 
+    /**
+     * this section recognises when budgetview table row is clicked and insets the table row into
+     * the modal as a form
+     */
     $('body').on('click','#actualBudget',function (event) {
-        event.target.toLocaleString()
-        console.log("table is click"+ event.target.parentNode.nodeName)
-        console.log($(event.target.parentNode).children(":first-child").html())
         var category = $(event.target.parentNode).children(":first-child").html();
+        var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id');
         var projectedAmount =$(event.target.parentNode).children(":nth-child(2)").html();
         var atualAmount =$(event.target.parentNode).children(":nth-child(3)").html();
-        var content ='<div><input value="'+category+'"><input value="'+projectedAmount+'"><input value="'+atualAmount+'"></div>';
+        var content ='<div class="edit-table-row-budget-view"><label for="category-edit">Category</label> <input id="category-edit" value="'+category+'"><input id="projected-amount-edit" value="'+projectedAmount+'"><input id="actual-amount-edit" value="'+atualAmount+'"><button id="edit-row" data-category-id="'+categoryValue+'">edit</button></div>';
         $('.modal-sub-content').html(content);
     });
+
+    /**
+     * this section send the row to a processor to before updated on the database
+     */
+    $('body').on('click','#edit-row',function () {
+
+        var parameters = {
+            budgetID:$('#add-catagory').attr('data-budgetID'),
+            timelineID:$('#add-catagory').attr('data-timeID'),
+            categoryID:$(this).attr('data-category-id'),
+            category:$("#category-edit").val(),
+            actualAmount:$("#actual-amount-edit").val(),
+            projectedAmount:$("#projected-amount-edit").val()
+        }
+
+        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#test',null);
+    });
+
 
 
 });

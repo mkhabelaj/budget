@@ -66,6 +66,23 @@ function createQueryStringForVariable($var){
     return "'".$var."'";
 }
 
+/**
+ * creates a query string for updates
+ * @param $obj
+ * @return string
+ */
+function createQueryStringForUpdate($obj){
+    $sql="";
+    $comma = ",";
+    $equals = "=";
+    $normal_comma =" , ";
+    foreach ($obj as $property => $value){
+        $val = gettype($value)=="integer" ? $value :"'".$value."'"."'";
+        $sql .=  "`".$property."` ".$equals.$val.$comma;
+    }
+    return substr($sql, 0, -2);
+}
+
 //validation
 
 /**
@@ -230,12 +247,24 @@ function SQLInsert($table,$keyValues){
 }
 
 /**
+ * returns UPDATE query string
+ * @param $table string
+ * @param $keyValues object
+ * @param $clause string
+ * @param $clauseVal string | int
+ * @return string
+ */
+function SQLUpdate($table,$keyValues,$clause,$clauseVal){
+    return  $sql ="UPDATE ".$table." SET ".createQueryStringForUpdate($keyValues)." WHERE ".$clause."=".$val =gettype($clauseVal)=="integer" ? $clauseVal : createQueryStringForVariable($clauseVal);
+}
+
+/**
  * this function inserts and select from database, and return necessary statements
  * @param $sql
  * @param $conn
- * @param $returnType |conn, rows, result
- * @param $connectionName | this helps you identify the sql execution performed
- * @param $printHelperStatements @bool | turn on and of debug print statements
+ * @param $returnType string conn, rows, result
+ * @param $connectionName string | this helps you identify the sql execution performed
+ * @param $printHelperStatements boolean| turn on and of debug print statements
  * @return array|bool|mysqli_result|null
  */
 function dataBaseManipulation($sql,$conn,$returnType,$connectionName,$printHelperStatements){
@@ -293,4 +322,16 @@ function stylePageLoader($style_url, $execution_page){
     }
 
 }
+
+/**
+ * takes any amount of arguments and prints them out with a break
+ * for testing purposes
+ */
+function printItemBreakMany(){
+    $args = func_get_args();
+    foreach ($args as $x){
+        printItemBreak($x);
+    }
+}
+
 
