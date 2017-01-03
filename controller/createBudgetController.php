@@ -17,19 +17,13 @@ if(isset($_POST)){
 
     $budget_instance = new BudgetInstance($_POST["budgetName"]);
     $budget_id = 0;
+    $time_line_id=0;
     $sql="INSERT INTO budget_instance  (".createQueryStringKeys($budget_instance).") VALUES (".createQueryStringValues($budget_instance).")";
     $conn = con();
     //insert into budget instance
     if($result = mysqli_query($conn,$sql)){
         echo"record successfully create";
         $budget_id  = mysqli_insert_id($conn);
-        $income = new Income($_POST["income"],$budget_id);
-        $sql2 = "INSERT INTO income(".createQueryStringKeys($income).") Values(".createQueryStringValues($income).")";
-        if($results = mysqli_query($conn,$sql2)){
-            echo"success <br>";
-        }else{
-            echo "failed ".mysqli_error($conn);
-        }
 
         //insert into user budget instance
         $userBudgetI = new UserBudgetInstance($budget_id,(int) $_SESSION["user_id"]);
@@ -41,24 +35,20 @@ if(isset($_POST)){
             echo "User be failiure ".mysqli_error($conn);
         }
 
-
         //insert into timeline
         $time_line = new TimeLine($_POST["startDate"],$_POST["endDate"],$_POST["frequency"],$budget_id);
-        $sql3;
         if($_POST["frequency"] == "monthly"){
             $time_line->reset_day = (int)date_create($_POST["startDate"])->format("d");
-            $sql3 ="INSERT INTO time_line (".createQueryStringKeys($time_line).") VALUES (".createQueryStringValues($time_line).")";
+            $time_line_id = mysqli_insert_id(dataBaseManipulation(SQLInsert("time_line",$time_line),con(),"conn","inserting into time line for monthly",true));
         }else{
             $sql3 ="INSERT INTO time_line (".createQueryStringKeys($time_line).") VALUES (".createQueryStringValues($time_line).")";
+            $time_line_id = mysqli_insert_id(dataBaseManipulation(SQLInsert("time_line",$time_line),con(),"conn","inserting into time line not monthly",true));
 
         }
 
-        if($result = mysqli_query($conn,$sql3)){
-            echo "time line success";
-            createBreak();
-        }else{
-            echo "time line failure ".mysqli_error($conn);
-        }
+        $income = new Income($_POST["income"],$budget_id,$time_line_id);
+        dataBaseManipulation(SQLInsert("income",$income),con(),"result","inserting to income",true);
+
         header("Location: ../views/budget.php");
 
     }else{

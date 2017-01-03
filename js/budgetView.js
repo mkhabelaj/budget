@@ -63,7 +63,7 @@ $(document).ready(function () {
             projectedAmount:$("#projected-amount-edit").val()
         }
 
-        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#test',null);
+        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#test',{refreshbudgetview:insertBudgetview});
     });
 
 

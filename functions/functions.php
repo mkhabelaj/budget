@@ -75,12 +75,12 @@ function createQueryStringForUpdate($obj){
     $sql="";
     $comma = ",";
     $equals = "=";
-    $normal_comma =" , ";
     foreach ($obj as $property => $value){
         $val = gettype($value)=="integer" ? $value :"'".$value."'"."'";
         $sql .=  "`".$property."` ".$equals.$val.$comma;
     }
-    return substr($sql, 0, -2);
+    $sub = gettype($value)=="integer" ? -1 :-2;
+    return substr($sql, 0, $sub);
 }
 
 //validation
@@ -258,6 +258,8 @@ function SQLUpdate($table,$keyValues,$clause,$clauseVal){
     return  $sql ="UPDATE ".$table." SET ".createQueryStringForUpdate($keyValues)." WHERE ".$clause."=".$val =gettype($clauseVal)=="integer" ? $clauseVal : createQueryStringForVariable($clauseVal);
 }
 
+//Todo: delete sql
+
 /**
  * this function inserts and select from database, and return necessary statements
  * @param $sql
@@ -332,6 +334,23 @@ function printItemBreakMany(){
     foreach ($args as $x){
         printItemBreak($x);
     }
+}
+
+/**
+ * @param obj
+ * @params  strings comma separated
+ * @return mixed
+ */
+function unsetProperties(){
+    $args = func_get_args();
+    $obj = $args[0];
+    array_shift($args);
+
+    foreach ($args as $values){
+        unset($obj->$values);
+    }
+
+    return $obj;
 }
 
 

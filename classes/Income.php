@@ -10,11 +10,13 @@ class Income
 {
     public $income = 0;
     public $budget_instance_id = 0;
+    public $time_line_id = 0;
 
-    public function __construct($income, $budget_instance_id)
+    public function __construct($income, $budget_instance_id,$time_line_id)
     {
         $this->income =$income;
         $this->budget_instance_id =$budget_instance_id;
+        $this->time_line_id = $time_line_id;
 
     }
 }

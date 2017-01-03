@@ -10,6 +10,7 @@ require_once ("../inclusion/inclusion.php");
 AllIncludes("functions","dataB");
 require_once ("../classes/Category.php");
 require_once ("../classes/CategoryAmount.php");
+require_once ("../classes/budgetInstanceCategory.php");
 
 if(isset($_POST)){
     $category_id = (int)$_POST["categoryID"];
@@ -34,11 +35,15 @@ if(isset($_POST)){
 
   if(dataBaseManipulation($sql,con(),"rows","count category relations",false)["total"] > 1){
         //change
+      $new_category = new Category($category_new);
+      $category_id = mysqli_insert_id(dataBaseManipulation(SQLInsert("category",$new_category),con(),"conn","Insert new Category",true));
+      $categoryAmount = new CategoryAmount($actual_amount,$projected_amount,$category_id,$time_line_id);
+      dataBaseManipulation(SQLInsert("category_amount",$catagoryAmount),con(),"result","insert new value to category amounts",true);
     }else{
-      //update as is
       $catagory = new Category($category_new);
       $catagoryAmount = new CategoryAmount($actual_amount,$projected_amount,$category_id,$time_line_id);
-        printItemBreak(createQueryStringForUpdate($catagoryAmount));
+      unsetProperties($catagoryAmount,"catergory_id","time_line_id");
+      printItemBreak(createQueryStringForUpdate($catagoryAmount));
       dataBaseManipulation(SQLUpdate("category",$catagory,"category_id",$category_id),con(),"result","update category",true);
       dataBaseManipulation(SQLUpdate("category_amounts",$catagoryAmount,"catergory_id",$category_id),con(),"result","update category amount",true);
   }

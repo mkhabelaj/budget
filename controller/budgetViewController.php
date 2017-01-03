@@ -259,9 +259,40 @@ FROM `category_state` AS CS
 WHERE BIC.budget_Instance_id =".$budget_id." 
 AND CS.state = 'active'
 AND CS.time_line_id =".$time_line_id." ";
+$sql_income ="SELECT * FROM income WHERE `time_line_id`=".$time_line_id;
 
 $result = dataBaseManipulation($sql,con(),"result","selecting table categories",true);
+$result1 = dataBaseManipulation($sql,con(),"result","selecting table categories",true);
+$result2 = dataBaseManipulation($sql_income,con(),"result","selecting from income",true);
+
+$total_projected=0;
+$total_actual =0;
+$total_projected_for_income =0;
+$total_actual_for_income =0;
+$total_income=0;
+
+while ($row = mysqli_fetch_assoc($result1)):
+    $total_projected_for_income+=$row["projected_amount"];
+    $total_actual_for_income+=$row["actual_amount"];
+endwhile;
+while ($row = mysqli_fetch_assoc($result2)):
+    $total_income+=$row["income"];
+endwhile;
 ?>
+<div id="income-summary">
+    <div>
+        <span>Total Income</span>
+        <?php printItem($total_income)?>
+    </div>
+    <div>
+        <span>Total Projected</span>
+        <?php printItem($total_projected_for_income)?>
+    </div>
+    <div>
+        <span>Total Varience</span>
+        <?php printItem($total_income - $total_projected_for_income)?>
+    </div>
+</div>
 <div id="budgetContainer">
     <table id="actualBudget">
         <tr>
@@ -272,8 +303,6 @@ $result = dataBaseManipulation($sql,con(),"result","selecting table categories",
         </tr>
 
 <?php
-$total_projected=0;
-$total_actual =0;
 while ($row = mysqli_fetch_assoc($result)):
     $total_projected+=$row["projected_amount"];
     $total_actual+=$row["actual_amount"];
@@ -297,4 +326,7 @@ endwhile;
 </div>
 <button id="add-catagory" class="open-modal" data-budgetID="<?php printItem($budget_id)?>"  data-timeID="<?php printItem($time_line_id) ?>">Open Modal</button>
 
+<?php
+
+?>
 
