@@ -8,6 +8,9 @@
 require_once ("../inclusion/inclusion.php");
 AllIncludes("functions","dataB");
 require_once ("../classes/TimeLine.php");
+require_once ("../classes/CategoryAmount.php");
+require_once ("../classes/Income.php");
+require_once ("../classes/CategoryState.php");
 
 
 /**
@@ -23,6 +26,53 @@ $resetDay;
 $new_start_date;
 $new_end_date;
 $budget_id;
+$category_array = [];
+$income_array = [];
+$category_state_array =[];
+
+/**
+ * gets all the old value of the category amounts and store it to a $category_array
+ */
+function getCategoryAmounts(){
+    global $time_line_id;
+    global $budget_id;
+    global $category_array;
+    $sql ="SELECT 
+	c.category_id,
+    c.name,
+    CA.projected_amount,
+    CA.actual_amount,
+	BIC.budget_Instance_id,
+    CS.time_line_id
+FROM `category_state` AS CS
+	INNER JOIN category AS C
+		ON C.category_id = CS.category_id
+	INNER JOIN budget_instance_catagory AS BIC
+		ON C.category_id = BIC.catagory_id
+    INNER JOIN category_amounts AS CA
+    	ON c.category_id = CA.catergory_id
+WHERE BIC.budget_Instance_id =".$budget_id." 
+AND CS.state = 'active'
+AND ca.time_line_id=".$time_line_id."
+AND CS.time_line_id =".$time_line_id." ";
+    $result = dataBaseManipulation($sql,con(),"result","selecting table categories array store",true);
+    while ($row = mysqli_fetch_assoc($result)){
+        $category_array[]= $row;
+    }
+}
+
+/**
+ * gets all the old value of the category income and store it to a $income_array
+ */
+function  getBudgetIncome(){
+    global $time_line_id;
+    global $income_array;
+    $sql_income ="SELECT * FROM income WHERE `time_line_id`=".$time_line_id;
+    $result = dataBaseManipulation($sql_income,con(),"result","selecting from income array store",true);
+    while ($row = mysqli_fetch_assoc($result)){
+        $income_array[]= $row;
+    }
+}
 
 /**
  *  this function resets the global variables and gets current information from the respective budget
@@ -64,6 +114,7 @@ function deactivatesOldBudgetActivateNew(){
     global  $budget_id;
     $conn = con();
     $sql="UPDATE time_line SET state='deactivated' WHERE state ='active' AND budget_Instance_ID =".$budget_id;
+    deactivateCategoryState();
 
     mysqli_query($conn,$sql);
     $sql = "INSERT INTO time_line (".createQueryStringKeys($new_time_line).") VALUES (".createQueryStringValues($new_time_line).")";
@@ -72,11 +123,55 @@ function deactivatesOldBudgetActivateNew(){
     var_dump($new_time_line);
 }
 
+/**
+ * deactivates old active states
+ */
+function deactivateCategoryState(){
+    global $time_line_id;
+    $sql ="UPDATE category_state SET `state`='deactivated' WHERE time_line_id=".$time_line_id;
+    dataBaseManipulation($sql,con(),"result","deactivate category state",true);
+}
+
+/**
+ * this function inserts all the value from $category_array and $income_array into there repective databases
+ */
+function insertOldValueToNew(){
+    global $category_array;
+    global $income_array;
+    global $time_line_id;
+    global $budget_id;
+    if($category_array):
+        foreach ($category_array as $array){
+            if($array):
+                dataBaseManipulation(SQLInsert("category_amounts",new CategoryAmount(0,$array["projected_amount"],$array["category_id"],$time_line_id)),con(),"result","inerting old cat amounts into new",true);
+                dataBaseManipulation(SQLInsert("category_state",new CategoryState($time_line_id,$array["category_id"])),con(),"result","inserting into category state",true);
+            endif;
+        }
+    endif;
+    if($income_array):
+        foreach ($income_array as $array){
+            if($array):
+                dataBaseManipulation(SQLInsert("income",new Income($array["income"],$budget_id,$time_line_id)),con(),"result","inserting old value into new income",true);
+            endif;
+        }
+    endif;
+}
+
+/**
+ * date validation
+ */
 if(isset($_POST)){
+
+    //$today = date("Y-m-d",strtotime("Jan 1 2016"));
+    //$today = date("Y-m-d",strtotime("dec 15 2016"));
+    //$today = date("Y-m-d",strtotime("Jan 15 2017"));
+    //$today = date("Y-m-d",strtotime("mar 15 2017"));
     $today=  date("Y-m-d");
     getCurrentBudgetInformation();
 
     if($today > returnStandardFormat($endDate) && $today > returnStandardFormat($startDate)){
+        getBudgetIncome();
+        getCategoryAmounts();
         if($frequency == "weekly"){
 
             $compare_date = $endDate;
@@ -106,6 +201,7 @@ if(isset($_POST)){
             echo "in week";
             deactivatesOldBudgetActivateNew();
             getCurrentBudgetInformation();
+            insertOldValueToNew();
         }else if($frequency == "biweekly"){
 
             $compare_date = $endDate;
@@ -135,6 +231,7 @@ if(isset($_POST)){
             echo "in BIweek";
             deactivatesOldBudgetActivateNew();
             getCurrentBudgetInformation();
+            insertOldValueToNew();
         }else {
             $temp = $endDate;
             echo "reset day ".$resetDay;
@@ -230,6 +327,7 @@ if(isset($_POST)){
 
             deactivatesOldBudgetActivateNew();
             getCurrentBudgetInformation();
+            insertOldValueToNew();
         }
 
 
@@ -258,6 +356,7 @@ FROM `category_state` AS CS
     	ON c.category_id = CA.catergory_id
 WHERE BIC.budget_Instance_id =".$budget_id." 
 AND CS.state = 'active'
+AND ca.time_line_id=".$time_line_id."
 AND CS.time_line_id =".$time_line_id." ";
 $sql_income ="SELECT * FROM income WHERE `time_line_id`=".$time_line_id;
 
@@ -289,8 +388,12 @@ endwhile;
         <?php printItem($total_projected_for_income)?>
     </div>
     <div>
+        <span>Total Actual Spent</span>
+        <?php printItem($total_actual_for_income)?>
+    </div>
+    <div>
         <span>Total Varience</span>
-        <?php printItem($total_income - $total_projected_for_income)?>
+        <?php printItem($total_income - $total_actual_for_income)?>
     </div>
 </div>
 <div id="budgetContainer">

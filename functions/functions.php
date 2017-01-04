@@ -275,6 +275,7 @@ function dataBaseManipulation($sql,$conn,$returnType,$connectionName,$printHelpe
         If($printHelperStatements){
             printItemBreak("exicution was a succes for:");
             printItemBreak($connectionName);
+            printItemBreak("<hr>");
         }
         If($returnType === "conn"){
             return $conn;
@@ -291,6 +292,7 @@ function dataBaseManipulation($sql,$conn,$returnType,$connectionName,$printHelpe
             printItemBreak($connectionName);
             printItemBreak(mysqli_error($conn));
             printItemBreak($sql);
+            printItemBreak("<hr>");
         }
         return $result;
     }
