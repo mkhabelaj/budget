@@ -6,7 +6,8 @@
  * Date: 2016-12-27
  * Time: 05:20 AM
  */
-class budgetInstanceCategory
+require_once ("../interfaces/Include.php");
+class budgetInstanceCategory implements IncludeStatement
 {
     public $catagory_id = 0;
     public $budget_instance_id = 0;
@@ -17,4 +18,8 @@ class budgetInstanceCategory
         $this->budget_instance_id = $budget_instance_id;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/budgetInstanceCategory.php");
+    }
 }

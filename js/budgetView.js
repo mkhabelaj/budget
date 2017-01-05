@@ -8,6 +8,7 @@
 var insertBudgetview = function () {
     getAnyPostE(home+"controller/budgetViewController.php",{budgetId:$.urlParam('budget_instance_id')},"#budget-view",null);
 }
+
 $(document).ready(function () {
     /**
      * this section updates and loads budget
@@ -63,7 +64,7 @@ $(document).ready(function () {
             projectedAmount:$("#projected-amount-edit").val()
         }
 
-        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#test',{refreshbudgetview:insertBudgetview});
+        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#test',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
     });
 
 

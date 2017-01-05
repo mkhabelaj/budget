@@ -6,7 +6,8 @@
  * Date: 12/4/2016
  * Time: 8:07 AM
  */
-class FriendRequest
+require_once ("../interfaces/Include.php");
+class FriendRequest implements IncludeStatement
 {
     public $requester = 0;
     public $requestee = 0;
@@ -17,4 +18,8 @@ class FriendRequest
         $this->requestee = $requestee;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/FriendRequest.php");
+    }
 }

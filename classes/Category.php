@@ -6,7 +6,9 @@
  * Date: 2016-12-26
  * Time: 06:05 PM
  */
-class Category
+
+require_once ("../interfaces/Include.php");
+class Category implements IncludeStatement
 {
     public $name = "";
 
@@ -15,4 +17,8 @@ class Category
         $this->name = $name;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/Category.php");
+    }
 }

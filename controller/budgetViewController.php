@@ -6,16 +6,11 @@
  * Time: 10:32 AM
  */
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate","timeL","categoryA","income","categoryS");
 require_once ("../classes/TimeLine.php");
 require_once ("../classes/CategoryAmount.php");
 require_once ("../classes/Income.php");
 require_once ("../classes/CategoryState.php");
-
-
-/**
- * @todo return a budget table
- */
 
 $frequency;
 $startDate;

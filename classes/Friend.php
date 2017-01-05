@@ -6,7 +6,9 @@
  * Date: 12/4/2016
  * Time: 8:49 PM
  */
-class Friend
+
+require_once ("../interfaces/Include.php");
+class Friend implements IncludeStatement
 {
     public $own_user_id = 0;
     public $friend_user_id = 0;
@@ -17,4 +19,8 @@ class Friend
         $this->friend_user_id = $friend_user_id;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/Friend.php");
+    }
 }

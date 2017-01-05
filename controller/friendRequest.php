@@ -6,7 +6,7 @@
  * Time: 8:04 AM
  */
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate");
 require_once ("../classes/FriendRequest.php");
 if(isset($_POST)){
     $friendReq = new FriendRequest((int)$_SESSION["user_id"],(int)$_POST["requestee"]);

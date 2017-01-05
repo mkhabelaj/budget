@@ -7,12 +7,13 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate","category","categoryA","budgetIC","categoryS");
 require_once ("../classes/Category.php");
 require_once ("../classes/CategoryAmount.php");
 require_once ("../classes/budgetInstanceCategory.php");
 require_once ("../classes/CategoryState.php");
 require_once ("../classes/budgetInstanceCategory.php");
+
 if(isset($_POST)){
     $category_id = (int)$_POST["categoryID"];
     $budget_id = (int)$_POST["budgetID"];
@@ -63,10 +64,9 @@ if(isset($_POST)){
           unsetProperties($catagoryAmount,"catergory_id","time_line_id");
           printItemBreak(createQueryStringForUpdate($catagoryAmount));
           dataBaseManipulation(SQLUpdate("category",$catagory,"category_id",$category_id),con(),"result","update category",true);
-          dataBaseManipulation(SQLUpdate("category_amounts",$catagoryAmount,"catergory_id",$category_id),con(),"result","update category amount",true);
+          dataBaseManipulation(SQLUpdate("category_amounts",$catagoryAmount,"catergory_id",$category_id," AND time_line_id =",$time_line_id),con(),"result","update category amount",true);
 
       }else{
-          //todo: more testing needed
           $sql3 ="UPDATE category_state SET `state`='removed' WHERE time_line_id=".$time_line_id." AND category_id=".$category_id;
           dataBaseManipulation($sql3,con(),"result","deactivate category state",true);
 
@@ -90,7 +90,7 @@ if(isset($_POST)){
       unsetProperties($catagoryAmount,"catergory_id","time_line_id");
       printItemBreak(createQueryStringForUpdate($catagoryAmount));
       dataBaseManipulation(SQLUpdate("category",$catagory,"category_id",$category_id),con(),"result","update category",true);
-      dataBaseManipulation(SQLUpdate("category_amounts",$catagoryAmount,"catergory_id",$category_id),con(),"result","update category amount",true);
+      dataBaseManipulation(SQLUpdate("category_amounts",$catagoryAmount,"catergory_id",$category_id," AND time_line_id =",$time_line_id),con(),"result","update category amount",true);
   }
 
 }

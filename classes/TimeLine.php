@@ -6,7 +6,9 @@
  * Date: 2016-11-28
  * Time: 04:01 PM
  */
-class TimeLine
+
+require_once ("../interfaces/Include.php");
+class TimeLine  implements IncludeStatement
 {
     public $duration_start = "";
     public $duration_end = "";
@@ -20,5 +22,10 @@ class TimeLine
         $this->duration_end = $duration_end;
         $this->frequency = $frequency;
         $this->budget_instance_ID = $budget_instance_ID;
+    }
+
+    public function Inclusion()
+    {
+        require_once ("../classes/TimeLine.php");
     }
 }

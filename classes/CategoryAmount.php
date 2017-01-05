@@ -6,7 +6,9 @@
  * Date: 2016-12-27
  * Time: 05:13 AM
  */
-class CategoryAmount
+require_once ("../interfaces/Include.php");
+
+class CategoryAmount implements IncludeStatement
 {
     public $actual_amount = "";
     public $projected_amount = "";
@@ -21,4 +23,8 @@ class CategoryAmount
         $this ->time_line_id = $time_line_id;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/CategoryAmount.php");
+    }
 }

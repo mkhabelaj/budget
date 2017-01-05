@@ -6,7 +6,8 @@
  * Date: 2016-11-28
  * Time: 03:59 PM
  */
-class Income
+require_once ("../interfaces/Include.php");
+class Income implements IncludeStatement
 {
     public $income = 0;
     public $budget_instance_id = 0;
@@ -18,5 +19,10 @@ class Income
         $this->budget_instance_id =$budget_instance_id;
         $this->time_line_id = $time_line_id;
 
+    }
+
+    public function Inclusion()
+    {
+        require_once ("../classes/Income.php");
     }
 }

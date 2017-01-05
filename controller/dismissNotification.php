@@ -7,7 +7,7 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate");
 
 if(isset($_POST)):
     $conn = con();

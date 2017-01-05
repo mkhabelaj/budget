@@ -6,7 +6,8 @@
  * Date: 2016-11-24
  * Time: 01:20 PM
  */
-class User
+require_once ("../interfaces/Include.php");
+class User implements IncludeStatement
 {
     public $firstname ="";
     public $last_name ="";
@@ -23,4 +24,8 @@ class User
         $this->gender = $gender;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/User.php");
+    }
 }

@@ -247,7 +247,7 @@ function SQLInsert($table,$keyValues){
 }
 
 /**
- * returns UPDATE query string
+ * returns UPDATE query string and takes any number of params
  * @param $table string
  * @param $keyValues object
  * @param $clause string
@@ -255,7 +255,15 @@ function SQLInsert($table,$keyValues){
  * @return string
  */
 function SQLUpdate($table,$keyValues,$clause,$clauseVal){
-    return  $sql ="UPDATE ".$table." SET ".createQueryStringForUpdate($keyValues)." WHERE ".$clause."=".$val =gettype($clauseVal)=="integer" ? $clauseVal : createQueryStringForVariable($clauseVal);
+    $args  = func_get_args();
+    $args = array_slice($args,4);
+
+    $sql ="UPDATE ".$table." SET ".createQueryStringForUpdate($keyValues)." WHERE ".$clause."=".$val =gettype($clauseVal)=="integer" ? $clauseVal : createQueryStringForVariable($clauseVal);
+    foreach ($args as $item){
+        $sql.=$item;
+    }
+    printItemBreak($sql);
+    return $sql;
 }
 
 //Todo: delete sql
@@ -353,6 +361,15 @@ function unsetProperties(){
     }
 
     return $obj;
+}
+
+/**
+ * checks if user is logged in
+ */
+function validation(){
+    if(!is_logged_in()){
+        header("Location: ../views/index.php");
+    }
 }
 
 

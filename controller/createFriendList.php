@@ -7,7 +7,7 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate");
 $userID = $_SESSION["user_id"];
 $conn = con();
 

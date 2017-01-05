@@ -7,7 +7,7 @@
  */
 
 require_once ('../inclusion/inclusion.php');
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate","category","categoryS","categoryA","budgetIC");
 require_once ("../classes/Category.php");
 require_once ("../classes/CategoryState.php");
 require_once ("../classes/CategoryAmount.php");

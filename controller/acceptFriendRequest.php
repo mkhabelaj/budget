@@ -6,7 +6,7 @@
  * Time: 8:16 PM
  */
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate","friend");
 require_once ("../classes/Friend.php");
 if(isset($_POST)){
     $userID = $_SESSION["user_id"];

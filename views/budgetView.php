@@ -6,7 +6,7 @@
  * Time: 08:36 AM
  */
 require_once ("../inclusion/inclusion.php");
-AllIncludes('header',"functions");
+AllIncludes('header',"functions","validate");
 
 $time_line_id;
 echo "hi this is your budget ".$_GET["budget_instance_id"];

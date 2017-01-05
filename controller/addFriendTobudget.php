@@ -6,7 +6,7 @@
  * Time: 10:57 AM
  */
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate","userBI");
 require_once ("../classes/UserBudgetInstance.php");
 
 

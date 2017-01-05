@@ -1,7 +1,7 @@
 <?php
 
 require_once ("../inclusion/inclusion.php");
-AllIncludes('header',"functions","dataB");
+AllIncludes('header',"functions","dataB","validate");
 
 $conn = con();
 

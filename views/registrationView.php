@@ -6,7 +6,6 @@ require_once ('../inclusion/inclusion.php');
 AllIncludes('header',"functions");
 
 
-
     if(isset($_SESSION['error'])){
         echo $_SESSION['email'];
         //echo $_SESSION['error'];

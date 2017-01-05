@@ -6,7 +6,8 @@
  * Date: 2016-11-29
  * Time: 03:55 PM
  */
-class UserBudgetInstance
+require_once ("../interfaces/Include.php");
+class UserBudgetInstance implements IncludeStatement
 {
     public $budget_instance_ID = 0;
     public $user_id = 0;
@@ -17,4 +18,8 @@ class UserBudgetInstance
         $this->user_id = $user_id;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/UserBudgetInstance.php");
+    }
 }

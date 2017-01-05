@@ -6,6 +6,8 @@
  * Date: 2016-12-05
  * Time: 10:45 AM
  */
+//require_once ("../inclusion/inclusion.php");
+//AllIncludes("functions","dataB","validate");
 require_once ("../inclusion/inclusion.php");
 factory()->getInclusion("functions")->Inclusion();
 factory()->getInclusion("dataB")->Inclusion();

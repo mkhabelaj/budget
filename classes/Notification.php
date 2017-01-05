@@ -6,7 +6,8 @@
  * Date: 2016-12-12
  * Time: 03:34 PM
  */
-class Notification
+require_once ("../interfaces/Include.php");
+class Notification implements IncludeStatement
 {
     public  $message ="";
     public $user_id =0;
@@ -17,4 +18,8 @@ class Notification
         $this->user_id = $user_id;
     }
 
+    public function Inclusion()
+    {
+        require_once ("../classes/Notification.php");
+    }
 }

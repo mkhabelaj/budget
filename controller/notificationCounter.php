@@ -1,6 +1,6 @@
 <?php
     require_once ("../inclusion/inclusion.php");
-    AllIncludes("functions","dataB");
+    AllIncludes("functions","dataB","validate");
 
     $numberOfNotifications = 0;
     $userID = $_SESSION["user_id"];

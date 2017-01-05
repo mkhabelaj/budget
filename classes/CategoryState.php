@@ -6,7 +6,8 @@
  * Date: 2016-12-27
  * Time: 05:09 AM
  */
-class CategoryState
+require_once ("../interfaces/Include.php");
+class CategoryState implements IncludeStatement
 {
     public $time_line_id =0;
     public $category_id = 0;
@@ -15,5 +16,10 @@ class CategoryState
     {
         $this->time_line_id = $time_line_id;
         $this->category_id =$category_id;
+    }
+
+    public function Inclusion()
+    {
+        require_once ("../classes/CategoryState.php");
     }
 }

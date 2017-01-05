@@ -6,13 +6,11 @@
  * Time: 03:46 PM
  */
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate","budgetI","income","timeL","userBI");
 require_once ("../classes/BudgetInstance.php");
 require_once ("../classes/Income.php");
 require_once ("../classes/TimeLine.php");
 require_once ("../classes/UserBudgetInstance.php");
-
-
 if(isset($_POST)){
 
     $budget_instance = new BudgetInstance($_POST["budgetName"]);

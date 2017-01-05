@@ -7,9 +7,8 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB");
+AllIncludes("functions","dataB","validate","notification");
 require_once ("../classes/Notification.php");
-
 
 if(isset($_POST)){
     $messageType =  $_POST["type"];
