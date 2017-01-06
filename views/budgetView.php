@@ -12,7 +12,7 @@ $time_line_id;
 echo "hi this is your budget ".$_GET["budget_instance_id"];
 ?>
 
-<div id="budget-view"></div>
+<div id="budget-view" class="container"></div>
 <div id="test"></div>
 
 <?php

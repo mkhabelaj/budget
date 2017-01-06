@@ -6,6 +6,7 @@
  * @todo css the heck out of the site
  * @todo link income with user
  * @todo add a decription to income
+ * @todo add available filter category
  */
 
 /**

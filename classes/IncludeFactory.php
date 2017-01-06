@@ -6,7 +6,6 @@
  * Date: 2016-11-26
  * Time: 08:15 AM
  */
-
 require_once ("HeaderView.php");
 require_once ("Footer.php");
 require_once ("Database.php");
@@ -22,9 +21,9 @@ require_once ("CategoryAmount.php");
 require_once ("CategoryState.php");
 require_once ("Category.php");
 require_once ("budgetInstanceCategory.php");
-require_once ("FriendRequest.php");
 require_once ("User.php");
-require_once ("Notification.php");
+
+
 
 
 class IncludeFactory
@@ -34,7 +33,7 @@ class IncludeFactory
      * @param String $type
      * @return Database|Footer|Functions|HeaderView|null|SecurityInclude
      */
-    public function getInclusion($type)
+  function getInclusion($type)
     {
        switch ($type)
        {
@@ -83,14 +82,8 @@ class IncludeFactory
            case "budgetIC":
                return new budgetInstanceCategory(null,null);
                break;
-           case "friendR":
-               return new FriendRequest(null,null);
-               break;
            case "user":
                return new User(null,null,null,null,null,null);
-               break;
-           case "notification":
-               return new Notification(null,null);
                break;
            default:
                return null;

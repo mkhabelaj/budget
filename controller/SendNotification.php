@@ -7,7 +7,7 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB","validate","notification");
+AllIncludes("functions","dataB","validate");
 require_once ("../classes/Notification.php");
 
 if(isset($_POST)){

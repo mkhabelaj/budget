@@ -7,8 +7,6 @@
  */
 require_once ("../inclusion/inclusion.php");
 AllIncludes("functions","dataB","validate","userBI");
-require_once ("../classes/UserBudgetInstance.php");
-
 
 if(isset($_POST)){
     $ubi = new UserBudgetInstance((int)$_POST["budgetId"],(int)$_POST["friendID"]);

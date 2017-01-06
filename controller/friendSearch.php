@@ -8,7 +8,6 @@
 
 include "../inclusion/inclusion.php";
 AllIncludes("functions","dataB","validate","user");
-require_once ("../classes/User.php");
 if(isset($_POST["query"])){
 
     $userID = $_SESSION["user_id"];

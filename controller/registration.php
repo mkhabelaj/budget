@@ -1,6 +1,6 @@
 <?php
 require_once ("../inclusion/inclusion.php");
-AllIncludes('security',"functions","dataB","validate","user");
+AllIncludes('security',"functions","dataB","user");
 
  if(isset($_POST)){
 

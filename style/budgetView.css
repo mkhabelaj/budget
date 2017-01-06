@@ -1,0 +1,12 @@
+#actualBudget{
+    margin: auto;
+    width: 50%;
+    text-align: left;
+    border-collapse: collapse;
+    border: solid red 1px;
+}
+.table-header-category{
+    background-color: black;
+    height: 40px;
+    color: white;
+}
