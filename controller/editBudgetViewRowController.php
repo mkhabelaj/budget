@@ -62,6 +62,7 @@ if(isset($_POST)){
           dataBaseManipulation(SQLUpdate("category_amounts",$catagoryAmount,"catergory_id",$category_id," AND time_line_id =",$time_line_id),con(),"result","update category amount",true);
 
       }else{
+          printItemBreak("testing second internal else");
           $sql3 ="UPDATE category_state SET `state`='removed' WHERE time_line_id=".$time_line_id." AND category_id=".$category_id;
           dataBaseManipulation($sql3,con(),"result","deactivate category state",true);
 
