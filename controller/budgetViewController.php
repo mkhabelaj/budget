@@ -157,9 +157,9 @@ if(isset($_POST)){
         //@todo add notification system
         exit();
     }
-    $today = date("Y-m-d",strtotime("Jan 1 2016"));
+    //$today = date("Y-m-d",strtotime("Jan 1 2016"));
     //$today = date("Y-m-d",strtotime("dec 15 2016"));
-    //$today = date("Y-m-d",strtotime("Jan 15 2017"));
+    $today = date("Y-m-d",strtotime("Jan 15 2017"));
     //$today = date("Y-m-d",strtotime("june 15 2017"));
     //$today=  date("Y-m-d");
     getCurrentBudgetInformation();

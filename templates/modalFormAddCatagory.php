@@ -7,6 +7,7 @@
  */
 ?>
 <div id="addTableRow">
+    <div class="error-category"></div>
     <div id="pja">
         <label for="Category">Category</label>
         <input type="text" id="Category">

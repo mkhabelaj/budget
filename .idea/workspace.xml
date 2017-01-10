@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab3ef23b-f689-4090-9f65-d87b2513ba1d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/deleteBudgetViewRowController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/budgetViewController.php" afterPath="$PROJECT_DIR$/controller/budgetViewController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/catergoryAmount.php" afterPath="$PROJECT_DIR$/controller/catergoryAmount.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/editBudgetViewRowController.php" afterPath="$PROJECT_DIR$/controller/editBudgetViewRowController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/budgetView.js" afterPath="$PROJECT_DIR$/js/budgetView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/modalFormAddCatagory.php" afterPath="$PROJECT_DIR$/templates/modalFormAddCatagory.php" />
     </list>
     <ignored path="budget.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +42,7 @@
       <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="560">
               <caret line="318" column="66" lean-forward="true" selection-start-line="318" selection-start-column="66" selection-end-line="318" selection-end-column="66" />
               <folding>
                 <element signature="e#6#93#0#PHP" expanded="false" />
@@ -108,10 +110,10 @@
       <file leaf-file-name="editBudgetViewRowController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/editBudgetViewRowController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-168">
-              <caret line="53" column="86" lean-forward="true" selection-start-line="53" selection-start-column="86" selection-end-line="53" selection-end-column="86" />
+            <state relative-caret-position="406">
+              <caret line="62" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="91" selection-end-column="1" />
               <folding>
-                <marker date="1483973812247" expanded="true" signature="545:1069" ph="SELECT c.cat... category" />
+                <marker date="1483973812247" expanded="false" signature="545:1069" ph="SELECT c.cat... category" />
                 <marker date="1483973812247" expanded="false" signature="1197:1906" ph="SELECT c.cat... category_state" />
                 <marker date="1483973812247" expanded="true" signature="2788:2885" ph="UPDATE categ... " />
                 <marker date="1483973812247" expanded="true" signature="3006:3088" ph="DELETE FROM " />
@@ -121,13 +123,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="catergoryAmount.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="catergoryAmount.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/catergoryAmount.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="16" />
+            <state relative-caret-position="616">
+              <caret line="63" column="15" lean-forward="true" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
               <folding>
-                <marker date="1483987782340" expanded="false" signature="538:1242" ph="SELECT c.cat... category_state" />
+                <marker date="1484035779812" expanded="false" signature="563:1267" ph="SELECT c.cat... category_state" />
+                <marker date="1484035779812" expanded="false" signature="1300:1875" ph="SELECT c.cat... budget_instance" />
+                <marker date="1484035779812" expanded="true" signature="1300:1876" ph="SELECT c.cat... budget_instance" />
+                <marker date="1484035779812" expanded="true" signature="2053:2076" ph="select from category... " />
               </folding>
             </state>
           </provider>
@@ -136,8 +141,8 @@
       <file leaf-file-name="budgetView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/budgetView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="922">
+              <caret line="84" column="70" lean-forward="false" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="70" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -145,11 +150,37 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="deleteBudgetViewRowController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controller/deleteBudgetViewRowController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+              <folding>
+                <element signature="e#6#93#0#PHP" expanded="false" />
+                <marker date="1484039231608" expanded="false" signature="544:1068" ph="SELECT c.cat... category" />
+                <marker date="1484039231608" expanded="true" signature="1247:1344" ph="UPDATE categ... " />
+                <marker date="1484039231608" expanded="true" signature="1469:1551" ph="DELETE FROM " />
+                <marker date="1484039231608" expanded="true" signature="1690:1729" ph="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modalFormAddCatagory.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/modalFormAddCatagory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="budgetViewController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/budgetViewController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="159" column="4" lean-forward="false" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="4" />
+            <state relative-caret-position="465">
+              <caret line="161" column="4" lean-forward="false" selection-start-line="161" selection-start-column="4" selection-end-line="161" selection-end-column="4" />
               <folding>
                 <element signature="e#6#93#0#PHP" expanded="false" />
                 <element signature="e#416#507#0#PHP" expanded="false" />
@@ -166,16 +197,16 @@
                 <element signature="n#insertOldValueToNew#0;n#!!top" expanded="false" />
                 <element signature="e#5328#14807#0#PHP" expanded="false" />
                 <element signature="e#14654#14807#0#PHP" expanded="false" />
-                <marker date="1483987119156" expanded="false" signature="627:1133" ph="SELECT c.cat... category_state" />
-                <marker date="1483987119156" expanded="true" signature="1536:1578" ph="SELECT * FRO... income" />
-                <marker date="1483987119156" expanded="true" signature="2146:2216" ph="SELECT * FRO... time_line" />
-                <marker date="1483987119156" expanded="true" signature="2978:3065" ph="UPDATE time_... " />
-                <marker date="1483987119156" expanded="true" signature="3153:3271" ph="INSERT INTO time_line... " />
-                <marker date="1483987119156" expanded="true" signature="3474:3541" ph="UPDATE categ... " />
-                <marker date="1483987119156" expanded="true" signature="4782:4867" ph="SELECT * FRO... user_budget_instance" />
-                <marker date="1483987119156" expanded="false" signature="14819:15325" ph="SELECT c.cat... category_state" />
-                <marker date="1483987119156" expanded="true" signature="15360:15402" ph="SELECT * FRO... income" />
-                <marker date="1483987119156" expanded="true" signature="17103:17197" ph="..." />
+                <marker date="1484033491924" expanded="false" signature="627:1133" ph="SELECT c.cat... category_state" />
+                <marker date="1484033491924" expanded="true" signature="1536:1578" ph="SELECT * FRO... income" />
+                <marker date="1484033491924" expanded="true" signature="2146:2216" ph="SELECT * FRO... time_line" />
+                <marker date="1484033491924" expanded="true" signature="2978:3065" ph="UPDATE time_... " />
+                <marker date="1484033491924" expanded="true" signature="3153:3271" ph="INSERT INTO time_line... " />
+                <marker date="1484033491924" expanded="true" signature="3474:3541" ph="UPDATE categ... " />
+                <marker date="1484033491924" expanded="true" signature="4782:4867" ph="SELECT * FRO... user_budget_instance" />
+                <marker date="1484033491924" expanded="false" signature="14819:15325" ph="SELECT c.cat... category_state" />
+                <marker date="1484033491924" expanded="true" signature="15360:15402" ph="SELECT * FRO... income" />
+                <marker date="1484033491924" expanded="true" signature="17103:17197" ph="..." />
               </folding>
             </state>
           </provider>
@@ -211,18 +242,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="budgetView.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/budgetView.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-              <folding>
-                <element signature="e#6#93#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -238,9 +257,11 @@
       <find>$_GET</find>
       <find>c</find>
       <find>dataBaseManipulation</find>
+      <find>true</find>
     </findStrings>
     <replaceStrings>
       <replace>$_POST</replace>
+      <replace>false</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -249,8 +270,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/controller/logOut.php" />
-        <option value="$PROJECT_DIR$/inclusion/inclusion.php" />
         <option value="$PROJECT_DIR$/views/index.php" />
         <option value="$PROJECT_DIR$/classes/Helper.php" />
         <option value="$PROJECT_DIR$/js/modal.js" />
@@ -297,9 +316,11 @@
         <option value="$PROJECT_DIR$/templates/allStyles.php" />
         <option value="$PROJECT_DIR$/style/budgetView.css" />
         <option value="$PROJECT_DIR$/controller/editBudgetViewRowController.php" />
-        <option value="$PROJECT_DIR$/js/budgetView.js" />
         <option value="$PROJECT_DIR$/controller/budgetViewController.php" />
+        <option value="$PROJECT_DIR$/templates/modalFormAddCatagory.php" />
         <option value="$PROJECT_DIR$/controller/catergoryAmount.php" />
+        <option value="$PROJECT_DIR$/js/budgetView.js" />
+        <option value="$PROJECT_DIR$/controller/deleteBudgetViewRowController.php" />
       </list>
     </option>
   </component>
@@ -311,10 +332,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
+    <option name="x" value="2391" />
     <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="width" value="2418" />
+    <option name="height" value="1318" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -364,6 +385,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="budget" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="budget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="budget" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -507,12 +542,20 @@
       <workItem from="1481182551640" duration="322123000" />
       <workItem from="1483688713183" duration="36000" />
       <workItem from="1483961496777" duration="290000" />
-      <workItem from="1483962017927" duration="9832000" />
+      <workItem from="1483962017927" duration="21391000" />
     </task>
+    <task id="LOCAL-00001" summary="edited add to category functionality">
+      <created>1483988074532</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1483988074532</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="553455000" />
+    <option name="totallyTimeSpent" value="565014000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,16 +567,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="2391" y="-9" width="2418" height="1318" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17757511" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17747441" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18346547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32814178" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32842582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32784042" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25238508" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -597,6 +640,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="edited add to category functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited add to category functionality" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="11" />
@@ -604,20 +651,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/classes/CategoryState.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="22" column="54" lean-forward="false" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/CategoryAmount.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -881,6 +914,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -905,6 +939,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -934,7 +969,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="560">
           <caret line="318" column="66" lean-forward="true" selection-start-line="318" selection-start-column="66" selection-end-line="318" selection-end-column="66" />
           <folding>
             <element signature="e#6#93#0#PHP" expanded="false" />
@@ -998,34 +1033,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/budgetView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/editBudgetViewRowController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="53" column="86" lean-forward="true" selection-start-line="53" selection-start-column="86" selection-end-line="53" selection-end-column="86" />
-          <folding>
-            <marker date="1483973812247" expanded="true" signature="545:1069" ph="SELECT c.cat... category" />
-            <marker date="1483973812247" expanded="false" signature="1197:1906" ph="SELECT c.cat... category_state" />
-            <marker date="1483973812247" expanded="true" signature="2788:2885" ph="UPDATE categ... " />
-            <marker date="1483973812247" expanded="true" signature="3006:3088" ph="DELETE FROM " />
-            <marker date="1483973812247" expanded="true" signature="3553:3589" ph="insert into budget... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/budgetViewController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="159" column="4" lean-forward="false" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="4" />
+        <state relative-caret-position="465">
+          <caret line="161" column="4" lean-forward="false" selection-start-line="161" selection-start-column="4" selection-end-line="161" selection-end-column="4" />
           <folding>
             <element signature="e#6#93#0#PHP" expanded="false" />
             <element signature="e#416#507#0#PHP" expanded="false" />
@@ -1042,26 +1053,75 @@
             <element signature="n#insertOldValueToNew#0;n#!!top" expanded="false" />
             <element signature="e#5328#14807#0#PHP" expanded="false" />
             <element signature="e#14654#14807#0#PHP" expanded="false" />
-            <marker date="1483987119156" expanded="false" signature="627:1133" ph="SELECT c.cat... category_state" />
-            <marker date="1483987119156" expanded="true" signature="1536:1578" ph="SELECT * FRO... income" />
-            <marker date="1483987119156" expanded="true" signature="2146:2216" ph="SELECT * FRO... time_line" />
-            <marker date="1483987119156" expanded="true" signature="2978:3065" ph="UPDATE time_... " />
-            <marker date="1483987119156" expanded="true" signature="3153:3271" ph="INSERT INTO time_line... " />
-            <marker date="1483987119156" expanded="true" signature="3474:3541" ph="UPDATE categ... " />
-            <marker date="1483987119156" expanded="true" signature="4782:4867" ph="SELECT * FRO... user_budget_instance" />
-            <marker date="1483987119156" expanded="false" signature="14819:15325" ph="SELECT c.cat... category_state" />
-            <marker date="1483987119156" expanded="true" signature="15360:15402" ph="SELECT * FRO... income" />
-            <marker date="1483987119156" expanded="true" signature="17103:17197" ph="..." />
+            <marker date="1484033491924" expanded="false" signature="627:1133" ph="SELECT c.cat... category_state" />
+            <marker date="1484033491924" expanded="true" signature="1536:1578" ph="SELECT * FRO... income" />
+            <marker date="1484033491924" expanded="true" signature="2146:2216" ph="SELECT * FRO... time_line" />
+            <marker date="1484033491924" expanded="true" signature="2978:3065" ph="UPDATE time_... " />
+            <marker date="1484033491924" expanded="true" signature="3153:3271" ph="INSERT INTO time_line... " />
+            <marker date="1484033491924" expanded="true" signature="3474:3541" ph="UPDATE categ... " />
+            <marker date="1484033491924" expanded="true" signature="4782:4867" ph="SELECT * FRO... user_budget_instance" />
+            <marker date="1484033491924" expanded="false" signature="14819:15325" ph="SELECT c.cat... category_state" />
+            <marker date="1484033491924" expanded="true" signature="15360:15402" ph="SELECT * FRO... income" />
+            <marker date="1484033491924" expanded="true" signature="17103:17197" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/modalFormAddCatagory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/catergoryAmount.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="16" />
+        <state relative-caret-position="616">
+          <caret line="63" column="15" lean-forward="true" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
           <folding>
-            <marker date="1483987782340" expanded="false" signature="538:1242" ph="SELECT c.cat... category_state" />
+            <marker date="1484035779812" expanded="false" signature="563:1267" ph="SELECT c.cat... category_state" />
+            <marker date="1484035779812" expanded="false" signature="1300:1875" ph="SELECT c.cat... budget_instance" />
+            <marker date="1484035779812" expanded="true" signature="1300:1876" ph="SELECT c.cat... budget_instance" />
+            <marker date="1484035779812" expanded="true" signature="2053:2076" ph="select from category... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/editBudgetViewRowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="91" selection-end-column="1" />
+          <folding>
+            <marker date="1483973812247" expanded="false" signature="545:1069" ph="SELECT c.cat... category" />
+            <marker date="1483973812247" expanded="false" signature="1197:1906" ph="SELECT c.cat... category_state" />
+            <marker date="1483973812247" expanded="true" signature="2788:2885" ph="UPDATE categ... " />
+            <marker date="1483973812247" expanded="true" signature="3006:3088" ph="DELETE FROM " />
+            <marker date="1483973812247" expanded="true" signature="3553:3589" ph="insert into budget... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/budgetView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="922">
+          <caret line="84" column="70" lean-forward="false" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="70" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/deleteBudgetViewRowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding>
+            <element signature="e#6#93#0#PHP" expanded="false" />
+            <marker date="1484039231608" expanded="false" signature="544:1068" ph="SELECT c.cat... category" />
+            <marker date="1484039231608" expanded="true" signature="1247:1344" ph="UPDATE categ... " />
+            <marker date="1484039231608" expanded="true" signature="1469:1551" ph="DELETE FROM " />
+            <marker date="1484039231608" expanded="true" signature="1690:1729" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
