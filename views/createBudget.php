@@ -8,7 +8,7 @@ AllIncludes('header',"functions","validate");
     <input name="budgetName" type="text" placeholder="Budget Name" id="budgetName" required>
 
     <label for="income">Income</label>
-    <input name="income" type="number" placeholder="Income" id="income"required>
+    <input name="income" type="number" step="any" placeholder="Income" id="income"required>
 
     <label for="frequency">frequency</label>
     <select id="frequency" name="frequency" required>

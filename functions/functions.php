@@ -29,7 +29,7 @@ function createQueryStringValues($obj){
     $normal_comma =",";
     $sub = -1;
     foreach ($obj as $property => $value){
-        if(gettype($value)=="integer"){
+        if(is_numeric($value)){
             $sql .=  $value.$normal_comma;
         }else{
             $sql .=  "'".$value."'".$comma;
@@ -76,10 +76,10 @@ function createQueryStringForUpdate($obj){
     $comma = ",";
     $equals = "=";
     foreach ($obj as $property => $value){
-        $val = gettype($value)=="integer" ? $value :"'".$value."'"."'";
+        $val = is_numeric($value) ? $value :"'".$value."'"."'";
         $sql .=  "`".$property."` ".$equals.$val.$comma;
     }
-    $sub = gettype($value)=="integer" ? -1 :-2;
+    $sub = is_numeric($value) ? -1 :-2;
     return substr($sql, 0, $sub);
 }
 
@@ -106,6 +106,7 @@ function log_out(){
     unset($_SESSION["role"]);
     unset($_SESSION['user_id']);
     unset($_SESSION['last_name']);
+    unset($_SESSION["code"]);
     header("Location: ../views/index.php");
 
 }
@@ -133,6 +134,14 @@ function is_admin(){
  */
 function userID(){
    return $returnStament = $_SESSION["user_id"];
+}
+
+/**
+ * returns currency code
+ * @return mixed
+ */
+function currencyCode(){
+    return $returnStament = $_SESSION["code"];
 }
 
 /**
@@ -191,6 +200,14 @@ function createBreak(){
 function printItemBreak($item){
     echo $item;
     createBreak();
+}
+
+/**
+ * printItem for currency
+ * @param $item
+ */
+function printItemCurrency ($item){
+    echo number_format((float)$item, 2, '.', '');
 }
 
 /**
@@ -371,5 +388,27 @@ function validation(){
         header("Location: ../views/index.php");
     }
 }
+
+/**
+ * encapsulates string in p tags
+ * @param $content
+ * @return string
+ */
+function concat_with_PTag($content){
+    return "<p>".$content."</p>";
+}
+
+/**
+ * checks if content is null
+ * @param $content
+ * @return bool
+ */
+ function isNull($content){
+    return $ans = $content == null ? true : false;
+ }
+
+
+
+
 
 

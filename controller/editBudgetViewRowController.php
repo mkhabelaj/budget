@@ -10,11 +10,11 @@ require_once ("../inclusion/inclusion.php");
 AllIncludes("functions","dataB","validate","category","categoryA","budgetIC","categoryS");
 
 if(isset($_POST)){
-    $category_id = (int)$_POST["categoryID"];
+    $category_id = (int) $_POST["categoryID"];
     $budget_id = (int)$_POST["budgetID"];
     $time_line_id =(int) $_POST["timelineID"];
-    $projected_amount = (int)$_POST["projectedAmount"];
-    $actual_amount = (int)$_POST["actualAmount"];
+    $projected_amount = (double)$_POST["projectedAmount"];
+    $actual_amount = (double)$_POST["actualAmount"];
     $category_new = $_POST["category"];
 
     $sql = "SELECT 

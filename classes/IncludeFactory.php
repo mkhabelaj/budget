@@ -22,6 +22,8 @@ require_once ("CategoryState.php");
 require_once ("Category.php");
 require_once ("budgetInstanceCategory.php");
 require_once ("User.php");
+require_once ("Currency.php");
+require_once ("Preference.php");
 
 
 
@@ -84,6 +86,12 @@ class IncludeFactory
                break;
            case "user":
                return new User(null,null,null,null,null,null);
+               break;
+           case "currency":
+               return new Currency(null,null);
+               break;
+           case "preference":
+               return new Preference(null,null);
                break;
            default:
                return null;

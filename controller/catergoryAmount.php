@@ -8,7 +8,13 @@
 
 require_once ('../inclusion/inclusion.php');
 AllIncludes("functions","dataB","validate","category","categoryS","categoryA","budgetIC");
+$is_valid = true;
+$error="";
+function set_is_vaild_false(){
+    global $is_valid;
 
+    $is_valid = false;
+}
 if(isset($_POST)){
     $budgetID = $_POST["budgetId"];
     $time_line_id = $_POST["timelineID"];
@@ -18,9 +24,37 @@ if(isset($_POST)){
     $user_id = userID();
     $category_id;
 
-    //find out if category exits even if it is removed
+    if(isNull($actual_amount)){
+        $error.= concat_with_PTag("Actual Amount is empty");
+        set_is_vaild_false();
+    }
 
-    $sql2 ="SELECT 
+    if(isNull($projected_amount)){
+        $error.= concat_with_PTag("Projected Amount is empty");
+        set_is_vaild_false();
+
+    }
+
+    if(isNull($category)){
+        $error.=concat_with_PTag("Category is empty");
+        set_is_vaild_false();
+    }
+
+    if(!is_numeric($actual_amount)){
+        $error.= concat_with_PTag("Actual Amount is not number");
+        set_is_vaild_false();
+    }
+
+    if(!is_numeric($projected_amount)){
+        $error.= concat_with_PTag("Projected Amount is not number");
+        set_is_vaild_false();
+    }
+
+
+
+    //find out if category exits even if it is removed
+    if($is_valid) {
+        $sql2 = "SELECT 
             c.category_id,
             c.name,
             CA.projected_amount,
@@ -34,12 +68,12 @@ if(isset($_POST)){
                 ON C.category_id = BIC.catagory_id
             INNER JOIN category_amounts AS CA
                 ON c.category_id = CA.catergory_id
-        WHERE BIC.budget_Instance_id =".$budgetID." 
+        WHERE BIC.budget_Instance_id =" . $budgetID . " 
         AND CS.state = 'active'
-        AND ca.time_line_id=".$time_line_id."
-        AND c.name ='".$category."'
-        AND CS.time_line_id =".$time_line_id." ";
-    $sql3 ="SELECT 
+        AND ca.time_line_id=" . $time_line_id . "
+        AND c.name ='" . $category . "'
+        AND CS.time_line_id =" . $time_line_id . " ";
+        $sql3 = "SELECT 
                 c.category_id,
                 c.name
             FROM budget_instance AS bi 
@@ -49,41 +83,45 @@ if(isset($_POST)){
                 ON ubi.budget_Instance_ID = bi.budget_instance_id
                 INNER JOIN category AS c
                 ON c.category_id = bic.catagory_id
-            WHERE ubi.user_id = ".$user_id." 
-                AND c.name = '".$category."'
-                AND bi.budget_instance_id = ".$budgetID." ";
-    $row = dataBaseManipulation($sql2,con(),"rows","get category name to see if is currenty active",false);
-    $row2= dataBaseManipulation($sql3,con(),"rows","selecting from category to see if category exists",false);
-   if($row2){
+            WHERE ubi.user_id = " . $user_id . " 
+                AND c.name = '" . $category . "'
+                AND bi.budget_instance_id = " . $budgetID . " ";
+        $row = dataBaseManipulation($sql2, con(), "rows", "get category name to see if is currenty active", false);
+        $row2 = dataBaseManipulation($sql3, con(), "rows", "selecting from category to see if category exists", false);
+        if ($row2) {
 
-       if($row && strcmp(strtolower($row["name"]),strtolower($category))==0){
-           //create report functionality
+            if ($row && strcmp(strtolower($row["name"]), strtolower($category)) == 0) {
+                //create report functionality
 
-           printItemBreak("this item already exits in the budget");
+                printItemBreak("this item already exits in the budget");
 
-       } else {
-           printItemBreak("restoring old category");
-           $new_category_id = $row2["category_id"];
-           $category_state = new CategoryState($time_line_id, $new_category_id);
-           dataBaseManipulation(SQLInsert("category_state", $category_state), con(), null, "inserting into category state", false);
-           $budget_instance_category = new budgetInstanceCategory($new_category_id, $budgetID);
-           dataBaseManipulation(SQLInsert("budget_instance_catagory", $budget_instance_category), con(), null, "budget instance catagory", false);
-           $category_amount = new CategoryAmount($actual_amount, $projected_amount, $new_category_id, $time_line_id);
-           dataBaseManipulation(SQLInsert("category_amounts", $category_amount), con(), null, "catergory amounts", false);
-       }
+            } else {
+                printItemBreak("restoring old category");
+                $new_category_id = $row2["category_id"];
+                $category_state = new CategoryState($time_line_id, $new_category_id);
+                dataBaseManipulation(SQLInsert("category_state", $category_state), con(), null, "inserting into category state", false);
+                $budget_instance_category = new budgetInstanceCategory($new_category_id, $budgetID);
+                dataBaseManipulation(SQLInsert("budget_instance_catagory", $budget_instance_category), con(), null, "budget instance catagory", false);
+                $category_amount = new CategoryAmount($actual_amount, $projected_amount, $new_category_id, $time_line_id);
+                dataBaseManipulation(SQLInsert("category_amounts", $category_amount), con(), null, "catergory amounts", false);
+            }
 
-   }else {
-       printItemBreak("we failed");
-       $conn = con();
-       $categoryObj = new Category($category);
-       dataBaseManipulation(SQLInsert("category", $categoryObj), $conn, null, "insert in catergory", false);
-       $category_id = (int)mysqli_insert_id($conn);
-       $category_state = new CategoryState($time_line_id, $category_id);
-       dataBaseManipulation(SQLInsert("category_state", $category_state), $conn, null, "inserting into category state", false);
-       $budget_instance_category = new budgetInstanceCategory($category_id, $budgetID);
-       dataBaseManipulation(SQLInsert("budget_instance_catagory", $budget_instance_category), $conn, null, "budget instance catagory", false);
-       $category_amount = new CategoryAmount($actual_amount, $projected_amount, $category_id, $time_line_id);
-       dataBaseManipulation(SQLInsert("category_amounts", $category_amount), $conn, null, "catergory amounts", false);
-   }
+        } else {
+            $conn = con();
+            $categoryObj = new Category($category);
+            dataBaseManipulation(SQLInsert("category", $categoryObj), $conn, null, "insert in catergory", false);
+            $category_id = (int)mysqli_insert_id($conn);
+            $category_state = new CategoryState($time_line_id, $category_id);
+            dataBaseManipulation(SQLInsert("category_state", $category_state), $conn, null, "inserting into category state", false);
+            $budget_instance_category = new budgetInstanceCategory($category_id, $budgetID);
+            dataBaseManipulation(SQLInsert("budget_instance_catagory", $budget_instance_category), $conn, null, "budget instance catagory", false);
+            $category_amount = new CategoryAmount($actual_amount, $projected_amount, $category_id, $time_line_id);
+            dataBaseManipulation(SQLInsert("category_amounts", $category_amount), $conn, null, "catergory amounts", false);
+        }
+    }else{
+        printItem($error);
+    }
 
 }
+
+

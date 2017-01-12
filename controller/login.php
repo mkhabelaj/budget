@@ -24,6 +24,11 @@ if(isset($_POST)){
                 $_SESSION['role']= $row["role"];
                 $_SESSION['user_id'] = $row['user_id'];
             }
+            $sql2="SELECT c.code FROM preference AS p
+                    INNER JOIN currency AS c
+                    ON p.currency_id = c.curency_id
+                    WHERE p.user_id =".userID();
+		    $_SESSION["code"] = dataBaseManipulation($sql2,con(),"rows","Get country code",false)["code"];
         header("Location: ../views/index.php");
 
 

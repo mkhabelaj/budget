@@ -18,7 +18,8 @@ $(document).ready(function () {
     /**
      * this section insert into catogory and catogory amounts
      */
-    $('body').on('click','#addRow',function () {
+    $('body').on('click','#addRow',function (event) {
+        event.preventDefault();
         $('.error-category').empty();
         console.log($('#add-catagory').attr('data-budgetID'));
         var parameters = {
@@ -36,7 +37,7 @@ $(document).ready(function () {
      */
     $('body').on('click','#add-catagory',function () {
         getAnyPostE(home+"templates/modalFormAddCatagory.php",null,".modal-sub-content",null);
-    });
+});
 
     /**
      * this section recognises when budgetview table row is clicked and insets the table row into

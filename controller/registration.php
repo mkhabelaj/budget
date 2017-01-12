@@ -1,8 +1,9 @@
 <?php
 require_once ("../inclusion/inclusion.php");
-AllIncludes('security',"functions","dataB","user");
+AllIncludes('security',"functions","dataB","user","preference");
 
  if(isset($_POST)){
+     $user_id;
 
      $user = new User($_POST['firstname'],$_POST['lastname'],$_POST['email'],Security::encrypt($_POST['password'], returnKey()),$_POST['gender']);
 
@@ -10,10 +11,15 @@ AllIncludes('security',"functions","dataB","user");
      //echo $sql1;
       echo $sql;
 
-     //$result = mysqli_query($con,$sql);
-     if (mysqli_query(con(),$sql)) {
+     $conn = con();
+     if (mysqli_query($conn,$sql)) {
          echo "New record created successfully";
+         $user_id = mysqli_insert_id($conn);
+         $pref = new Preference(null,$user_id);
+         unsetProperties($pref,"currency_id");
+         dataBaseManipulation(SQLInsert("preference",$pref),con(),"pref insert",false);
          header("Location: ../views/index.php");
+
 
      } else {
          echo "Error: " . $sql . "<br>" . mysqli_error(con());
@@ -22,6 +28,8 @@ AllIncludes('security',"functions","dataB","user");
      }
 
      mysqli_close(con());
+
+
 
 
  }

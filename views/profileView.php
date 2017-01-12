@@ -4,4 +4,5 @@ AllIncludes('header',"functions","validate");
 
 ?>
 
+
 <?php factory()->getInclusion("footer")->Inclusion();

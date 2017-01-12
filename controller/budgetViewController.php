@@ -371,21 +371,21 @@ while ($row = mysqli_fetch_assoc($result1)):
     $total_actual_for_income+=$row["actual_amount"];
 endwhile;
 while ($row = mysqli_fetch_assoc($result2)):
-    $total_income+=$row["income"];
+    $total_income+= $row["income"];
 endwhile;
 ?>
 <div id="income-summary">
     <div>
         <span>Total Income</span>
-        <?php printItem($total_income)?>
+        <?php printItemCurrency($total_income)?>
     </div>
     <div>
         <span>Total Projected</span>
-        <?php printItem($total_projected_for_income)?>
+        <?php printItemCurrency($total_projected_for_income)?>
     </div>
     <div>
         <span>Total Actual Spent</span>
-        <?php printItem($total_actual_for_income)?>
+        <?php printItemCurrency($total_actual_for_income)?>
     </div>
     <div>
         <span>Total Varience</span>
@@ -408,18 +408,18 @@ while ($row = mysqli_fetch_assoc($result)):
 ?>
         <tr class="open-modal">
             <td data-category-id = "<?php printItem($row["category_id"])?>"><?php printItem($row["name"])?></td>
-            <td> <?php printItem($row["projected_amount"])?></td>
-            <td> <?php printItem($row["actual_amount"])?></td>
-            <td> <?php printItem($row["projected_amount"] - $row["actual_amount"])?></td>
+            <td><span><?php printItem(currencyCode())?></span> <?php printItemCurrency($row["projected_amount"])?></td>
+            <td><span><?php printItem(currencyCode())?></span> <?php printItemCurrency($row["actual_amount"])?></td>
+            <td><span><?php printItem(currencyCode())?></span> <?php printItemCurrency($row["projected_amount"] - $row["actual_amount"])?></td>
         </tr>
 <?php
 endwhile;
 ?>
         <tr>
             <td>TOTAL</td>
-            <td><?php printItem($total_projected )?></td>
-            <td><?php printItem( $total_actual) ?></td>
-            <td><?php printItem($total_projected - $total_actual) ?></td>
+            <td><span><?php printItem(currencyCode())?></span><?php printItemCurrency($total_projected )?></td>
+            <td><span><?php printItem(currencyCode())?></span><?php printItemCurrency( $total_actual) ?></td>
+            <td><span><?php printItem(currencyCode())?></span><?php printItemCurrency($total_projected - $total_actual) ?></td>
         </tr>
     </table>
 </div>

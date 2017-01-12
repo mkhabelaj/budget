@@ -25,11 +25,13 @@ factory()->getInclusion('functions')->Inclusion();
                 <a href="../views/adminView.php">Administration</a>|
                 <?php endif;?>
             <a href="../views/notificationView.php" id="open-modal-notification" class="open-modal">
+
                 <div style="display: inline"> <!--CSS-->
                     Notifications
                     (<div class="notification" style="display: inline"></div>)<!--CSS-->
                 </div>
             </a>|
+            <a href="../views/settingsView.php" >Settings</a>|
             <a href="../views/notificationView.php" id="open-modal-friend-search" class="open-modal">Friends</a>|
             <?php else: ?>
             <a href="../views/registrationView.php">Register</a>|
