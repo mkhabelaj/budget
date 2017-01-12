@@ -45,18 +45,29 @@ $(document).ready(function () {
      */
     $('body').on('click','#actualBudget',function (event) {
         var category = $(event.target.parentNode).children(":first-child").html();
-        var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id');
-        var projectedAmount =$(event.target.parentNode).children(":nth-child(2)").html();
-        var atualAmount =$(event.target.parentNode).children(":nth-child(3)").html();
-        var content ='<div class="edit-table-row-budget-view"><label for="category-edit">Category</label> <input id="category-edit" value="'+category+'"><input id="projected-amount-edit" value="'+projectedAmount+'"><input id="actual-amount-edit" value="'+atualAmount+'"><button id="edit-row" data-category-id="'+categoryValue+'">edit</button><button id="delete-row" data-category-delete-id="'+categoryValue+'">DELETE</button></div>';
+        var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id').replace('<span>R</span>','');
+        var projectedAmount =$(event.target.parentNode).children(":nth-child(2)").html().replace('<span>R</span>','');
+        var atualAmount =$(event.target.parentNode).children(":nth-child(3)").html().replace('<span>R</span>','');
+        var content ='<form>' +
+                        '<div class="edit-table-row-budget-view">' +
+                            '<label for="category-edit">Category</label> ' +
+                            '<input id="category-edit" type="text" value="'+category+'">'+
+                            '<label for="projected-amount-edit">Projected Amount</label> ' +
+                            '<input id="projected-amount-edit" value="'+projectedAmount+'">' +
+                            '<label for="actual-amount-edit">Actual Amount</label> ' +
+                            '<input id="actual-amount-edit"  value="'+atualAmount+'">' +
+                            '<button id="edit-row" type="submit" data-category-id="'+categoryValue+'">edit</button>' +
+                            '<button id="delete-row" type="submit" data-category-delete-id="'+categoryValue+'">DELETE</button>' +
+                        '</div>' +
+                    '</form>';
         $('.modal-sub-content').html(content);
     });
 
     /**
      * this section send the row to a processor to before updated on the database
      */
-    $('body').on('click','#edit-row',function () {
-
+    $('body').on('click','#edit-row',function (event) {
+        event.preventDefault();
         var parameters = {
             budgetID:$('#add-catagory').attr('data-budgetID'),
             timelineID:$('#add-catagory').attr('data-timeID'),
@@ -66,14 +77,14 @@ $(document).ready(function () {
             projectedAmount:$("#projected-amount-edit").val()
         }
 
-        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#test',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
+        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#central-error',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
     });
 
     /**
      * this section send the row to a processor to before it is deleted from budget
      */
-    $('body').on('click','#delete-row',function () {
-
+    $('body').on('click','#delete-row',function (event) {
+        event.preventDefault();
         var parameters = {
             budgetID:$('#add-catagory').attr('data-budgetID'),
             timelineID:$('#add-catagory').attr('data-timeID'),

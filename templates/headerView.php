@@ -39,4 +39,5 @@ factory()->getInclusion('functions')->Inclusion();
         <?php endif;?>
     </nav>
 <br>
+    <div id="central-error"></div>
 

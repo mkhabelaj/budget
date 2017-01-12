@@ -17,7 +17,7 @@ AllIncludes('security',"functions","dataB","user","preference");
          $user_id = mysqli_insert_id($conn);
          $pref = new Preference(null,$user_id);
          unsetProperties($pref,"currency_id");
-         dataBaseManipulation(SQLInsert("preference",$pref),con(),"pref insert",false);
+         dataBaseManipulation(SQLInsert("preference",$pref),con(),"result","pref insert",true);
          header("Location: ../views/index.php");
 
 
