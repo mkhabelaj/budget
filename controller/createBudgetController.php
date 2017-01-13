@@ -14,6 +14,7 @@ require_once ("../classes/UserBudgetInstance.php");
 if(isset($_POST)){
 
     $budget_instance = new BudgetInstance($_POST["budgetName"]);
+    $budgetDescription = $_POST["description"];
     $budget_id = 0;
     $time_line_id=0;
     $sql="INSERT INTO budget_instance  (".createQueryStringKeys($budget_instance).") VALUES (".createQueryStringValues($budget_instance).")";
@@ -44,7 +45,7 @@ if(isset($_POST)){
 
         }
 
-        $income = new Income($_POST["income"],$budget_id,$time_line_id);
+        $income = new Income($_POST["income"],$budget_id,$time_line_id,$budgetDescription,userID());
         dataBaseManipulation(SQLInsert("income",$income),con(),"result","inserting to income",true);
 
         header("Location: ../views/budget.php");

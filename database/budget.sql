@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2017 at 07:09 PM
+-- Generation Time: Jan 13, 2017 at 06:43 PM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -39,7 +39,11 @@ CREATE TABLE `budget_instance` (
 INSERT INTO `budget_instance` (`budget_instance_id`, `name`, `description`) VALUES
 (108, 'test', ''),
 (109, 'test ', ''),
-(110, 'asfasf', '');
+(110, 'asfasf', ''),
+(113, 'Test', ''),
+(114, 'sddr', ''),
+(115, 'zfdgdfg', ''),
+(116, 'test', '');
 
 -- --------------------------------------------------------
 
@@ -78,7 +82,12 @@ INSERT INTO `budget_instance_catagory` (`budget_Instance_catagory_id`, `catagory
 (83, 96, 109),
 (86, 99, 109),
 (87, 100, 109),
-(88, 101, 109);
+(88, 101, 109),
+(94, 107, 113),
+(95, 108, 113),
+(96, 109, 113),
+(97, 110, 113),
+(98, 111, 116);
 
 -- --------------------------------------------------------
 
@@ -119,7 +128,12 @@ INSERT INTO `category` (`category_id`, `name`, `description`) VALUES
 (101, 'tr', ''),
 (102, 'sam', ''),
 (103, 'ra', ''),
-(105, 'fuel', '');
+(105, 'fuel', ''),
+(107, 'Test', ''),
+(108, 'grey', ''),
+(109, 'greys', ''),
+(110, 'greyst', ''),
+(111, 'fridge', '');
 
 -- --------------------------------------------------------
 
@@ -162,7 +176,12 @@ INSERT INTO `category_amounts` (`catergory_amount_id`, `actual_amount`, `project
 (126, 500.00, 500.00, 96, 141),
 (129, 5.00, 5.00, 99, 141),
 (130, 7.00, 7.00, 100, 141),
-(132, 5.98, 5.90, 101, 141);
+(132, 5.98, 5.90, 101, 141),
+(138, 45.00, 55.00, 107, 145),
+(139, 56.01, 90.00, 108, 145),
+(140, 56.02, 90.00, 109, 145),
+(141, 56.03, 90.00, 110, 145),
+(142, 5000.00, 10000.00, 111, 148);
 
 -- --------------------------------------------------------
 
@@ -207,7 +226,12 @@ INSERT INTO `category_state` (`state`, `time_line_id`, `category_id`) VALUES
 ('active', 141, 96),
 ('active', 141, 99),
 ('active', 141, 100),
-('active', 141, 101);
+('active', 141, 101),
+('active', 145, 107),
+('active', 145, 108),
+('active', 145, 109),
+('active', 145, 110),
+('active', 148, 111);
 
 -- --------------------------------------------------------
 
@@ -318,19 +342,26 @@ CREATE TABLE `income` (
   `income_id` int(11) UNSIGNED NOT NULL,
   `income` double(14,2) NOT NULL,
   `budget_Instance_ID` int(11) UNSIGNED NOT NULL,
-  `time_line_id` int(11) UNSIGNED NOT NULL
+  `time_line_id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `income`
 --
 
-INSERT INTO `income` (`income_id`, `income`, `budget_Instance_ID`, `time_line_id`) VALUES
-(112, 500.00, 108, 138),
-(113, 500.00, 108, 139),
-(114, 500.00, 108, 140),
-(115, 500.00, 109, 141),
-(116, 20000.59, 110, 142);
+INSERT INTO `income` (`income_id`, `income`, `budget_Instance_ID`, `time_line_id`, `user_id`, `description`) VALUES
+(112, 500.00, 108, 138, 27, ''),
+(113, 500.00, 108, 139, 27, ''),
+(114, 500.00, 108, 140, 27, ''),
+(115, 500.00, 109, 141, 27, ''),
+(116, 20000.59, 110, 142, 27, ''),
+(120, 500.00, 114, 146, 27, 'dfg'),
+(121, 20000.00, 116, 148, 61, 'Salary'),
+(122, 500.00, 116, 148, 61, 'more'),
+(123, 250.00, 116, 148, 61, 'tax return'),
+(125, 5465.00, 113, 145, 60, 'sdfsd');
 
 -- --------------------------------------------------------
 
@@ -371,7 +402,8 @@ CREATE TABLE `preference` (
 
 INSERT INTO `preference` (`preference_id`, `currency_id`, `user_id`) VALUES
 (1, 2, 55),
-(2, 1, 60);
+(2, 1, 60),
+(3, 1, 61);
 
 -- --------------------------------------------------------
 
@@ -411,7 +443,11 @@ INSERT INTO `time_line` (`time_line_id`, `duration_start`, `duration_end`, `freq
 (139, '2016-12-01', '2017-01-01', 'monthly', 'deactivated', 1, 108),
 (140, '2017-01-01', '2017-02-01', 'monthly', 'active', 1, 108),
 (141, '2017-01-11', '2017-02-11', 'monthly', 'active', 11, 109),
-(142, '2017-01-12', '2017-02-12', 'monthly', 'active', 12, 110);
+(142, '2017-01-12', '2017-02-12', 'monthly', 'active', 12, 110),
+(145, '2017-01-13', '2017-02-13', 'monthly', 'active', 13, 113),
+(146, '2017-01-13', '2017-02-13', 'monthly', 'active', 13, 114),
+(147, '2017-01-01', '2017-02-01', 'monthly', 'active', 1, 115),
+(148, '2017-01-13', '2017-02-13', 'monthly', 'active', 13, 116);
 
 -- --------------------------------------------------------
 
@@ -445,7 +481,8 @@ INSERT INTO `user` (`user_id`, `firstname`, `last_name`, `email`, `time_stamp`, 
 (55, 'dean', 'dean', 'dean@dean.com', '2017-01-12 11:16:36', 'PF+5+uHduQ+rKt5uG/iNIQ==', 'male', 'strd'),
 (58, 'Duke', 'Duke', 'duke@duke.com', '2017-01-12 18:03:52', 'J5K2qUC8zf9t2J9rXGvmWA==', 'male', 'strd'),
 (59, 'dash', 'dash', 'dash@dash.com', '2017-01-12 18:05:07', 'AeGd7zvyaVs3MtLz9NAGAA==', 'male', 'strd'),
-(60, 'goat', 'goat', 'goat@goat.com', '2017-01-12 18:08:07', 'aFxZoJ0Qs/VLrB2oXb4Aaw==', 'male', 'strd');
+(60, 'goat', 'goat', 'goat@goat.com', '2017-01-12 18:08:07', 'aFxZoJ0Qs/VLrB2oXb4Aaw==', 'male', 'strd'),
+(61, 'guss', 'guss', 'guss@guss.com', '2017-01-13 15:30:01', 's+wDM/z2pgRqWdt9n+jKPA==', 'male', 'strd');
 
 -- --------------------------------------------------------
 
@@ -478,7 +515,11 @@ CREATE TABLE `user_budget_instance` (
 INSERT INTO `user_budget_instance` (`user_budget_Instance_Id`, `budget_Instance_ID`, `user_id`) VALUES
 (127, 108, 48),
 (128, 109, 49),
-(129, 110, 49);
+(129, 110, 49),
+(132, 113, 60),
+(133, 114, 48),
+(134, 115, 60),
+(135, 116, 61);
 
 -- --------------------------------------------------------
 
@@ -575,7 +616,8 @@ ALTER TABLE `goal`
 ALTER TABLE `income`
   ADD PRIMARY KEY (`income_id`),
   ADD KEY `budget_Instance_ID` (`budget_Instance_ID`),
-  ADD KEY `time_line_id` (`time_line_id`);
+  ADD KEY `time_line_id` (`time_line_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `notification`
@@ -630,22 +672,22 @@ ALTER TABLE `user_budget_instance`
 -- AUTO_INCREMENT for table `budget_instance`
 --
 ALTER TABLE `budget_instance`
-  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `budget_instance_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 --
 -- AUTO_INCREMENT for table `budget_instance_catagory`
 --
 ALTER TABLE `budget_instance_catagory`
-  MODIFY `budget_Instance_catagory_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `budget_Instance_catagory_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT for table `category_amounts`
 --
 ALTER TABLE `category_amounts`
-  MODIFY `catergory_amount_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `catergory_amount_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 --
 -- AUTO_INCREMENT for table `currency`
 --
@@ -655,12 +697,12 @@ ALTER TABLE `currency`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `friend_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `friend_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `friend_request`
 --
 ALTER TABLE `friend_request`
-  MODIFY `friend_request_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1118;
+  MODIFY `friend_request_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1117;
 --
 -- AUTO_INCREMENT for table `goal`
 --
@@ -670,17 +712,17 @@ ALTER TABLE `goal`
 -- AUTO_INCREMENT for table `income`
 --
 ALTER TABLE `income`
-  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `income_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notification_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `notification_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `preference`
 --
 ALTER TABLE `preference`
-  MODIFY `preference_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `preference_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `savings`
 --
@@ -690,17 +732,17 @@ ALTER TABLE `savings`
 -- AUTO_INCREMENT for table `time_line`
 --
 ALTER TABLE `time_line`
-  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `time_line_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `user_budget_instance`
 --
 ALTER TABLE `user_budget_instance`
-  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `user_budget_Instance_Id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 --
 -- Constraints for dumped tables
 --
@@ -751,7 +793,8 @@ ALTER TABLE `goal`
 --
 ALTER TABLE `income`
   ADD CONSTRAINT `income_ibfk_1` FOREIGN KEY (`budget_Instance_ID`) REFERENCES `budget_instance` (`budget_instance_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `income_ibfk_2` FOREIGN KEY (`time_line_id`) REFERENCES `time_line` (`time_line_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `income_ibfk_2` FOREIGN KEY (`time_line_id`) REFERENCES `time_line` (`time_line_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `income_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `notification`

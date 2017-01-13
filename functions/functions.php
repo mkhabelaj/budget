@@ -279,7 +279,6 @@ function SQLUpdate($table,$keyValues,$clause,$clauseVal){
     foreach ($args as $item){
         $sql.=$item;
     }
-    printItemBreak($sql);
     return $sql;
 }
 

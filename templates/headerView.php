@@ -8,7 +8,7 @@ factory()->getInclusion('functions')->Inclusion();
     <title>
         Budget
     </title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
     require_once ('../templates/allStyles.php');
     require_once ('../templates/allScripts.php');

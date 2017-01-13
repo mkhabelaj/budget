@@ -90,32 +90,32 @@ if(isset($_POST)){
         AND ca.time_line_id=" . $time_line_id . "
         AND c.name ='" . $category_new . "'
         AND CS.time_line_id =" . $time_line_id . " ";
-            if ($result = dataBaseManipulation($sql2, con(), "rows", "get category name", true)) {
+            if ($result = dataBaseManipulation($sql2, con(), "rows", "get category name", false)) {
                 var_dump($result);
-                printItemBreak("hi");
+                //printItemBreak("hi");
                 $catagory = new Category($category_new);
                 $catagoryAmount = new CategoryAmount($actual_amount, $projected_amount, $category_id, $time_line_id);
                 unsetProperties($catagoryAmount, "catergory_id", "time_line_id");
-                printItemBreak(createQueryStringForUpdate($catagoryAmount));
-                dataBaseManipulation(SQLUpdate("category", $catagory, "category_id", $category_id), con(), "result", "update category", true);
-                dataBaseManipulation(SQLUpdate("category_amounts", $catagoryAmount, "catergory_id", $category_id, " AND time_line_id =", $time_line_id), con(), "result", "update category amount", true);
+                //printItemBreak(createQueryStringForUpdate($catagoryAmount));
+                dataBaseManipulation(SQLUpdate("category", $catagory, "category_id", $category_id), con(), "result", "update category", false);
+                dataBaseManipulation(SQLUpdate("category_amounts", $catagoryAmount, "catergory_id", $category_id, " AND time_line_id =", $time_line_id), con(), "result", "update category amount", false);
 
             } else {
-                printItemBreak("testing second internal else");
+                //printItemBreak("testing second internal else");
                 $sql3 = "UPDATE category_state SET `state`='removed' WHERE time_line_id=" . $time_line_id . " AND category_id=" . $category_id;
-                dataBaseManipulation($sql3, con(), "result", "deactivate category state", true);
+                dataBaseManipulation($sql3, con(), "result", "deactivate category state", false);
 
                 $sql4 = "DELETE FROM category_amounts WHERE catergory_id=" . $category_id . " AND time_line_id=" . $time_line_id;
-                dataBaseManipulation($sql4, con(), "result", "deleteing from categoty amount", true);
+                dataBaseManipulation($sql4, con(), "result", "deleteing from categoty amount", false);
 
                 $new_category = new Category($category_new);
-                $category_id = mysqli_insert_id(dataBaseManipulation(SQLInsert("category", $new_category), con(), "conn", "Insert new Category", true));
+                $category_id = mysqli_insert_id(dataBaseManipulation(SQLInsert("category", $new_category), con(), "conn", "Insert new Category", false));
                 $bic = new budgetInstanceCategory($category_id, $budget_id);
-                dataBaseManipulation(SQLInsert("budget_instance_catagory", $bic), con(), "conn", "insert into budget instance category", true);
+                dataBaseManipulation(SQLInsert("budget_instance_catagory", $bic), con(), "conn", "insert into budget instance category", false);
                 $categoryAmount = new CategoryAmount($actual_amount, $projected_amount, $category_id, $time_line_id);
-                dataBaseManipulation(SQLInsert("category_amounts", $categoryAmount), con(), "result", "insert new value to category amounts", true);
+                dataBaseManipulation(SQLInsert("category_amounts", $categoryAmount), con(), "result", "insert new value to category amounts", false);
                 $category_state = new CategoryState($time_line_id, $category_id);
-                dataBaseManipulation(SQLInsert("category_State", $category_state), con(), "result", "inserting into category state", true);
+                dataBaseManipulation(SQLInsert("category_State", $category_state), con(), "result", "inserting into category state", false);
 
             }
 
@@ -123,9 +123,9 @@ if(isset($_POST)){
             $catagory = new Category($category_new);
             $catagoryAmount = new CategoryAmount($actual_amount, $projected_amount, $category_id, $time_line_id);
             unsetProperties($catagoryAmount, "catergory_id", "time_line_id");
-            printItemBreak(createQueryStringForUpdate($catagoryAmount));
-            dataBaseManipulation(SQLUpdate("category", $catagory, "category_id", $category_id), con(), "result", "update category", true);
-            dataBaseManipulation(SQLUpdate("category_amounts", $catagoryAmount, "catergory_id", $category_id, " AND time_line_id =", $time_line_id), con(), "result", "update category amount", true);
+            //printItemBreak(createQueryStringForUpdate($catagoryAmount));
+            dataBaseManipulation(SQLUpdate("category", $catagory, "category_id", $category_id), con(), "result", "update category", false);
+            dataBaseManipulation(SQLUpdate("category_amounts", $catagoryAmount, "catergory_id", $category_id, " AND time_line_id =", $time_line_id), con(), "result", "update category amount", false);
         }
     }else{
         printItem($error);

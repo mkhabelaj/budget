@@ -10,6 +10,9 @@ AllIncludes('header',"functions","validate");
     <label for="income">Income</label>
     <input name="income" type="number" step="any" placeholder="Income" id="income"required>
 
+    <label for="income-description" >Income Description</label>
+    <input type="text" id="income-description"  name="description" required>
+
     <label for="frequency">frequency</label>
     <select id="frequency" name="frequency" required>
         <option value="weekly">Weekly</option>

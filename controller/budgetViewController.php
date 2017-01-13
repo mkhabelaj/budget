@@ -142,7 +142,7 @@ function insertOldValueToNew(){
     if($income_array):
         foreach ($income_array as $array){
             if($array):
-                dataBaseManipulation(SQLInsert("income",new Income($array["income"],$budget_id,$time_line_id)),con(),"result","inserting old value into new income",false);
+                dataBaseManipulation(SQLInsert("income",new Income($array["income"],$budget_id,$time_line_id,$array["description"],$array["user_id"])),con(),"result","inserting old value into new income",false);
             endif;
         }
     endif;
@@ -374,57 +374,79 @@ while ($row = mysqli_fetch_assoc($result2)):
     $total_income+= $row["income"];
 endwhile;
 ?>
-<div id="income-summary">
-    <div>
-        <span>Total Income</span>
-        <?php printItemCurrency($total_income)?>
-    </div>
-    <div>
-        <span>Total Projected</span>
-        <?php printItemCurrency($total_projected_for_income)?>
-    </div>
-    <div>
-        <span>Total Actual Spent</span>
-        <?php printItemCurrency($total_actual_for_income)?>
-    </div>
-    <div>
-        <span>Total Varience</span>
-        <?php printItem($total_income - $total_actual_for_income)?>
+<div class="row">
+    <div id="income-summary" class="colm-12">
+        <div class="row">
+            <div class="colm-3 open-modal" id="income-open" data-time-id="<?php printItem($time_line_id)?>" data-budget-id="<?php printItem($budget_id)?>">
+                <p>Total Income</p>
+                <p><?php printItem(currencyCode())?></p>
+                <p><?php printItemCurrency($total_income)?></p>
+            </div>
+            <div class="colm-3">
+                <p>Total Projected</p>
+                <p><?php printItem(currencyCode())?></p>
+                <p><?php printItemCurrency($total_projected_for_income)?></p>
+            </div>
+            <div class="colm-3">
+                <p>Total Actual Spent</p>
+                <p><?php printItem(currencyCode())?></p>
+                <p><?php printItemCurrency($total_actual_for_income)?></p>
+            </div>
+            <div class="colm-3">
+                <p>Total Varience</p>
+                <p><?php printItem(currencyCode())?></p>
+                <p><?php printItem($total_income - $total_actual_for_income)?></p>
+            </div>
+        </div>
     </div>
 </div>
-<div id="budgetContainer" class="colm-12 center">
-    <table id="actualBudget">
-        <tr id="table-row-categry">
-            <th class="table-header-category">Category</th>
-            <th class="table-header-category">Projected Amount</th>
-            <th class="table-header-category">Actual Amount</th>
-            <th class="table-header-category">Variance</th>
-        </tr>
+<div class="row">
+    <div id="budgetContainer" class="colm-12 center">
+        <table id="actualBudget">
+            <tr id="table-row-categry">
+                <th class="table-header-category">Category</th>
+                <th class="table-header-category">Projected Amount</th>
+                <th class="table-header-category">Actual Amount</th>
+                <th class="table-header-category">Variance</th>
+            </tr>
 
-<?php
-while ($row = mysqli_fetch_assoc($result)):
-    $total_projected+=$row["projected_amount"];
-    $total_actual+=$row["actual_amount"];
-?>
-        <tr class="open-modal">
-            <td data-category-id = "<?php printItem($row["category_id"])?>"><?php printItem($row["name"])?></td>
-            <td><span><?php printItem(currencyCode())?></span> <?php printItemCurrency($row["projected_amount"])?></td>
-            <td><span><?php printItem(currencyCode())?></span> <?php printItemCurrency($row["actual_amount"])?></td>
-            <td><span><?php printItem(currencyCode())?></span> <?php printItemCurrency($row["projected_amount"] - $row["actual_amount"])?></td>
-        </tr>
-<?php
-endwhile;
-?>
-        <tr>
-            <td>TOTAL</td>
-            <td><span><?php printItem(currencyCode())?></span><?php printItemCurrency($total_projected )?></td>
-            <td><span><?php printItem(currencyCode())?></span><?php printItemCurrency( $total_actual) ?></td>
-            <td><span><?php printItem(currencyCode())?></span><?php printItemCurrency($total_projected - $total_actual) ?></td>
-        </tr>
-    </table>
+    <?php
+    while ($row = mysqli_fetch_assoc($result)):
+        $total_projected+=$row["projected_amount"];
+        $total_actual+=$row["actual_amount"];
+    ?>
+            <tr class="open-modal budget-td">
+                <td data-category-id = "<?php printItem($row["category_id"])?>"><?php printItem($row["name"])?></td>
+                <td budget-td><span><?php printItem(currencyCode())?>&nbsp;</span> <?php printItemCurrency($row["projected_amount"])?></td>
+                <td><span><?php printItem(currencyCode())?>&nbsp;</span> <?php printItemCurrency($row["actual_amount"])?></td>
+                <td><span><?php printItem(currencyCode())?>&nbsp;</span> <?php printItemCurrency($row["projected_amount"] - $row["actual_amount"])?></td>
+            </tr>
+    <?php
+    endwhile;
+    ?>
+            <tr id="total-row">
+                <td>TOTAL</td>
+                <td>
+                    <p><?php printItem(currencyCode())?></p>
+                    <p><?php printItemCurrency($total_projected )?></p>
+                </td>
+                <td>
+                    <p><?php printItem(currencyCode())?></p>
+                    <p><?php printItemCurrency( $total_actual) ?></p>
+                </td>
+                <td>
+                    <p><?php printItem(currencyCode())?></p>
+                    <p><?php printItemCurrency($total_projected - $total_actual) ?></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <button id="add-catagory" class="open-modal" data-budgetID="<?php printItem($budget_id)?>"  data-timeID="<?php printItem($time_line_id) ?>">ADD</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
-<button id="add-catagory" class="open-modal" data-budgetID="<?php printItem($budget_id)?>"  data-timeID="<?php printItem($time_line_id) ?>">ADD</button>
-
 <?php
 
 ?>

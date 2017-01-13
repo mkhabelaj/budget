@@ -45,9 +45,9 @@ $(document).ready(function () {
      */
     $('body').on('click','#actualBudget',function (event) {
         var category = $(event.target.parentNode).children(":first-child").html();
-        var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id').replace('<span>R</span>','');
-        var projectedAmount =$(event.target.parentNode).children(":nth-child(2)").html().replace('<span>R</span>','');
-        var atualAmount =$(event.target.parentNode).children(":nth-child(3)").html().replace('<span>R</span>','');
+        var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id').replace('<span>R&nbsp;</span>','');
+        var projectedAmount =$(event.target.parentNode).children(":nth-child(2)").html().replace('<span>R&nbsp;</span>','');
+        var atualAmount =$(event.target.parentNode).children(":nth-child(3)").html().replace('<span>R&nbsp;</span>','');
         var content ='<form>' +
                         '<div class="edit-table-row-budget-view">' +
                             '<label for="category-edit">Category</label> ' +
@@ -94,8 +94,55 @@ $(document).ready(function () {
             projectedAmount:$("#projected-amount-edit").val()
         }
 
-        getAnyPostE(home+"controller/deleteBudgetViewRowController.php",parameters,'#test',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
+        getAnyPostE(home+"controller/deleteBudgetViewRowController.php",parameters,'#central-error',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
     });
+
+    /**
+     * inserts all incomes into modal
+     */
+
+    $('body').on('click','#income-open',function () {
+
+        parameter = {
+            timeLineID : $(this).attr('data-time-id'),
+            budgetID : $(this).attr('data-budget-id')
+        }
+        getAnyPostE(home+"controller/listOfIncomes.php",parameter,'.modal-sub-content',null);
+
+
+    });
+    /**
+     * inserts new income to database
+     */
+    $('body').on('click','#submit-new-income',function (event) {
+        event.preventDefault();
+        parameter = {
+            timeLineId : $(this).attr('data-time-line-id-submit'),
+            budgetId : $(this).attr('data-budget-id-submit'),
+            description:$('#income-description').val(),
+            income:$('#amount-income').val()
+
+        }
+        getAnyPostE(home+"controller/incomeController.php",parameter,'.modal-sub-content',{refreshBudgetView:insertBudgetview});
+
+
+    });
+    /**
+     * deletes income from budget
+     */
+
+    $('body').on('click','.income-delete',function () {
+        parameter = {
+            timeLineId : $('#submit-new-income').attr('data-time-line-id-submit'),
+            budgetId : $('#submit-new-income').attr('data-budget-id-submit'),
+            income:$(this).attr('data-income-id-delete')
+
+        }
+        getAnyPostE(home+"controller/incomeControllerDelete.php",parameter,'.modal-sub-content',{refreshBudgetView:insertBudgetview});
+
+
+    });
+
 
 
 

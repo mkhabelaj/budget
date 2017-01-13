@@ -3,10 +3,49 @@
     width: 50%;
     text-align: left;
     border-collapse: collapse;
-    border: solid red 1px;
+    border: solid gray 1px;
 }
 .table-header-category{
     background-color: black;
     height: 40px;
     color: white;
+}
+
+#actualBudget td {
+    border: solid gray 0.5px;
+}
+
+#actualBudget tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+.budget-td:hover{
+    background-color: lightcyan !important;
+    cursor:pointer;
+}
+
+#add-catagory {
+    width: 100%;
+}
+
+#income-summary > div > div > p {
+    display: inline;
+}
+#income-summary > div > div {
+    text-align: center;
+}
+#income-open:hover {
+    cursor: pointer;
+    background-color: lightcyan;
+}
+
+#total-row >td > p {
+    display: inline;
+}
+#total-row >td  {
+    font-weight: bold;
+}
+
+#income-list > p {
+    display: inline;
 }
