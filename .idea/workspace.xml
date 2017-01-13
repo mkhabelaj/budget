@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab3ef23b-f689-4090-9f65-d87b2513ba1d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/incomeController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/incomeControllerDelete.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/listOFIncomes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/IncludeFactory.php" afterPath="$PROJECT_DIR$/classes/IncludeFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/Income.php" afterPath="$PROJECT_DIR$/classes/Income.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/budgetViewController.php" afterPath="$PROJECT_DIR$/controller/budgetViewController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/createBudgetController.php" afterPath="$PROJECT_DIR$/controller/createBudgetController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/deleteBudgetViewRowController.php" afterPath="$PROJECT_DIR$/controller/deleteBudgetViewRowController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/editBudgetViewRowController.php" afterPath="$PROJECT_DIR$/controller/editBudgetViewRowController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/budget.sql" afterPath="$PROJECT_DIR$/database/budget.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions/functions.php" afterPath="$PROJECT_DIR$/functions/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/budgetView.js" afterPath="$PROJECT_DIR$/js/budgetView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/budgetView.css" afterPath="$PROJECT_DIR$/style/budgetView.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/headerView.php" afterPath="$PROJECT_DIR$/templates/headerView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/budgetView.php" afterPath="$PROJECT_DIR$/views/budgetView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/createBudget.php" afterPath="$PROJECT_DIR$/views/createBudget.php" />
     </list>
     <ignored path="budget.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -508,7 +492,7 @@
       <workItem from="1483688713183" duration="36000" />
       <workItem from="1483961496777" duration="290000" />
       <workItem from="1483962017927" duration="21598000" />
-      <workItem from="1484133334929" duration="57646000" />
+      <workItem from="1484133334929" duration="57803000" />
     </task>
     <task id="LOCAL-00001" summary="edited add to category functionality">
       <created>1483988074532</created>
@@ -538,11 +522,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484244701373</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add budget styling, more fields to the income database table, create, and delete fuctionality for income table">
+      <created>1484329572869</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1484329572869</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="622867000" />
+    <option name="totallyTimeSpent" value="623024000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -632,7 +623,8 @@
     <MESSAGE value="edited add to category functionality, created delete functionality for budget view" />
     <MESSAGE value="more form validation, currency, preference functionality and database tables" />
     <MESSAGE value="more form validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="more form validation" />
+    <MESSAGE value="add budget styling, more fields to the income database table, create, and delete fuctionality for income table" />
+    <option name="LAST_COMMIT_MESSAGE" value="add budget styling, more fields to the income database table, create, and delete fuctionality for income table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
