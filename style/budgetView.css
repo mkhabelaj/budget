@@ -1,6 +1,6 @@
 #actualBudget{
     margin: auto;
-    width: 50%;
+    width: 70%;
     text-align: left;
     border-collapse: collapse;
     border: solid gray 1px;
@@ -48,4 +48,19 @@
 
 #income-list > p {
     display: inline;
+}
+
+@media only screen and (max-width: 768px) {
+    #actualBudget{
+        width: 100% !important;
+
+    }
+}
+
+.budget-background {
+    background-color: #b3c2bf;
+}
+
+#actualBudget > tr>td{
+    height: 80px !important;
 }

@@ -11,6 +11,7 @@ scriptPageLoader("../js/script.js",null);
 scriptPageLoader("../js/modal.js",null);
 scriptPageLoader("../js/notificationCenter.js",null);
 scriptPageLoader("../js/friendSearch.js",null);
+scriptPageLoader("../js/index.js","index.php");
 scriptPageLoader("../js/settings.js","settingsView.php");
 scriptPageLoader("../js/addFriendToBudget.js","budget.php");
 scriptPageLoader("../js/jquery-ui-v1.12.1.js","createBudget.php");

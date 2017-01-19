@@ -30,7 +30,7 @@ $(document).ready(function () {
             /**
              * adds a users friend to their budget
              */
-            getAnyPostE(home+"controller/addFriendToBudget.php",{budgetId:budgetID,friendID:$(e.target).val()},null,{refresh:usersNotInBudgetAnon});
+            postAny(home+"controller/addFriendToBudget.php",{budgetId:budgetID,friendID:$(e.target).val()},null,{refresh:usersNotInBudgetAnon});
         }
 
         if($(e.target).hasClass("addFriendToBudget")){

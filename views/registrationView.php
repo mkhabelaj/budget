@@ -13,28 +13,26 @@ AllIncludes('header',"functions");
     }
 
 ?>
-<form action="../controller/registration.php" method="post" id="form">
-    <label for="firstname">Name</label>
-    <input type="text" name="firstname" placeholder="Name" id="firstname" required>
+<div class="row">
+    <div class="colm-12">
+        <div class="form-container">
+            <form action="../controller/registration.php" method="post" id="form">
+                <label for="form" class="form-header">Register</label>
+                <input type="text" name="firstname" placeholder="Name" id="firstname" required>
+                <input type="text" name="lastname" placeholder="Lastname" id="lastname" required>
+                <input type="email" name="email" placeholder="Email" id="email" required>
+                <select name="gender" id="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <input type="password" name="password" placeholder="Password" id="password" required>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+                <input type="submit" id="submit">
+            </form>
 
-    <label for="lastname">Lastname</label>
-    <input type="text" name="lastname" placeholder="Lastname" id="lastname" required>
+        </div>
+    </div>
 
-    <label for="email">Email</label>
-    <input type="email" name="email" placeholder="Email" id="email" required>
+</div>
 
-    <label for="gender">Gender </label>
-    <select name="gender" id="gender" required>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-    </select>
-
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Password" id="password" required>
-    <label for="confirmPassword">Confirm Password</label>
-    <input type="password" name="confirmPassword" id="confirmPassword" required>
-
-    <label for="submit">Submit</label>
-    <input type="submit" id="submit">
-</form>
 <?php factory()->getInclusion('footer')->Inclusion();?>

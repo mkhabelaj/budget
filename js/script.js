@@ -47,7 +47,7 @@ function getAnyPost(url,queryObject,element) {
  * @param element
  * @param execution
  */
-function getAnyPostE(url,queryObject,element,execution) {
+function postAny(url, queryObject, element, execution) {
     $.post(url,queryObject,function (data) {
         if(element) {
             $(element).html(data);
@@ -57,13 +57,32 @@ function getAnyPostE(url,queryObject,element,execution) {
             });
     });
 }
+/**
+ *
+ * @param url
+ * @param queryObject
+ * @param element
+ * @param execution
+ */
+function getAny(url, queryObject, element, execution) {
+    var returnData;
+    $.get(url,queryObject,function (data) {
+        if(element) {
+            $(element).html(data);
+        }
+
+        $.each(execution,function (key,value) {
+            value();
+        });
+    });
+}
 
 /**
  * this section notifies the user of any changes
  * it updates the notification table
  */
 function notifyUserOfChanges(queryObect,element,execution) {
-    getAnyPostE(home+"controller/sendNotification.php",queryObect,element,execution);
+    postAny(home+"controller/sendNotification.php",queryObect,element,execution);
 }
 
 /**
@@ -120,3 +139,39 @@ $.urlParam = function(name){
         return results[1] || 0;
     }
 }
+/**
+ * converts form values and names into and object
+ * @param $form
+ * @returns {{}}
+ */
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+/**
+ * nav
+ * this section moves the navigation up and dow when in mobile view
+ */
+
+$('.icon-link').click(function (event) {
+    event.preventDefault();
+   if($('nav').attr("class")==='nav'){
+       $('nav').addClass("mobile")
+       console.log("yes")
+   }else {
+       console.log("no")
+       $('nav').removeClass("mobile");
+   }
+    var contentPlacement = $('.nav').position().top + $('nav').height();
+    console.log(contentPlacement);
+    $('.compansate').css('margin-top',contentPlacement);
+})
+
+

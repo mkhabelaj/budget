@@ -6,9 +6,26 @@
  * Time: 12:17 PM
  */
 ?>
-<form>
-    <input type="text" id="search" placeholder="search">
-</form>
-<div id="filterSearch"></div>
-<h1>Friend List</h1>
-<div id="friendList"></div>
+<div class="row">
+    <div class="colm-9">
+        <div class="form-container">
+            <form id="friend-search-form">
+                <label for="friend-search-form" class="form-header">Friend Search</label>
+                <input type="text" id="search" placeholder="search">
+            </form>
+            <div id="filterSearch"></div>
+        </div>
+
+    </div>
+    <div class="colm-3">
+        <h3>Friend List</h3>
+        <div id="friendList"></div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="colm-12">
+
+    </div>
+</div>
+

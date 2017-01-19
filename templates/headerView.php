@@ -15,29 +15,59 @@ factory()->getInclusion('functions')->Inclusion();
     ?>
 </head>
 <body>
-    <nav>
-        <a href="../views/index.php">Home</a> |
+    <nav class="nav mobile">
+        <li class="icon">
+            <a href="#" class="icon-link">&#9776;</a>
+        </li>
+        <li>
+            <a href="../views/index.php">Home</a>
+        </li>
         <?php if(is_logged_in()):?>
-            <a href="../views/profileView.php"><?php echo $_SESSION["name"];?></a>
-            <a href="../views/budget.php">budget</a>|
-            <a href="../controller/logOut.php">Sign out</a>|
+            <li>
+                <a href="../views/profileView.php"><?php echo ucfirst( $_SESSION["name"]);?></a>
+            </li>
+            <li>
+                <a href="../views/budget.php">Budget</a>
+            </li>
                 <?php if(is_admin()):?>
-                <a href="../views/adminView.php">Administration</a>|
+                    <li>
+                        <a href="../views/adminView.php">Administration</a>
+                    </li>
                 <?php endif;?>
-            <a href="../views/notificationView.php" id="open-modal-notification" class="open-modal">
+                    <li>
+                        <a href="../views/notificationView.php" id="open-modal-notification" class="open-modal">
 
-                <div style="display: inline"> <!--CSS-->
-                    Notifications
-                    (<div class="notification" style="display: inline"></div>)<!--CSS-->
-                </div>
-            </a>|
-            <a href="../views/settingsView.php" >Settings</a>|
-            <a href="../views/notificationView.php" id="open-modal-friend-search" class="open-modal">Friends</a>|
+                            <div >
+                                Notifications
+                                (<div class="notification" style="display: inline"></div>)
+                            </div>
+                        </a>
+                    </li>
+            <li>
+                <a href="../views/notificationView.php" id="open-modal-friend-search" class="open-modal">Friends</a>
+            </li>
+            <li class="add-left-menu-item">
+                <a href="../controller/logOut.php">Sign out</a>
+            </li>
+            <li class="add-left-menu-item">
+                <a href="../views/settingsView.php" >Settings</a>
+            </li>
             <?php else: ?>
-            <a href="../views/registrationView.php">Register</a>|
-            <a href="../views/loginView.php">Sign in</a>|
+            <li class="add-left-menu-item">
+                <a href="../views/loginView.php">Sign in</a>
+            </li>
+            <li class="add-left-menu-item">
+                <a href="../views/registrationView.php">Register</a>
+            </li>
+
         <?php endif;?>
     </nav>
-<br>
-    <div id="central-error"></div>
+    <div class="compansate">
+        <img class="img-responesiveness" src="../img/desk.jpg">
+    </div>
+<div class="container">
+    <div class="row">
+        <div id="central-error" class="colm-12"></div>
+    </div>
+
 

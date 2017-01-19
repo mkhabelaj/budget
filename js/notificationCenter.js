@@ -17,7 +17,7 @@ $(document).ready(function () {
      * this accepts a friend request on the notification center tab
      */
     $('body').on('click', '.acceptFriendR', function (){
-        getAnyPostE(home+"controller/acceptFriendRequest.php",{requester: $(this).val()},null,{notifiy:notifications,updateCounter:notificationsCounter})
+        postAny(home+"controller/acceptFriendRequest.php",{requester: $(this).val()},null,{notifiy:notifications,updateCounter:notificationsCounter})
         notifyUserOfChanges({requestersID:$(this).val(),type:"accepted"},null,null);
     });
 
@@ -25,7 +25,7 @@ $(document).ready(function () {
      * these section is used to dismiss a notification
      */
     $('body').on('click', '.dismiss', function (){
-        getAnyPostE(home+"controller/dismissNotification.php",{notficationID: $(this).val()},null,{notifiy:notifications,updateCounter:notificationsCounter})
+        postAny(home+"controller/dismissNotification.php",{notficationID: $(this).val()},null,{notifiy:notifications,updateCounter:notificationsCounter})
     });
 
     /**

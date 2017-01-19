@@ -41,32 +41,45 @@ if(isset($_POST["query"])){
         $result = mysqli_query($conn,$sql);
 
         if(mysqli_num_rows($result)>0){
+                ?>
+            <ul class="friend-list-items">
+            <?php
             while ($row = mysqli_fetch_assoc($result)){
                 if($row["friend_id"] == null && strpos($row["firstname"], $query)!== false && $userID !== $row["user_id"]){
                     ?>
 
-                    <div >
-                        <?php
-                            echo $row["firstname"]." ".$row["last_name"]." ";
-                            if($row["state"] == "waiting" && $row["state"] !== null){
-                                if($_SESSION["user_id"] == $row["requester"]) {
-                                    echo "waiting for respone";
+                    <li >
+                        <div class="row">
+                            <div class="colm-6 override">
+                                <?php echo ucfirst($row["firstname"])." ".ucfirst($row["last_name"])." ";?>
+                            </div>
+                               <?php if($row["state"] == "waiting" && $row["state"] !== null){
+                                    if($_SESSION["user_id"] == $row["requester"]) {
+                                        echo "waiting for respone";
+                                    }else{
+                                        ?>
+                                        <div class="colm-6 override">
+                                         <button class="acceptFriendRequet" value="<?php echo $row["user_id"]?>">Accept</button>
+                                        </div>
+                                        <?php
+                                    }
                                 }else{
                                     ?>
-                                    <button class="acceptFriendRequet" value="<?php echo $row["user_id"]?>">Accept</button>
+                                   <div class="colm-6 override">
+                                    <button class="friendRequest" value="<?php echo $row["user_id"]?>">Add friend</button>
+                                       </div>
                                     <?php
                                 }
-                            }else{
-                                ?>
-                                <button class="friendRequest" value="<?php echo $row["user_id"]?>">Add friend</button>
-                                <?php
-                            }
-                        ?>
-                    </div>
+                            ?>
+                        </div>
+                    </li>
                     <?php
                 }
 
             }
+            ?>
+            </ul>
+            <?php
         }
     }
 

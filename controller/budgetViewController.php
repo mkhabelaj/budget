@@ -159,9 +159,9 @@ if(isset($_POST)){
     }
     //$today = date("Y-m-d",strtotime("Jan 1 2016"));
     //$today = date("Y-m-d",strtotime("dec 15 2016"));
-    $today = date("Y-m-d",strtotime("Jan 15 2017"));
-    //$today = date("Y-m-d",strtotime("june 15 2017"));
-    //$today=  date("Y-m-d");
+    //$today = date("Y-m-d",strtotime("Jan 15 2017"));
+    //$today = date("Y-m-d",strtotime("aug 15 2017"));
+    $today=  date("Y-m-d");
     getCurrentBudgetInformation();
 
     if($today > returnStandardFormat($endDate) && $today > returnStandardFormat($startDate)){
@@ -416,7 +416,7 @@ endwhile;
         $total_actual+=$row["actual_amount"];
     ?>
             <tr class="open-modal budget-td">
-                <td data-category-id = "<?php printItem($row["category_id"])?>"><?php printItem($row["name"])?></td>
+                <td data-currency="<?php printItem(currencyCode()) ?>" data-category-id = "<?php printItem($row["category_id"])?>"><?php printItem($row["name"])?></td>
                 <td budget-td><span><?php printItem(currencyCode())?>&nbsp;</span> <?php printItemCurrency($row["projected_amount"])?></td>
                 <td><span><?php printItem(currencyCode())?>&nbsp;</span> <?php printItemCurrency($row["actual_amount"])?></td>
                 <td><span><?php printItem(currencyCode())?>&nbsp;</span> <?php printItemCurrency($row["projected_amount"] - $row["actual_amount"])?></td>

@@ -16,7 +16,7 @@ $(Document).ready(function () {
     $('body').on('click','#open-modal-friend-search',function (event) {
         event.preventDefault();
         console.log('working');
-        getAnyPostE(home+"templates/friendSearch.php",null,".modal-sub-content",{recreate:createFriendList})
+        postAny(home+"templates/friendSearch.php",null,".modal-sub-content",{recreate:createFriendList})
         //createFriendList();
 
     });
@@ -30,14 +30,14 @@ $(Document).ready(function () {
 
     $('body').on('click', '.friendRequest', function (){
         $("#search").keyup()
-        getAnyPostE(home+"controller/friendRequest.php",{requestee: $(this).val() },"#search",{friendRefresh:friendSearchRefreshItemList});
+        postAny(home+"controller/friendRequest.php",{requestee: $(this).val() },"#search",{friendRefresh:friendSearchRefreshItemList});
 
     });
     /**
      * this makes the friend accept button clickable
      */
     $('body').on('click','.acceptFriendRequet',function () {
-        getAnyPostE(home+"controller/acceptFriendRequest.php",{requester: $(this).val()},null,{friendRefresh:friendSearchRefreshItemList,notify:notification,recreateFriendList:createFriendList});
+        postAny(home+"controller/acceptFriendRequest.php",{requester: $(this).val()},null,{friendRefresh:friendSearchRefreshItemList,notify:notification,recreateFriendList:createFriendList});
 
     });
 

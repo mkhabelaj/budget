@@ -1,0 +1,23 @@
+.override-articles {
+    padding-bottom: 1px;
+    border: solid gray 1px;
+    margin-bottom: 1%;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+.override-row-articles {
+    width: 70%;
+    margin: auto;
+}
+.override-row-articles > a {
+    color: black;
+}
+.override-articles:hover {
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+}
+.override-articles >p {
+    margin-top: -1%
+}
+.override-articles >h3{
+    margin-top: -1%
+}

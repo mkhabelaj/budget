@@ -91,7 +91,7 @@ if(isset($_POST)){
         AND c.name ='" . $category_new . "'
         AND CS.time_line_id =" . $time_line_id . " ";
             if ($result = dataBaseManipulation($sql2, con(), "rows", "get category name", false)) {
-                var_dump($result);
+                //var_dump($result);
                 //printItemBreak("hi");
                 $catagory = new Category($category_new);
                 $catagoryAmount = new CategoryAmount($actual_amount, $projected_amount, $category_id, $time_line_id);

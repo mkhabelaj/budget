@@ -31,7 +31,7 @@ GROUP BY u.user_id ";
 if($result = mysqli_query($conn,$sql)){
     while ($row = mysqli_fetch_assoc($result)){
         ?>
-        <div class="budgetFriendItem">
+        <div class="budgetFriendItem ">
             <?php echo $row["firstname"]." ".$row["last_name"]?>
             <button class="addFriendToMyB" value="<?php echo $row["user_id"]?>" >+</button>
         </div>

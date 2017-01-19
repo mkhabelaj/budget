@@ -6,7 +6,7 @@
  * this section updates and loads budget
  */
 var insertBudgetview = function () {
-    getAnyPostE(home+"controller/budgetViewController.php",{budgetId:$.urlParam('budget_instance_id')},"#budget-view",null);
+    postAny(home+"controller/budgetViewController.php",{budgetId:$.urlParam('budget_instance_id')},"#budget-view",null);
 }
 
 $(document).ready(function () {
@@ -29,14 +29,14 @@ $(document).ready(function () {
             actualA:$('#actual-amount').val(),
             category:$('#Category').val()
         }
-        getAnyPostE(home+"controller/catergoryAmount.php",parameters,".error-category",{refreshBudget:insertBudgetview});
+        postAny(home+"controller/catergoryAmount.php",parameters,".error-category",{refreshBudget:insertBudgetview});
     });
 
     /**
      * this section gets a form and adds it to the modal content
      */
     $('body').on('click','#add-catagory',function () {
-        getAnyPostE(home+"templates/modalFormAddCatagory.php",null,".modal-sub-content",null);
+        postAny(home+"templates/modalFormAddCatagory.php",null,".modal-sub-content",null);
 });
 
     /**
@@ -44,22 +44,27 @@ $(document).ready(function () {
      * the modal as a form
      */
     $('body').on('click','#actualBudget',function (event) {
+
+        var currencyCode = $(event.target.parentNode).children(":first-child").attr('data-currency');
+        console.log(currencyCode);
         var category = $(event.target.parentNode).children(":first-child").html();
-        var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id').replace('<span>R&nbsp;</span>','');
-        var projectedAmount =$(event.target.parentNode).children(":nth-child(2)").html().replace('<span>R&nbsp;</span>','');
-        var atualAmount =$(event.target.parentNode).children(":nth-child(3)").html().replace('<span>R&nbsp;</span>','');
-        var content ='<form>' +
-                        '<div class="edit-table-row-budget-view">' +
-                            '<label for="category-edit">Category</label> ' +
-                            '<input id="category-edit" type="text" value="'+category+'">'+
-                            '<label for="projected-amount-edit">Projected Amount</label> ' +
-                            '<input id="projected-amount-edit" value="'+projectedAmount+'">' +
-                            '<label for="actual-amount-edit">Actual Amount</label> ' +
-                            '<input id="actual-amount-edit"  value="'+atualAmount+'">' +
-                            '<button id="edit-row" type="submit" data-category-id="'+categoryValue+'">edit</button>' +
-                            '<button id="delete-row" type="submit" data-category-delete-id="'+categoryValue+'">DELETE</button>' +
-                        '</div>' +
-                    '</form>';
+        var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id').replace('<span>'+currencyCode+'&nbsp;</span>','');
+        var projectedAmount = parseFloat($(event.target.parentNode).children(":nth-child(2)").html().replace('<span>'+currencyCode+'&nbsp;</span>',''));
+        var atualAmount =parseFloat($(event.target.parentNode).children(":nth-child(3)").html().replace('<span>'+currencyCode+'&nbsp;</span>',''));
+        var content ='<div class="form-container">' +
+                        '<form>' +
+                            '<div class="edit-table-row-budget-view">' +
+                                '<label for="category-edit">Category</label> ' +
+                                '<input id="category-edit" type="text" value="'+category+'">'+
+                                '<label for="projected-amount-edit">Projected Amount</label> ' +
+                                '<input id="projected-amount-edit" type="number" step="any" value="'+projectedAmount+'">' +
+                                '<label for="actual-amount-edit">Actual Amount</label> ' +
+                                '<input id="actual-amount-edit" type="number" step="any" value="'+atualAmount+'">' +
+                                '<button id="edit-row" type="submit" data-category-id="'+categoryValue+'">edit</button>' +
+                                '<button id="delete-row" type="submit" data-category-delete-id="'+categoryValue+'">DELETE</button>' +
+                            '</div>' +
+                        '</form> ' +
+                    '</div>';
         $('.modal-sub-content').html(content);
     });
 
@@ -77,7 +82,7 @@ $(document).ready(function () {
             projectedAmount:$("#projected-amount-edit").val()
         }
 
-        getAnyPostE(home+"controller/editBudgetViewRowController.php",parameters,'#central-error',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
+        postAny(home+"controller/editBudgetViewRowController.php",parameters,'#central-error',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
     });
 
     /**
@@ -94,7 +99,7 @@ $(document).ready(function () {
             projectedAmount:$("#projected-amount-edit").val()
         }
 
-        getAnyPostE(home+"controller/deleteBudgetViewRowController.php",parameters,'#central-error',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
+        postAny(home+"controller/deleteBudgetViewRowController.php",parameters,'#central-error',{refreshbudgetview:insertBudgetview,modalClose:closeModal});
     });
 
     /**
@@ -107,7 +112,7 @@ $(document).ready(function () {
             timeLineID : $(this).attr('data-time-id'),
             budgetID : $(this).attr('data-budget-id')
         }
-        getAnyPostE(home+"controller/listOfIncomes.php",parameter,'.modal-sub-content',null);
+        postAny(home+"controller/listOfIncomes.php",parameter,'.modal-sub-content',null);
 
 
     });
@@ -123,7 +128,7 @@ $(document).ready(function () {
             income:$('#amount-income').val()
 
         }
-        getAnyPostE(home+"controller/incomeController.php",parameter,'.modal-sub-content',{refreshBudgetView:insertBudgetview});
+        postAny(home+"controller/incomeController.php",parameter,'#central-error',{refreshBudgetView:insertBudgetview,closeM:closeModal});
 
 
     });
@@ -138,7 +143,41 @@ $(document).ready(function () {
             income:$(this).attr('data-income-id-delete')
 
         }
-        getAnyPostE(home+"controller/incomeControllerDelete.php",parameter,'.modal-sub-content',{refreshBudgetView:insertBudgetview});
+        postAny(home+"controller/incomeControllerDelete.php",parameter,'#central-error',{refreshBudgetView:insertBudgetview,closeModa:closeModal});
+
+
+    });
+    /**
+     * edits income in database
+     */
+
+    var incomeIDEdit = 0;
+
+    $('body').on('click','.income-edit',function (event) {
+        var description = $(event.target.parentNode).children(":first-child").html();
+        var income =  $(event.target.parentNode).children(":nth-child(3)").html();
+
+        incomeIDEdit = $(this).attr("data-income-id-edit");
+
+        var content ='<form class="edit-income-form">' +
+                        '<label for="income-description-edit">IncomeDescription</label>' +
+                        '<input id="income-description-edit" name="description-name" type="text" value="'+description+'">' +
+                        '<label for="income-edit">Income </label>' +
+                        '<input id="income-edit" name="amount-name" type="number" step="any" value="'+income+'">' +
+                        '<button type="submit" class="submit-new-edit"> Edit</button>' +
+                    '</form>';
+        $('.modal-sub-content').html(content);
+
+    });
+    /**
+     * updates income
+     */
+    $('body').on('click','.submit-new-edit',function (event) {
+        event.preventDefault();
+        var $form = $(".edit-income-form");
+        var data = getFormData($form);
+        data["income-id"] = incomeIDEdit;
+        postAny(home+"controller/incomeControllerEdit.php",data,'#central-error',{refreshBudgetView:insertBudgetview,closeModal:closeModal});
 
 
     });

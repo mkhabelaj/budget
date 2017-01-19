@@ -9,5 +9,5 @@ $('#change-currency').submit(function (event) {
         currencyCode:$("#curency").val(),
         formName:$(this).attr('id')
     };
-    getAnyPostE(home+"controller/settingsController.php",parameter,null,null);
+    postAny(home+"controller/settingsController.php",parameter,null,null);
 });
