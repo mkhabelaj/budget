@@ -174,4 +174,17 @@ $('.icon-link').click(function (event) {
     $('.compansate').css('margin-top',contentPlacement);
 })
 
+/**
+ * clears error and success div
+ */
+$('body').on('click',function (event) {
+    if(event.target.id !='central-error'  &&  !$('#central-error').is(':empty')){
+        $('#central-error').empty();
+    }
+    if(event.target.id !='central-success'  &&  !$('#central-success').is(':empty')){
+        $('#central-success').empty();
+    }
+
+})
+
 

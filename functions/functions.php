@@ -398,6 +398,17 @@ function concat_with_PTag($content){
 }
 
 /**
+ * for error printing
+ * surrounds error in reponsive div tags
+ * @param $content
+ * @param $number| 1-12
+ * @return string
+ */
+function concat_with_DIVTag($content,$number){
+    return '<div class="colm-'.$number.'" >'.$content.'</div>';
+}
+
+/**
  * checks if content is null
  * @param $content
  * @return bool

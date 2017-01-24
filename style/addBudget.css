@@ -1,0 +1,39 @@
+#budget-list-table {
+    margin: auto;
+    text-align: left;
+    border-collapse: collapse;
+    border: solid gray 1px;
+    width: 50%;
+}
+
+#budget-list-tr-header{
+    background-color: #333;
+    height: 40px;
+    color: white;
+}
+.budget-list-table-td {
+    border: solid gray 0.5px;
+}
+#budget-list-table  tr:not(:first-child):nth-child(even){
+    background-color: #e6e6e8;
+}
+#budget-list-table  tr:not(:first-child):nth-child(odd){
+    background-color: white;
+}
+
+.budget-list-table-td > a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.budget-list-table-td > a:hover {
+    background-color: #935347;
+    color:white;
+}
+
+#budget-list-button {
+    width: 100%;
+}
+
+

@@ -4,7 +4,7 @@
 body {
     /*margin: 2em;*/
     font-family: 'Roboto', sans-serif;
-    background-color: #3b3a36;
+    background-color: #64706c;
     /*background-image:url("src/c&j.jpg") ;*/
     margin: 0px;
 }
@@ -70,7 +70,6 @@ body {
     margin-left: 25px;
     margin-right:25px ;
     margin-bottom: 10px;
-    background-color: #e9ece5;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
 
 }
@@ -85,9 +84,6 @@ body {
         width: 100%;
         text-align: center;
     }
-    /*.compansate{*/
-        /*margin-top: 300px !important;*/
-    /*}*/
 
     .overlay{
 
@@ -138,7 +134,7 @@ body {
 }
 
 .nav > li > a:hover{
-    background-color: #b3c2bf;
+    background-color: #935347;
 }
 .nav > li > a:active{
     background-color: #b3c2bf;
@@ -146,6 +142,7 @@ body {
 .compansate{
     margin-top: 42.399993896484375px;
 }
+
 .overlay{
     position: absolute;
     top: 0px;
@@ -199,4 +196,18 @@ input{
 }
 .friend-list-items >li {
     width: 60%
+}
+.logo {
+    color:white;
+}
+
+.container-style{
+    background-color: #ede9ce;
+}
+.nav-img{
+    width: 40px;
+    border-radius: 60%
+}
+.friend-img {
+    width: 60px;
 }

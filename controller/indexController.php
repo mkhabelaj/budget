@@ -6,7 +6,7 @@
  * Time: 02:38 PM
  */
 require_once ("../inclusion/inclusion.php");
-AllIncludes("functions","dataB","validate","user");
+AllIncludes("functions","dataB");
 if(isset($_POST)){
     $list = json_decode($_POST['articles']);
     //print_r($list->response->docs);

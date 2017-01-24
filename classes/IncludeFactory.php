@@ -24,6 +24,8 @@ require_once ("budgetInstanceCategory.php");
 require_once ("User.php");
 require_once ("Currency.php");
 require_once ("Preference.php");
+require_once ("Photos.php");
+require_once ('ErrorSuccess.php');
 
 
 
@@ -92,6 +94,12 @@ class IncludeFactory
                break;
            case "preference":
                return new Preference(null,null);
+               break;
+           case "photos":
+               return new Photos(null,null,null);
+               break;
+           case "errorsuccess":
+               return new ErrorSuccess();
                break;
            default:
                return null;

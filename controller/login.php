@@ -7,9 +7,11 @@
  */
 
 require_once ("../inclusion/inclusion.php");
-AllIncludes('security',"functions","dataB");
+AllIncludes('security',"functions","dataB","errorsuccess");
+
+
 if(isset($_POST)){
-    //echo Security::encrypt($_POST["password"],$key);
+    $message = new ErrorSuccess();
 
     $sql = "SELECT * FROM user WHERE email=".createQueryStringForVariable($_POST["email"])."AND password=".createQueryStringForVariable(Security::encrypt($_POST["password"],returnKey()));
 
@@ -29,13 +31,16 @@ if(isset($_POST)){
                     ON p.currency_id = c.curency_id
                     WHERE p.user_id =".userID();
 		    $_SESSION["code"] = dataBaseManipulation($sql2,con(),"rows","Get country code",false)["code"];
+		    $message->addToSuccessArray("Welcome ".ucfirst($_SESSION['name']),12);
+		    $message->addSuccess();
         header("Location: ../views/index.php");
 
 
 
 	  }else{
         echo "0 results";
-        $_SESSION['error']='your credentials are incorrect';
+        $message->addTOErrorArray('your credentials are incorrect',12);
+        $message->addError();
         header("Location: ../views/loginView.php");
     }
 }else{

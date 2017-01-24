@@ -50,7 +50,18 @@ if(isset($_POST["query"])){
 
                     <li >
                         <div class="row">
-                            <div class="colm-6 override">
+                            <div class="colm-4 override">
+                                <img class="friend-img" src="<?php
+                                    $sqlP="SELECT url FROM photos WHERE status='active' AND user_id=".$row["user_id"];
+                                    if($url = dataBaseManipulation($sqlP,con(),"rows","selecting from photos",false)["url"]){
+                                        printItem( $url);
+                                    }else{
+                                        printItem("../photos/no_image.PNG");
+                                    }
+
+                                ?>">
+                            </div>
+                            <div class="colm-4 override">
                                 <?php echo ucfirst($row["firstname"])." ".ucfirst($row["last_name"])." ";?>
                             </div>
                                <?php if($row["state"] == "waiting" && $row["state"] !== null){
@@ -58,14 +69,14 @@ if(isset($_POST["query"])){
                                         echo "waiting for respone";
                                     }else{
                                         ?>
-                                        <div class="colm-6 override">
+                                        <div class="colm-4 override">
                                          <button class="acceptFriendRequet" value="<?php echo $row["user_id"]?>">Accept</button>
                                         </div>
                                         <?php
                                     }
                                 }else{
                                     ?>
-                                   <div class="colm-6 override">
+                                   <div class="colm-4 override">
                                     <button class="friendRequest" value="<?php echo $row["user_id"]?>">Add friend</button>
                                        </div>
                                     <?php

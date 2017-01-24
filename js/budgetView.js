@@ -54,7 +54,7 @@ $(document).ready(function () {
         var content ='<div class="form-container">' +
                         '<form>' +
                             '<div class="edit-table-row-budget-view">' +
-                                '<label for="category-edit">Category</label> ' +
+                                '<label class="form-header" for="category-edit">Category</label> ' +
                                 '<input id="category-edit" type="text" value="'+category+'">'+
                                 '<label for="projected-amount-edit">Projected Amount</label> ' +
                                 '<input id="projected-amount-edit" type="number" step="any" value="'+projectedAmount+'">' +
@@ -159,13 +159,16 @@ $(document).ready(function () {
 
         incomeIDEdit = $(this).attr("data-income-id-edit");
 
-        var content ='<form class="edit-income-form">' +
-                        '<label for="income-description-edit">IncomeDescription</label>' +
-                        '<input id="income-description-edit" name="description-name" type="text" value="'+description+'">' +
-                        '<label for="income-edit">Income </label>' +
-                        '<input id="income-edit" name="amount-name" type="number" step="any" value="'+income+'">' +
-                        '<button type="submit" class="submit-new-edit"> Edit</button>' +
-                    '</form>';
+        var content ='<div class="form-container">' +
+                        '<form id="edit-income-form-id" class="edit-income-form">' +
+                            '<label for="edit-income-form-id">Edit</label> ' +
+                            '<label for="income-description-edit">IncomeDescription</label>' +
+                            '<input id="income-description-edit" name="description-name" type="text" value="'+description+'">' +
+                            '<label for="income-edit">Income </label>' +
+                            '<input id="income-edit" name="amount-name" type="number" step="any" value="'+income+'">' +
+                            '<button type="submit" class="submit-new-edit"> Edit</button>' +
+                        '</form>' +
+                    '</div>';
         $('.modal-sub-content').html(content);
 
     });

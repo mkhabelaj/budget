@@ -1,6 +1,7 @@
 <?php
 require_once ('../inclusion/inclusion.php');
-factory()->getInclusion('functions')->Inclusion();
+AllIncludes('functions');
+
 ?>
 <!DOCTYPE HTML>
 <HTML>
@@ -62,12 +63,34 @@ factory()->getInclusion('functions')->Inclusion();
 
         <?php endif;?>
     </nav>
-    <div class="compansate">
-        <img class="img-responesiveness" src="../img/desk.jpg">
+<?php if(basename($_SERVER['PHP_SELF'])==='index.php'):?>
+    <div class="underlay under">
+        <div class="compansate">
+            <img class="img-responesiveness" src="../img/frontImage2.png">
+        </div>
+        <h1 class="overlay logo">EVSBudget</h1>
     </div>
-<div class="container">
-    <div class="row">
-        <div id="central-error" class="colm-12"></div>
+<?php endif;?>
+<div class="container container-style<?php printItem($class = basename($_SERVER['PHP_SELF'])==='index.php' ?'':' compansate')?>">
+    <div id="central-error" class="row">
+            <?php
+                if(isset($_SESSION['error'])){
+                    foreach ($_SESSION['error'] AS $error):
+                        printItem($error);
+                        endforeach;
+                }
+                unset($_SESSION['error']);
+            ?>
+    </div>
+    <div id="central-success" class="row">
+        <?php
+        if(isset($_SESSION['success'])){
+            foreach ($_SESSION['success'] AS $success):
+                printItem($success);
+            endforeach;
+        }
+        unset($_SESSION['success']);
+        ?>
     </div>
 
 

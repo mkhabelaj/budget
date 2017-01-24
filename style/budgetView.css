@@ -6,7 +6,7 @@
     border: solid gray 1px;
 }
 .table-header-category{
-    background-color: black;
+    background-color: #333;
     height: 40px;
     color: white;
 }
@@ -15,13 +15,17 @@
     border: solid gray 0.5px;
 }
 
-#actualBudget tr:nth-child(even) {
-    background-color: lightgrey;
+#actualBudget tr:not(:first-child):nth-child(even) {
+    background-color: #e6e6e8;
+}
+#actualBudget tr:not(:first-child):nth-child(odd) {
+    background-color: white;
 }
 
 .budget-td:hover{
-    background-color: lightcyan !important;
+    background-color: #935347 !important;
     cursor:pointer;
+    color:white;
 }
 
 #add-catagory {
@@ -36,7 +40,8 @@
 }
 #income-open:hover {
     cursor: pointer;
-    background-color: lightcyan;
+    background-color: #935347;
+    color:white;
 }
 
 #total-row >td > p {
@@ -46,8 +51,9 @@
     font-weight: bold;
 }
 
-#income-list > p {
-    display: inline;
+#income-list  {
+    width: 50%;
+    margin: auto;
 }
 
 @media only screen and (max-width: 768px) {
@@ -63,4 +69,13 @@
 
 #actualBudget > tr>td{
     height: 80px !important;
+}
+
+#income-summary{
+    background-color: #c7ad88;
+}
+
+#income-open {
+    border: solid #935347 0.5px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
 }

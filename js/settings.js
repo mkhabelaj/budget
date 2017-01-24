@@ -11,3 +11,6 @@ $('#change-currency').submit(function (event) {
     };
     postAny(home+"controller/settingsController.php",parameter,null,null);
 });
+
+
+

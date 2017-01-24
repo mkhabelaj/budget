@@ -27,19 +27,26 @@ INNER JOIN
                                      WHERE budget_Instance_Id = ".$budgetID."  )) AS user_f_b
 ON user_f_b.friend_user_id = u.user_id 
 GROUP BY u.user_id ";
-
-if($result = mysqli_query($conn,$sql)){
+$result = mysqli_query($conn,$sql);
+?>
+<div class="row">
+    <?php
+if($result->num_rows){
     while ($row = mysqli_fetch_assoc($result)){
-        ?>
-        <div class="budgetFriendItem ">
-            <?php echo $row["firstname"]." ".$row["last_name"]?>
-            <button class="addFriendToMyB" value="<?php echo $row["user_id"]?>" >+</button>
-        </div>
+            ?>
+            <div class="budgetFriendItem colm-12 ">
+                <?php echo $row["firstname"]." ".$row["last_name"]?>
+                <button class="addFriendToMyB" value="<?php echo $row["user_id"]?>" >+</button>
+            </div>
 
-        <?php
-
+            <?php
     }
 }else{
-    echo "sffsdf";
-}
+    ?>
+    <div class="budgetFriendItem colm-12">
+        <h3>The are no friends to add to this budget</h3>
+    </div>
+</div>
+
+<?php }
 

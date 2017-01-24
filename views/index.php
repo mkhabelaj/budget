@@ -11,9 +11,6 @@
      ?>
 
 
- <div class="articles row override-row-articles">
+ <div class="articles row override-row-articles"></div>
 
- <?php
-
-
- factory()->getInclusion("footer")->Inclusion();
+ <?php factory()->getInclusion("footer")->Inclusion();?>
