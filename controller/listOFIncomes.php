@@ -19,7 +19,7 @@ if(isset($_POST)){
 
     <?php
     while ($row = mysqli_fetch_assoc($result)):
-    ?><div class="row">
+    ?><div class="row" id="income-summary-style">
             <div id="income-list" >
                 <div class="colm-3"><?php printItem($row["description"])?></div>
                 <div class="colm-3"><?php printItem(currencyCode()) ?>

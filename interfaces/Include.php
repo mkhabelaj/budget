@@ -9,5 +9,4 @@
 interface IncludeStatement
 {
     public function Inclusion();
-
 }

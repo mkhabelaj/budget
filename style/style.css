@@ -211,3 +211,10 @@ input{
 .friend-img {
     width: 60px;
 }
+
+.friend-list-item{
+    list-style: none;
+}
+#friend-list-header{
+    margin: auto;
+}

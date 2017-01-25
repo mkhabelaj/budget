@@ -24,9 +24,9 @@ AllIncludes('functions');
             <a href="../views/index.php">Home</a>
         </li>
         <?php if(is_logged_in()):?>
-            <li>
-                <a href="../views/profileView.php"><?php echo ucfirst( $_SESSION["name"]);?></a>
-            </li>
+<!--            <li>-->
+<!--                <a href="../views/profileView.php">--><?php //echo ucfirst( $_SESSION["name"]);?><!--</a>-->
+<!--            </li>-->
             <li>
                 <a href="../views/budget.php">Budget</a>
             </li>

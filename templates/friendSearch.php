@@ -18,7 +18,6 @@
 
     </div>
     <div class="colm-3">
-        <h3>Friend List</h3>
         <div id="friendList"></div>
 
     </div>

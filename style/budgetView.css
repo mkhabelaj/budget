@@ -79,3 +79,10 @@
     border: solid #935347 0.5px;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
 }
+#income-summary-style{
+    background-color: #c7ad88;
+}
+
+#income-summary-style > div >div{
+    padding: 1px
+}
