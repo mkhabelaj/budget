@@ -395,7 +395,7 @@ endwhile;
             <div class="colm-3">
                 <p>Total Varience</p>
                 <p><?php printItem(currencyCode())?></p>
-                <p><?php printItem($total_income - $total_actual_for_income)?></p>
+                <p><?php printItemCurrency($total_income - $total_actual_for_income)?></p>
             </div>
         </div>
     </div>

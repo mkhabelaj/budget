@@ -207,7 +207,7 @@ function printItemBreak($item){
  * @param $item
  */
 function printItemCurrency ($item){
-    echo number_format((float)$item, 2, '.', '');
+    echo number_format((float)$item, 2, '.', ',');
 }
 
 /**

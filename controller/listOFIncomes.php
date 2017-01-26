@@ -23,7 +23,7 @@ if(isset($_POST)){
             <div id="income-list" >
                 <div class="colm-3"><?php printItem($row["description"])?></div>
                 <div class="colm-3"><?php printItem(currencyCode()) ?>
-                <?php printItem($row["income"])?></div>
+                <?php printItem(printItemCurrency($row["income"]))?></div>
                 <div class="colm-3">
                     <button class="income-edit" data-income-id-edit="<?php printItem($row["income_id"])?>">Edit</button>
                     <button class="income-delete" data-income-id-delete="<?php printItem($row["income_id"])?>">delete</button>
