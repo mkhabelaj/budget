@@ -46,11 +46,10 @@ $(document).ready(function () {
     $('body').on('click','#actualBudget',function (event) {
 
         var currencyCode = $(event.target.parentNode).children(":first-child").attr('data-currency');
-        console.log(currencyCode);
         var category = $(event.target.parentNode).children(":first-child").html();
         var categoryValue = $(event.target.parentNode).children(":first-child").attr('data-category-id').replace('<span>'+currencyCode+'&nbsp;</span>','');
-        var projectedAmount = parseFloat($(event.target.parentNode).children(":nth-child(2)").html().replace('<span>'+currencyCode+'&nbsp;</span>',''));
-        var atualAmount =parseFloat($(event.target.parentNode).children(":nth-child(3)").html().replace('<span>'+currencyCode+'&nbsp;</span>',''));
+        var projectedAmount = parseFloat($(event.target.parentNode).children(":nth-child(2)").html().replace('<span>'+currencyCode+'&nbsp;</span>','').replace(/,/g,''));
+        var atualAmount =parseFloat($(event.target.parentNode).children(":nth-child(3)").html().replace('<span>'+currencyCode+'&nbsp;</span>','').replace(/,/g,''));
         var content ='<div class="form-container">' +
                         '<form>' +
                             '<div class="edit-table-row-budget-view">' +
@@ -154,8 +153,10 @@ $(document).ready(function () {
     var incomeIDEdit = 0;
 
     $('body').on('click','.income-edit',function (event) {
-        var description = $(event.target.parentNode).children(":first-child").html();
-        var income =  $(event.target.parentNode).children(":nth-child(3)").html();
+        var description = $(event.target.parentNode.parentNode).children(":first-child").html();
+        var income =  parseFloat($(event.target.parentNode.parentNode).children(":nth-child(2)").html().replace(/[^0-9]/,'').replace(/ /g,'').replace(/,/g,''));
+
+        console.log(income);
 
         incomeIDEdit = $(this).attr("data-income-id-edit");
 
